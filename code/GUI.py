@@ -1,5 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
+from PIL import Image
+from PIL import ImageTk
 
 
 class Application(tk.Tk):
@@ -36,7 +38,14 @@ class Application(tk.Tk):
 
         self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
 
-        #TODO: Add settings
+        # Add a button for adding an item to track
+
+        self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
+
+        self.add_button = tk.Button(master=self, command=self.items_list.add_item, image=self.plus_image)
+        self.add_button.place(x=769, y=50)
+
+        # TODO: Add settings
 
 
 class TrackedItemsListbox(ttk.Treeview):

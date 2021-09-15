@@ -14,8 +14,8 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
 
-        welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of different digital " \
-                          "retailers. To begin, right click the box below."
+        welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
+                          "different digital retailers. To begin, right click the empty box below."
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 
         self.welcome_text.grid(row=0, sticky='NW')
@@ -35,6 +35,8 @@ class Application(tk.Tk):
         self.tabs.add(self.settings, text='Settings')
 
         self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
+
+        #TODO: Add settings
 
 
 class TrackedItemsListbox(ttk.Treeview):
@@ -76,7 +78,7 @@ class TrackedItemsListbox(ttk.Treeview):
                 self.selected_menu.grab_release()
 
     def add_item(self):
-        # TODO: Add a popup to actually get a page URL
+        # TODO: Add a popup to actually get a real page URL
 
         self.insert('', 'end', values=("TODO:", "Add a", "Pop-up"))
         self.selection_clear()

@@ -9,7 +9,7 @@ class Application(tk.Tk):
         super().__init__()
 
         self.geometry('800x500')
-        # self.resizable(0, 0)
+        self.resizable(0, 0)
 
         self.title('Item Stock Tracker')
 
@@ -43,7 +43,7 @@ class Application(tk.Tk):
         self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
 
         self.add_button = tk.Button(master=self, command=self.items_list.add_item, image=self.plus_image)
-        self.add_button.place(x=769, y=50)
+        self.add_button.place(x=769, y=52)
 
         # TODO: Add settings
 

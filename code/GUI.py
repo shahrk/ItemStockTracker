@@ -109,23 +109,29 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
         self.name = name
         self.url = url
         self.cancelled = True
+
         super().__init__(parent, title)
 
     def body(self, frame):
-        self.name_label = tk.Label(frame, width=20, text="Name: ")
-        self.name_label.pack()
+        frame.rowconfigure(0, weight=0, pad=5)
+        frame.rowconfigure(1, weight=0)
+        frame.columnconfigure(0, weight=0)
+        frame.columnconfigure(1, weight=0)
+
+        self.name_label = tk.Label(frame, width=6, text="Name: ")
+        self.name_label.grid(column=0, row=0)
 
         self.name_box = tk.Entry(frame, width=30)
         if self.name != "":
             self.name_box.insert(0, self.name)
-        self.name_box.pack()
+        self.name_box.grid(column=1, row=0)
 
-        self.url_label = tk.Label(frame, width=20, text="URL: ")
-        self.url_label.pack()
+        self.url_label = tk.Label(frame, width=6, text="URL: ")
+        self.url_label.grid(column=0, row=1)
         self.url_box = tk.Entry(frame, width=30)
         if self.url != "":
             self.url_box.insert(0, self.url)
-        self.url_box.pack()
+        self.url_box.grid(column=1, row=1)
         return frame
 
     def apply(self):

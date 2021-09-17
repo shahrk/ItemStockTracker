@@ -31,8 +31,6 @@ class Application(tk.Tk):
 
         self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
         self.items_list.pack()
-        s = tracker.State()
-        tracker.read_state(tracker.FILENAME, s)
         for item in s.item:
             self.items_list.insert('', 'end', values=(item.get('item'), item.get('url'), ' '))
 
@@ -103,10 +101,10 @@ class TrackedItemsListbox(ttk.Treeview):
         for item in self.selection():
             self.delete(item)
 
-
-
-
 if __name__ == "__main__":
+    s = tracker.State()
+    tracker.read_state(tracker.FILENAME, s)
     app = Application()
     app.mainloop()
+    tracker.save_state('../data/testsave.txt',s)
 

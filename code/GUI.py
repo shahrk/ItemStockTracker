@@ -90,7 +90,7 @@ class TrackedItemsListbox(ttk.Treeview):
     def add_item(self, name, url):
         self.insert('', 'end', values=(name, url, "?"))
 
-        #TODO: Add a method for checking if an item is in stock
+        # TODO: Add a method for checking if an item is in stock
 
         self.selection_clear()
 
@@ -100,14 +100,15 @@ class TrackedItemsListbox(ttk.Treeview):
 
     def add_item_popup(self):
         popup = GetItemURLDialogue(self, "Add Item", "", "")
-
-        self.add_item(popup.name, popup.url)
+        if not popup.cancelled:
+            self.add_item(popup.name, popup.url)
 
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):
     def __init__(self, parent, title, name, url):
         self.name = name
         self.url = url
+        self.cancelled = True
         super().__init__(parent, title)
 
     def body(self, frame):
@@ -125,30 +126,12 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
         if self.url != "":
             self.url_box.insert(0, self.url)
         self.url_box.pack()
-
         return frame
 
     def apply(self):
-        print(self.name, self.url)
-
-    def ok_pressed(self):
-        #self.name = self.name_box.get()
-        #self.url = self.url_box.get()
-        self.name= "test"
-        self.url = "test"
-        self.destroy()
-
-    def cancel_pressed(self):
-        self.name = "[ACTION_CANCELLED09438975623]"
-        self.destroy()
-
-    def buttons(self):
-        self.ok = tk.Button(self, text='OK', width=6, command=self.ok_pressed)
-        self.ok.pack(side="left")
-        self.cancel = tk.Button(self, text='Cancel', width=6, command=self.cancel_pressed)
-        self.cancel.pack(side="right")
-        self.bind("<Return>", lambda event: self.ok_pressed())
-        self.bind("<Escape>", lambda event: self.cancel_pressed())
+        self.name = self.name_box.get()
+        self.url = self.url_box.get()
+        self.cancelled = False
 
 
 if __name__ == "__main__":

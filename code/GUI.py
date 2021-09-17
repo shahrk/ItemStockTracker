@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+from tkinter import simpledialog
 from PIL import Image
 from PIL import ImageTk
 
@@ -17,7 +18,7 @@ class Application(tk.Tk):
         self.rowconfigure(1, weight=6, pad=5)
 
         welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
-                          "different digital retailers. To begin, right click the empty box below."
+                          "different digital retailers. \n Currently supported retailers include: <TODO: Add these>"
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 
         self.welcome_text.grid(row=0, sticky='NW')
@@ -42,7 +43,7 @@ class Application(tk.Tk):
 
         self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
 
-        self.add_button = tk.Button(master=self, command=self.items_list.add_item, image=self.plus_image)
+        self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
         self.add_button.place(x=769, y=52)
 
         # TODO: Add settings
@@ -54,12 +55,12 @@ class TrackedItemsListbox(ttk.Treeview):
 
         self.none_selected_menu = tk.Menu(self, tearoff=0)
         self.none_selected_menu.add_command(label="Add New Page...",
-                                            command=self.add_item)
+                                            command=self.add_item_popup)
 
         # Add a second menu with more options for when an item is selected
         self.selected_menu = tk.Menu(self, tearoff=0)
         self.selected_menu.add_command(label="Add New Page...",
-                                       command=self.add_item)
+                                       command=self.add_item_popup)
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Delete",
                                        command=self.delete_item)
@@ -86,15 +87,68 @@ class TrackedItemsListbox(ttk.Treeview):
             finally:
                 self.selected_menu.grab_release()
 
-    def add_item(self):
-        # TODO: Add a popup to actually get a real page URL
+    def add_item(self, name, url):
+        self.insert('', 'end', values=(name, url, "?"))
 
-        self.insert('', 'end', values=("TODO:", "Add a", "Pop-up"))
+        #TODO: Add a method for checking if an item is in stock
+
         self.selection_clear()
 
     def delete_item(self):
         for item in self.selection():
             self.delete(item)
+
+    def add_item_popup(self):
+        popup = GetItemURLDialogue(self, "Add Item", "", "")
+
+        self.add_item(popup.name, popup.url)
+
+
+class GetItemURLDialogue(tk.simpledialog.Dialog):
+    def __init__(self, parent, title, name, url):
+        self.name = name
+        self.url = url
+        super().__init__(parent, title)
+
+    def body(self, frame):
+        self.name_label = tk.Label(frame, width=20, text="Name: ")
+        self.name_label.pack()
+
+        self.name_box = tk.Entry(frame, width=30)
+        if self.name != "":
+            self.name_box.insert(0, self.name)
+        self.name_box.pack()
+
+        self.url_label = tk.Label(frame, width=20, text="URL: ")
+        self.url_label.pack()
+        self.url_box = tk.Entry(frame, width=30)
+        if self.url != "":
+            self.url_box.insert(0, self.url)
+        self.url_box.pack()
+
+        return frame
+
+    def apply(self):
+        print(self.name, self.url)
+
+    def ok_pressed(self):
+        #self.name = self.name_box.get()
+        #self.url = self.url_box.get()
+        self.name= "test"
+        self.url = "test"
+        self.destroy()
+
+    def cancel_pressed(self):
+        self.name = "[ACTION_CANCELLED09438975623]"
+        self.destroy()
+
+    def buttons(self):
+        self.ok = tk.Button(self, text='OK', width=6, command=self.ok_pressed)
+        self.ok.pack(side="left")
+        self.cancel = tk.Button(self, text='Cancel', width=6, command=self.cancel_pressed)
+        self.cancel.pack(side="right")
+        self.bind("<Return>", lambda event: self.ok_pressed())
+        self.bind("<Escape>", lambda event: self.cancel_pressed())
 
 
 if __name__ == "__main__":

@@ -1,5 +1,6 @@
 import tkinter as tk
 from tkinter import ttk
+import tracker
 from PIL import Image
 from PIL import ImageTk
 
@@ -30,6 +31,10 @@ class Application(tk.Tk):
 
         self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
         self.items_list.pack()
+        s = tracker.State()
+        tracker.read_state(tracker.FILENAME, s)
+        for item in s.item:
+            self.items_list.insert('', 'end', values=(item.get('item'), item.get('url'), ' '))
 
         self.settings = ttk.Frame(self.tabs)
 
@@ -46,6 +51,8 @@ class Application(tk.Tk):
         self.add_button.place(x=769, y=52)
 
         # TODO: Add settings
+
+
 
 
 class TrackedItemsListbox(ttk.Treeview):
@@ -97,6 +104,9 @@ class TrackedItemsListbox(ttk.Treeview):
             self.delete(item)
 
 
+
+
 if __name__ == "__main__":
     app = Application()
     app.mainloop()
+

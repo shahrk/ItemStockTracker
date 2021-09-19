@@ -92,8 +92,8 @@ class TrackedItemsListbox(ttk.Treeview):
         self.insert('', 'end', values=(name, url, "?"))
 
         # TODO: Add a method for checking if an item is in stock
-
-        Scraper.ChooseScraper(url)
+        scraper = Scraper()
+        scraper.ChooseScraper(url)
 
         self.selection_clear()
 

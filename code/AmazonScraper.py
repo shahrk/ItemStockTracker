@@ -1,11 +1,14 @@
 import requests
 from time import sleep
-import time
-import schedule
 from bs4 import BeautifulSoup
 
 
 class AmazonScraper:
+    def __init__(self):
+        self.url = ""
+
+    def SetURL(self, url):
+        self.url = url
 
     def CheckStock(self, url):
         headers = {
@@ -36,27 +39,8 @@ class AmazonScraper:
         except:
             return "An error occurred. Please make sure the link you entered is correct"
 
-
-
-
-    def ReadURL(self):
-
-        url = "https://www.amazon.com/Lays-Potato-Chips-Classic-Party/dp/B07ZD56WL3/ref=sr_1_4_0o_fs?dchild=1&keywords=lays&qid=1632007752&sr=8-4"
-        print("Processing: "+url)
-
-        ans = self.CheckStock(url)
-        print(ans)
-
-
     def job(self):
         print("Tracking....")
-        self.ReadURL()
-
-
-# amazonScraper = AmazonScraper()
-# schedule.every(5).seconds.do(amazonScraper.job)
-#
-# while True:
-#     # running all pending jobs
-#     schedule.run_pending()
-#     time.sleep(1)
+        print("Processing: " + self.url)
+        stock = self.CheckStock(self.url)
+        print(stock)

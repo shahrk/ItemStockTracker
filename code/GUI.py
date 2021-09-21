@@ -24,12 +24,6 @@ class Application(tk.Tk):
 
         self.welcome_text.grid(row=0, sticky='NW')
 
-        # Add a button for adding an item to track
-        self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
-
-        self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
-        self.add_button.place(x=769, y=52)
-
         self.tabs = ttk.Notebook(self, height=450, width=790)
 
         # Create a frame for a list of items
@@ -39,8 +33,16 @@ class Application(tk.Tk):
         self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
         self.items_list.pack()
 
+        # Add a button for adding an item to track
+        self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
+
+        self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
+        self.add_button.place(x=769, y=52)
+
         # Create a frame for program settings
         self.settings = ttk.Frame(self.tabs)
+
+        
 
         # Add the settings and tracked item frames to the notebook
         self.tabs.add(self.items, text='Tracked Items')
@@ -139,7 +141,6 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
         self.name = self.name_box.get()
         self.url = self.url_box.get()
         self.cancelled = False
-
 
 if __name__ == "__main__":
     app = Application()

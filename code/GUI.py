@@ -42,7 +42,24 @@ class Application(tk.Tk):
         # Create a frame for program settings
         self.settings = ttk.Frame(self.tabs)
 
-        
+        self.settings.rowconfigure(0, pad=5)
+        self.settings.rowconfigure(1, pad=5)
+        self.settings.rowconfigure(2, pad=5)
+        self.settings.rowconfigure(3, pad=5)
+
+        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in minutes):  ",)
+        check_numeric = (self.register(self.__verify_numeric), '%d', '%P')
+        self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric)
+        self.interval_entry.insert(0, 'a')
+
+        self.email_alert_label = tk.Label(self.settings, text="Send Email Alert:  ",)
+
+        self.email_addr_label = tk.Label(self.settings, text="Email Address to Use:  ", )
+
+        self.interval_label.grid(row=0, column=0, sticky='E')
+        self.interval_entry.grid(row=0, column=1)
+        self.email_alert_label.grid(row=1, column=0, sticky='E')
+        self.email_addr_label.grid(row=2, column=0, sticky='E')
 
         # Add the settings and tracked item frames to the notebook
         self.tabs.add(self.items, text='Tracked Items')
@@ -50,6 +67,15 @@ class Application(tk.Tk):
         self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
 
         # TODO: Add settings
+
+    # This function is used in an entry object, to verify that the input is a number
+    def __verify_numeric(self, action, value):
+        if action != '1':  # if the action is anything other than inserting:
+            return True
+        try:
+            return value.isnumeric()
+        except ValueError:
+            return False
 
 
 class TrackedItemsListbox(ttk.Treeview):

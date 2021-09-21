@@ -19,32 +19,33 @@ class Application(tk.Tk):
 
         welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
                           "different digital retailers. \n Currently supported retailers include: <TODO: Add these>"
+
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 
         self.welcome_text.grid(row=0, sticky='NW')
 
-        self.tabs = ttk.Notebook(self, height=450, width=790)
-
-        self.items = ttk.Frame(self.tabs)
-
-        # Add a listbox to items
-
-        self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
-        self.items_list.pack()
-
-        self.settings = ttk.Frame(self.tabs)
-
-        self.tabs.add(self.items, text='Tracked Items')
-        self.tabs.add(self.settings, text='Settings')
-
-        self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
-
         # Add a button for adding an item to track
-
         self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
 
         self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
         self.add_button.place(x=769, y=52)
+
+        self.tabs = ttk.Notebook(self, height=450, width=790)
+
+        # Create a frame for a list of items
+        self.items = ttk.Frame(self.tabs)
+
+        # Add a listbox to items
+        self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
+        self.items_list.pack()
+
+        # Create a frame for program settings
+        self.settings = ttk.Frame(self.tabs)
+
+        # Add the settings and tracked item frames to the notebook
+        self.tabs.add(self.items, text='Tracked Items')
+        self.tabs.add(self.settings, text='Settings')
+        self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
 
         # TODO: Add settings
 

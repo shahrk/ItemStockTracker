@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
 import tracker
+import webbrowser
 
 
 class Application(tk.Tk):
@@ -48,7 +49,7 @@ class Application(tk.Tk):
         for i in range(3):
             self.settings.rowconfigure(i, pad=5)
 
-        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in minutes):  ",)
+        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in minutes):  ", )
         check_numeric = (self.register(self.__verify_numeric), '%d', '%P')
         self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3)
         self.interval_entry.insert(0, '10')
@@ -111,6 +112,12 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_command(label="Delete",
                                        command=self.delete_item)
 
+        #TODO: Remove these command before realease. They are for debugging only
+        self.selected_menu.add_separator()
+        self.selected_menu.add_command(label="Trigger Out Of Stock",
+                                       command=lambda: self.alert(self.set(self.selection()[0])['1'],
+                                                                  self.set(self.selection()[0])['2']))
+
         # Make the columns
         self.heading(1, text='Name')
         self.column(1, width='190')
@@ -149,6 +156,8 @@ class TrackedItemsListbox(ttk.Treeview):
         if not popup.cancelled:
             self.add_item(popup.name, popup.url)
 
+    def alert(self, name, url):
+        popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):
     def __init__(self, parent, title, name, url):
@@ -186,10 +195,38 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
         self.cancelled = False
 
 
+class ItemAlertDialogue(tk.simpledialog.Dialog):
+    def __init__(self, parent, title, name, url):
+        self.name = name
+        self.url = url
+        super().__init__(parent, title)
+
+    def followlink(self, event):
+        webbrowser.open(self.url)
+
+    def body(self, frame):
+        frame.rowconfigure(0, weight=0, pad=10)
+        frame.rowconfigure(1, weight=0)
+
+        popup_text = "Your item '" + self.name + "' is back in stock!"
+        self.text = tk.Label(frame, text=popup_text, wraplength=300, justify=tk.LEFT)
+        self.text.grid(row=0)
+
+        self.link = tk.Label(frame, text=self.url, fg="blue", cursor="hand2", wraplength=300, justify=tk.LEFT)
+        self.link.grid(row=1)
+        self.link.bind("<Button-1>", self.followlink)
+
+        return frame
+
+    def buttonbox(self):
+        self.ok_button = tk.Button(self, text='OK', width=5, command = lambda: self.destroy())
+        self.ok_button.pack(pady=10)
+
+
+
 if __name__ == "__main__":
     s = tracker.State()
     tracker.read_state(tracker.FILENAME, s)
     app = Application()
     app.mainloop()
-    tracker.save_state('../data/testsave.txt',s)
-
+    tracker.save_state('../data/testsave.txt', s)

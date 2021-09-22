@@ -112,9 +112,9 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_command(label="Delete",
                                        command=self.delete_item)
 
-        #TODO: Remove these command before realease. They are for debugging only
+        # TODO: Remove these command before realease. They are for debugging only
         self.selected_menu.add_separator()
-        self.selected_menu.add_command(label="Trigger Out Of Stock",
+        self.selected_menu.add_command(label="Trigger Restock",
                                        command=lambda: self.alert(self.set(self.selection()[0])['1'],
                                                                   self.set(self.selection()[0])['2']))
 
@@ -158,6 +158,7 @@ class TrackedItemsListbox(ttk.Treeview):
 
     def alert(self, name, url):
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
+
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):
     def __init__(self, parent, title, name, url):
@@ -219,9 +220,8 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         return frame
 
     def buttonbox(self):
-        self.ok_button = tk.Button(self, text='OK', width=5, command = lambda: self.destroy())
+        self.ok_button = tk.Button(self, text='OK', width=5, command=lambda: self.destroy())
         self.ok_button.pack(pady=10)
-
 
 
 if __name__ == "__main__":

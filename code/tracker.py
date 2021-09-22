@@ -30,7 +30,7 @@ def read_state(filename, s):
         for i in range(iidx + 1, aidx):
             iturl = lines[i].split(',')
             s.updateItem({'item': iturl[0], 'url': iturl[1]})
-        # porceed the alert
+        # proceed the alert
         for i in range(aidx + 1, sidx):
             alt = lines[i]
             s.updateAlert(alt)

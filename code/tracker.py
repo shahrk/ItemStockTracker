@@ -7,6 +7,7 @@ class State:
         self.alert = []
         self.item = []
         self.setting = ''
+        self.email = ''
 
     def updateSetting(self, setting):
         self.setting = setting
@@ -16,6 +17,15 @@ class State:
 
     def updateAlert(self, alert):
         self.alert.append(alert)
+
+    def updateEmail(self,email):
+        self.email = email
+
+    def deleteAlert(self,alert):
+        self.alert.remove(alert)
+
+    def deleteEmail(self):
+        email = ''
 
 
 def read_state(filename, s):
@@ -33,9 +43,14 @@ def read_state(filename, s):
         # porceed the alert
         for i in range(aidx + 1, sidx):
             alt = lines[i]
-            s.updateAlert(alt)
+            if 'Email' in alt:
+                em = alt.split(',')
+                s.updateAlert(em[0])
+                s.updateEmail(em[1])
+            else:
+                s.updateAlert(alt)
             # proceed the setting
-            s.updateSetting(lines[sidx + 1])
+        s.updateSetting(lines[sidx + 1])
 
 
 def save_state(filename,s):
@@ -50,6 +65,9 @@ def save_state(filename,s):
         file.writelines('Alert:\n')
         for a in s.alert:
             file.write(a)
+            if a == 'Email':
+                file.write(',')
+                file.write(s.email)
             file.write('\n')
         file.writelines('Setting:\n')
         file.write(s.setting)

@@ -101,7 +101,7 @@ class Application(tk.Tk):
         if self.is_checked.get():
             if 'Email' not in s.alert:
                 s.updateAlert('Email')
-                s.updateEmail(self.email_addr_entry.get())
+            s.updateEmail(self.email_addr_entry.get())
         if not self.is_checked.get():
             s.deleteAlert('Email')
             s.deleteEmail()

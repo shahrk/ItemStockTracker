@@ -75,6 +75,20 @@ class Application(tk.Tk):
         self.tabs.add(self.settings, text='Settings')
         self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
 
+        self.min_count = 0
+        self.run_timer()
+
+    # After this function is called for the first time, it will be called again
+    # every minute until the application is closed.
+    def run_timer(self):
+        self.min_count += 1
+
+        if self.min_count % int(self.interval_entry.get()) == 0:
+            self.min_count = 0
+            # TODO: Add a function to check the stock status of each item
+
+        self.after(60000, self.run_timer)
+
     # This function is used in an entry object, to verify that the input is a number
     def __verify_numeric(self, action, value):
         if action != '1':  # if the action is anything other than inserting:

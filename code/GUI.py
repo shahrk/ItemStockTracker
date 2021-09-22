@@ -1,6 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
+import tracker
+
 from PIL import Image
 from PIL import ImageTk
 
@@ -32,6 +34,8 @@ class Application(tk.Tk):
         # Add a listbox to items
         self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
         self.items_list.pack()
+        for item in s.item:
+            self.items_list.insert('', 'end', values=(item.get('item'), item.get('url'), ' '))
 
         # Add a button for adding an item to track
         self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
@@ -76,6 +80,8 @@ class Application(tk.Tk):
             return value.isnumeric()
         except ValueError:
             return False
+
+
 
 
 class TrackedItemsListbox(ttk.Treeview):
@@ -169,5 +175,9 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
         self.cancelled = False
 
 if __name__ == "__main__":
+    s = tracker.State()
+    tracker.read_state(tracker.FILENAME, s)
     app = Application()
     app.mainloop()
+    tracker.save_state('../data/testsave.txt',s)
+

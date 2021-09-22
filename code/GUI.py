@@ -1,11 +1,7 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
-from email.utils import parseaddr
 import tracker
-
-from PIL import Image
-from PIL import ImageTk
 
 
 class Application(tk.Tk):

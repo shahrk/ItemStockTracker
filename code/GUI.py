@@ -1,13 +1,16 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
-import tracker
+from code import tracker
 import webbrowser
 
 
 class Application(tk.Tk):
     def __init__(self):
         super().__init__()
+
+        # Check if reloaded
+        self.reload = False
 
         self.geometry('800x500')
         self.resizable(0, 0)
@@ -33,10 +36,6 @@ class Application(tk.Tk):
         self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
         self.items_list.pack()
 
-        # Populate the listbox with saved values
-        for item in s.item:
-            self.items_list.insert('', 'end', values=(item.get('item'), item.get('url'), ' '))
-
         # Add a button for adding an item to track
         self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
 
@@ -54,8 +53,9 @@ class Application(tk.Tk):
         self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3)
         self.interval_entry.insert(0, '10')
 
+        self.is_checked = tk.IntVar()
         self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ")
-        self.email_alert_box = tk.Checkbutton(self.settings)
+        self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked)
 
         self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ")
         self.email_addr_entry = tk.Entry(self.settings, validate='focus', width=30)
@@ -72,8 +72,42 @@ class Application(tk.Tk):
         self.tabs.add(self.settings, text='Settings')
         self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
 
+        if not self.reload:
+            self.reload_state()
+            self.reload = True
         self.min_count = 0
         self.run_timer()
+
+    def reload_state(self):
+        # Populate the listbox with saved values
+        if len(s.item) > 0:
+            for item in s.item:
+                self.items_list.insert('', 'end', values=(item.get('item'), item.get('url'), ' '))
+        # Update with saved settings
+        # Update the refresh interval
+        if s.setting != '':
+            self.interval_entry.delete(0,'end')
+            self.interval_entry.insert(0, s.setting)
+        # If the email alert is included in the state file
+        if 'Email' in s.alert:
+            self.email_alert_box.select()
+            # Display the email address
+            emaddress = s.email
+            self.email_addr_entry.insert(0, emaddress)
+
+    def save_setting(self):
+        # Save the updated setting
+        # Check email alert
+        if self.is_checked.get():
+            if 'Email' not in s.alert:
+                s.updateAlert('Email')
+            s.updateEmail(self.email_addr_entry.get())
+        if not self.is_checked.get():
+            if 'Email' in s.alert:
+                s.deleteAlert('Email')
+                s.deleteEmail()
+        # Check the refresh interval
+        s.updateSetting(self.interval_entry.get())
 
     # After this function is called for the first time, it will be called again
     # every minute until the application is closed.
@@ -142,7 +176,8 @@ class TrackedItemsListbox(ttk.Treeview):
 
     def add_item(self, name, url):
         self.insert('', 'end', values=(name, url, "?"))
-
+        # Add the item - backend
+        s.updateItem({'item': name, 'url': url})
         # TODO: Add a method for checking if an item is in stock
 
         self.selection_clear()
@@ -223,10 +258,15 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         self.ok_button = tk.Button(self, text='OK', width=5, command=lambda: self.destroy())
         self.ok_button.pack(pady=10)
 
+def on_closing():
+    # Save the setting when closing
+    app.save_setting()
+    app.destroy()
 
 if __name__ == "__main__":
     s = tracker.State()
     tracker.read_state(tracker.FILENAME, s)
     app = Application()
+    app.protocol("WM_DELETE_WINDOW", on_closing)
     app.mainloop()
     tracker.save_state('../data/testsave.txt', s)

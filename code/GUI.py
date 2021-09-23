@@ -2,6 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
 from code import tracker
+import sendEmail
 import webbrowser
 
 
@@ -86,7 +87,7 @@ class Application(tk.Tk):
         # Update with saved settings
         # Update the refresh interval
         if s.setting != '':
-            self.interval_entry.delete(0,'end')
+            self.interval_entry.delete(0, 'end')
             self.interval_entry.insert(0, s.setting)
         # If the email alert is included in the state file
         if 'Email' in s.alert:
@@ -180,6 +181,8 @@ class TrackedItemsListbox(ttk.Treeview):
         s.updateItem({'item': name, 'url': url})
         # TODO: Add a method for checking if an item is in stock
 
+        # Testing code for giving the plus button alert function
+        # self.alert("jb","www.jb.com")
         self.selection_clear()
 
     def delete_item(self):
@@ -192,6 +195,11 @@ class TrackedItemsListbox(ttk.Treeview):
             self.add_item(popup.name, popup.url)
 
     def alert(self, name, url):
+        email = ''
+        if app.is_checked.get():
+            email = app.email_addr_entry.get()
+
+        sendEmail.sendEmail(email, name, url)
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 
 
@@ -258,10 +266,12 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         self.ok_button = tk.Button(self, text='OK', width=5, command=lambda: self.destroy())
         self.ok_button.pack(pady=10)
 
+
 def on_closing():
     # Save the setting when closing
     app.save_setting()
     app.destroy()
+
 
 if __name__ == "__main__":
     s = tracker.State()

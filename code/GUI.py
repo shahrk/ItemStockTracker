@@ -1,7 +1,8 @@
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
-import tracker
+from code import tracker
+import webbrowser
 
 
 class Application(tk.Tk):
@@ -35,7 +36,6 @@ class Application(tk.Tk):
         self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
         self.items_list.pack()
 
-
         # Add a button for adding an item to track
         self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
 
@@ -48,13 +48,13 @@ class Application(tk.Tk):
         for i in range(3):
             self.settings.rowconfigure(i, pad=5)
 
-        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in minutes):  ")
+        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in minutes):  ", )
         check_numeric = (self.register(self.__verify_numeric), '%d', '%P')
         self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3)
         self.interval_entry.insert(0, '10')
 
-        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ")
         self.is_checked = tk.IntVar()
+        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ")
         self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked)
 
         self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ")
@@ -71,10 +71,10 @@ class Application(tk.Tk):
         self.tabs.add(self.items, text='Tracked Items')
         self.tabs.add(self.settings, text='Settings')
         self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
+
         if not self.reload:
             self.reload_state()
             self.reload = True
-        self.save_setting()
         self.min_count = 0
         self.run_timer()
 
@@ -103,11 +103,11 @@ class Application(tk.Tk):
                 s.updateAlert('Email')
             s.updateEmail(self.email_addr_entry.get())
         if not self.is_checked.get():
-            s.deleteAlert('Email')
-            s.deleteEmail()
+            if 'Email' in s.alert:
+                s.deleteAlert('Email')
+                s.deleteEmail()
         # Check the refresh interval
         s.updateSetting(self.interval_entry.get())
-
 
     # After this function is called for the first time, it will be called again
     # every minute until the application is closed.
@@ -130,8 +130,6 @@ class Application(tk.Tk):
             return False
 
 
-
-
 class TrackedItemsListbox(ttk.Treeview):
     def __init__(self, parent, **kwargs):
         ttk.Treeview.__init__(self, parent, **kwargs)
@@ -147,6 +145,12 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Delete",
                                        command=self.delete_item)
+
+        # TODO: Remove these command before realease. They are for debugging only
+        self.selected_menu.add_separator()
+        self.selected_menu.add_command(label="Trigger Restock",
+                                       command=lambda: self.alert(self.set(self.selection()[0])['1'],
+                                                                  self.set(self.selection()[0])['2']))
 
         # Make the columns
         self.heading(1, text='Name')
@@ -187,7 +191,8 @@ class TrackedItemsListbox(ttk.Treeview):
         if not popup.cancelled:
             self.add_item(popup.name, popup.url)
 
-
+    def alert(self, name, url):
+        popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):
@@ -225,6 +230,34 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
         self.url = self.url_box.get()
         self.cancelled = False
 
+
+class ItemAlertDialogue(tk.simpledialog.Dialog):
+    def __init__(self, parent, title, name, url):
+        self.name = name
+        self.url = url
+        super().__init__(parent, title)
+
+    def followlink(self, event):
+        webbrowser.open(self.url)
+
+    def body(self, frame):
+        frame.rowconfigure(0, weight=0, pad=10)
+        frame.rowconfigure(1, weight=0)
+
+        popup_text = "Your item '" + self.name + "' is back in stock!"
+        self.text = tk.Label(frame, text=popup_text, wraplength=300, justify=tk.LEFT)
+        self.text.grid(row=0)
+
+        self.link = tk.Label(frame, text=self.url, fg="blue", cursor="hand2", wraplength=300, justify=tk.LEFT)
+        self.link.grid(row=1)
+        self.link.bind("<Button-1>", self.followlink)
+
+        return frame
+
+    def buttonbox(self):
+        self.ok_button = tk.Button(self, text='OK', width=5, command=lambda: self.destroy())
+        self.ok_button.pack(pady=10)
+
 def on_closing():
     # Save the setting when closing
     app.save_setting()
@@ -236,5 +269,4 @@ if __name__ == "__main__":
     app = Application()
     app.protocol("WM_DELETE_WINDOW", on_closing)
     app.mainloop()
-    tracker.save_state('../data/testsave.txt',s)
-
+    tracker.save_state('../data/testsave.txt', s)

@@ -81,6 +81,8 @@ class Application(tk.Tk):
         self.min_count = 0
         self.run_timer()
 
+        self.scraper = Scraper(self.interval_entry.get())
+
     def reload_state(self):
         # Populate the listbox with saved values
         if len(s.item) > 0:
@@ -119,11 +121,11 @@ class Application(tk.Tk):
 
         if self.min_count % int(self.interval_entry.get()) == 0:
             self.min_count = 0
-            scraper = Scraper(self.interval_entry.get())
+            #scraper = Scraper(self.interval_entry.get())
             # TODO: Add a function to check the stock status of each item
             for entry in self.items_list.get_children():
                 time.sleep(1)
-                scraper.ChooseScraper(self.items_list.item(entry)["values"][1])
+                self.scraper.ChooseScraper(self.items_list.item(entry)["values"][1])
 
         self.after(1000, self.run_timer)
 
@@ -186,8 +188,8 @@ class TrackedItemsListbox(ttk.Treeview):
         # Add the item - backend
         s.updateItem({'item': name, 'url': url})
         # TODO: Add a method for checking if an item is in stock
-        scraper = Scraper(5)
-        scraper.ChooseScraper(url)
+
+        self.scraper.ChooseScraper(url)
 
         # Testing code for giving the plus button alert function
         # self.alert("jb","www.jb.com")

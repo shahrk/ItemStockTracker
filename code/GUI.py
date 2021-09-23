@@ -4,7 +4,8 @@ from tkinter import simpledialog
 from code import tracker
 import sendEmail
 import webbrowser
-from code import Scraper
+from Scraper import Scraper
+import time
 
 
 class Application(tk.Tk):
@@ -118,9 +119,13 @@ class Application(tk.Tk):
 
         if self.min_count % int(self.interval_entry.get()) == 0:
             self.min_count = 0
+            scraper = Scraper(self.interval_entry.get())
             # TODO: Add a function to check the stock status of each item
+            for entry in self.items_list.get_children():
+                time.sleep(1)
+                scraper.ChooseScraper(self.items_list.item(entry)["values"][1])
 
-        self.after(60000, self.run_timer)
+        self.after(1000, self.run_timer)
 
     # This function is used in an entry object, to verify that the input is a number
     def __verify_numeric(self, action, value):
@@ -181,7 +186,7 @@ class TrackedItemsListbox(ttk.Treeview):
         # Add the item - backend
         s.updateItem({'item': name, 'url': url})
         # TODO: Add a method for checking if an item is in stock
-        scraper = Scraper()
+        scraper = Scraper(5)
         scraper.ChooseScraper(url)
 
         # Testing code for giving the plus button alert function

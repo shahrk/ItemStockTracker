@@ -1,5 +1,3 @@
-import schedule
-import time
 from AmazonScraper import AmazonScraper
 
 

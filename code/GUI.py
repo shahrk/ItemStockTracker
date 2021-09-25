@@ -115,13 +115,13 @@ class Application(tk.Tk):
         s.updateSetting(self.interval_entry.get())
 
     # After this function is called for the first time, it will be called again
-    # every minute until the application is closed.
+    # every second until the application is closed.
     def run_timer(self):
         self.min_count += 1
 
         if self.min_count % int(self.interval_entry.get()) == 0:
             self.min_count = 0
-            #scraper = Scraper(self.interval_entry.get())
+
             # TODO: Add a function to check the stock status of each item
             for entry in self.items_list.get_children():
                 time.sleep(1)

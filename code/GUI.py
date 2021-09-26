@@ -28,7 +28,7 @@ class Application(tk.Tk):
         self.rowconfigure(1, weight=6, pad=5)
 
         welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
-                          "different digital retailers. \n Currently supported retailers include: <TODO: Add these>"
+                          "different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com"
 
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 

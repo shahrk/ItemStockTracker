@@ -4,10 +4,7 @@ from bs4 import BeautifulSoup
 
 
 class AmazonScraper:
-    def __init__(self):
-        self.url = ""
-
-    def SetURL(self, url):
+    def __init__(self, url):
         self.url = url
 
     def CheckStock(self, url):
@@ -26,21 +23,21 @@ class AmazonScraper:
         }
 
         page = requests.get(url, headers=headers)
-        sleep(3)
 
         soup = BeautifulSoup(page.text, "html.parser")  # parsing the content of the page
 
         try:
             sub_class = soup.find("div", {"id": "availability"})  # finding the div containing stock info
             if sub_class:
-                return "availability : {}".format(sub_class.find("span", {"class": "a-size-medium a-color-success"}).text.strip())
+                return "".format(sub_class.find("span", {"class": "a-size-medium a-color-success"}).text.strip())
             else:
-                return "Stock information is not available"
+                return "No Stock Info"
         except:
-            return "An error occurred. Please make sure the link you entered is correct"
+            return "Error Occurred"
 
     def job(self):
         print("Tracking....")
         print("Processing: " + self.url)
         stock = self.CheckStock(self.url)
         print(stock)
+        return stock

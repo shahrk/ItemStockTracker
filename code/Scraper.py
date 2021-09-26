@@ -3,8 +3,6 @@ from BestBuyScraper import BestbuyScraper
 
 
 class Scraper:
-    def __init__(self, interval):
-        self.TIME = interval  # How often stock info is checked.
 
     # Chooses which scraper to run
     def ChooseScraper(self, url):

@@ -1,4 +1,5 @@
 import os.path
+
 FILENAME = '../data/tracker.txt'
 
 
@@ -18,14 +19,24 @@ class State:
     def updateAlert(self, alert):
         self.alert.append(alert)
 
-    def updateEmail(self,email):
+    def updateEmail(self, email):
         self.email = email
 
-    def deleteAlert(self,alert):
+    def deleteAlert(self, alert):
         self.alert.remove(alert)
 
     def deleteEmail(self):
         email = ''
+
+    def updateStatus(self, item, url, status):
+        for it in self.item:
+            if it.get('item') == item and it.get('url') == url:
+                it['status'] = status
+
+    def getStatus(self, item, url):
+        for it in self.item:
+            if it.get('item') == item and it.get('url') == url:
+                return it.get('status')
 
 
 def read_state(filename, s):
@@ -39,7 +50,7 @@ def read_state(filename, s):
         # proceed the item
         for i in range(iidx + 1, aidx):
             iturl = lines[i].split(',')
-            s.updateItem({'item': iturl[0], 'url': iturl[1]})
+            s.updateItem({'item': iturl[0], 'url': iturl[1], 'status': 'N/A'})
         # porceed the alert
         for i in range(aidx + 1, sidx):
             alt = lines[i]
@@ -53,7 +64,7 @@ def read_state(filename, s):
         s.updateSetting(lines[sidx + 1])
 
 
-def save_state(filename,s):
+def save_state(filename, s):
     # write the current state to the file
     with open(filename, 'w') as file:
         file.writelines('Item:\n')

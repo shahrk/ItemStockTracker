@@ -238,7 +238,10 @@ class TrackedItemsListbox(ttk.Treeview):
         if app.is_checked.get():
             email = app.email_addr_entry.get()
             sendEmail.sendEmail(email, name, url)
-            popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
+
+        tempWin = tk.Tk() #Te
+        tempWin.withdraw()
+        popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
 
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):

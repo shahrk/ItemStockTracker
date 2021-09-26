@@ -179,6 +179,8 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Delete",
                                        command=self.delete_item)
+        self.selected_menu.add_command(label="Edit",
+                                       command=self.edit_item)
 
         # TODO: Remove these command before realease. They are for debugging only
         self.selected_menu.add_separator()
@@ -218,6 +220,21 @@ class TrackedItemsListbox(ttk.Treeview):
     def delete_item(self):
         for item in self.selection():
             self.delete(item)
+
+    def edit_item(self):
+        for item in self.selection():
+            origin_name = self.set(item)['1']
+            origin_url = self.set(item)['2']
+            popup = GetItemURLDialogue(self, "Edit Item", origin_name, origin_url)
+
+            self.item(item, values=(popup.name, popup.url, self.set(item)['3']))
+            self.set(item)['2'] = popup.url
+
+            # Edit the item - backend
+            s.item.remove(popup.name)
+            s.updateItem({'item': popup.name, 'url': popup.url})
+
+
 
     def add_item_popup(self):
         popup = GetItemURLDialogue(self, "Add Item", "", "")

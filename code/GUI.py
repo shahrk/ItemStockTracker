@@ -7,9 +7,6 @@ import webbrowser
 from Scraper import Scraper
 import time
 import threading
-import sys
-
-lock = threading.Lock()
 
 
 class Application(tk.Tk):
@@ -87,6 +84,8 @@ class Application(tk.Tk):
 
         # Scarper object that is used to choose which scraper to run
         self.scraper = Scraper()
+        # A lock to keep scarping thread safe
+        self.lock = threading.Lock()
 
     def reload_state(self):
         # Populate the listbox with saved values
@@ -123,7 +122,7 @@ class Application(tk.Tk):
     # Threads run this method
     # Delegates GUI updating to update_stock_info
     def scraper_data(self):
-        lock.acquire()
+        self.lock.acquire()
         for entry in self.items_list.get_children():
             print(entry)
 
@@ -137,7 +136,7 @@ class Application(tk.Tk):
                 self.items_list.alert(item_name, item_url)
             s.updateStatus(item_name, item_url, item_stock)
             time.sleep(1)
-        lock.release()
+        self.lock.release()
 
     # Updates the items in the GUI with the stock information
     # @param entry one of the items in the list

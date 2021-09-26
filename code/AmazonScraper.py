@@ -6,6 +6,8 @@ class AmazonScraper:
     def __init__(self, url):
         self.url = url
 
+    # Obtains stock information from the given url
+    # @param url URL of the item
     def CheckStock(self, url):
         headers = {
             'authority': 'www.amazon.com',
@@ -31,11 +33,13 @@ class AmazonScraper:
                 if "soon" in str(sub_class) or "Out of Stock" in str(sub_class):
                     return "Out of Stock"
                 return "In Stock"
+            # This handles the case of having no stock info
             else:
                 return "No Stock Info"
         except:
             return "Error Occurred"
 
+    # Prints the progress, and delegates the task to 'CheckStock'
     def job(self):
         print("Tracking....")
         print("Processing: " + self.url)

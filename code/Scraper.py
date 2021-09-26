@@ -1,4 +1,5 @@
 from AmazonScraper import AmazonScraper
+from BestBuyScraper import BestbuyScraper
 
 
 class Scraper:
@@ -13,4 +14,7 @@ class Scraper:
             stock_info = amazonscraper.job()
             return stock_info
 
-        # TODO: Add logic for other retailers
+        if "bestbuy" in url:
+            bestbuyscraper = BestbuyScraper(url)
+            stock_info = bestbuyscraper.job()
+            return stock_info

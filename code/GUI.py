@@ -7,6 +7,9 @@ import webbrowser
 from Scraper import Scraper
 import time
 import threading
+import sys
+
+lock = threading.Lock()
 
 
 class Application(tk.Tk):
@@ -116,17 +119,26 @@ class Application(tk.Tk):
         s.updateSetting(self.interval_entry.get())
 
     def scraper_data(self):
+        lock.acquire()
         for entry in self.items_list.get_children():
+            print(entry)
+
             item_name = self.items_list.item(entry)["values"][0]
             item_url = self.items_list.item(entry)["values"][1]
             item_stock = self.scraper.ChooseScraper(item_url)
 
             self.update_stock_info(entry, item_name, item_url, item_stock)
+            status = s.getStatus(item_name, item_url)
+            if item_stock == 'In Stock' and status != 'In Stock':
+                self.items_list.alert(item_name, item_url)
+            s.updateStatus(item_name, item_url, item_stock)
             time.sleep(1)
+        lock.release()
 
     def update_stock_info(self, entry, item_name, item_url, item_stock):
         self.items_list.delete(entry)
         self.items_list.insert('', 'end', values=(item_name, item_url, item_stock))
+
 
     # After this function is called for the first time, it will be called again
     # every second until the application is closed.
@@ -200,8 +212,6 @@ class TrackedItemsListbox(ttk.Treeview):
         # Add the item - backend
         s.updateItem({'item': name, 'url': url})
 
-        # Testing code for giving the plus button alert function
-        # self.alert("jb","www.jb.com")
         self.selection_clear()
 
     def delete_item(self):
@@ -217,8 +227,7 @@ class TrackedItemsListbox(ttk.Treeview):
         email = ''
         if app.is_checked.get():
             email = app.email_addr_entry.get()
-
-        sendEmail.sendEmail(email, name, url)
+            sendEmail.sendEmail(email, name, url)
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 
 
@@ -298,4 +307,4 @@ if __name__ == "__main__":
     app = Application()
     app.protocol("WM_DELETE_WINDOW", on_closing)
     app.mainloop()
-    tracker.save_state('../data/testsave.txt', s)
+    tracker.save_state('../data/tracker.txt', s)

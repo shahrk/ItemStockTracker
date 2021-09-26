@@ -5,6 +5,7 @@ from BestBuyScraper import BestbuyScraper
 class Scraper:
 
     # Chooses which scraper to run
+    # @param url URL of the product
     def ChooseScraper(self, url):
 
         if "amazon" in url:

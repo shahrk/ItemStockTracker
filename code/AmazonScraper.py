@@ -7,7 +7,7 @@ class AmazonScraper:
         self.url = url
 
     # Obtains stock information from the given url
-    # @param url URL of the item
+    # @param url URL of the product
     def CheckStock(self, url):
         headers = {
             'authority': 'www.amazon.com',
@@ -29,7 +29,7 @@ class AmazonScraper:
         try:
             sub_class = soup.find("div", {"id": "availability"})  # finding the div containing stock info
             if sub_class:
-                # Handling 'order soon' and 'Out of Stock' options
+                # Handling 'order soon' and 'Out of Stock' cases
                 if "soon" in str(sub_class) or "Out of Stock" in str(sub_class):
                     return "Out of Stock"
                 return "In Stock"

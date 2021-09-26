@@ -231,7 +231,9 @@ class TrackedItemsListbox(ttk.Treeview):
             self.set(item)['2'] = popup.url
 
             # Edit the item - backend
-            s.item.remove(popup.name)
+            for row in s.item:
+                if row['item'] == origin_name and row['url'] == origin_url:
+                    s.item.remove(row)
             s.updateItem({'item': popup.name, 'url': popup.url})
 
 
@@ -325,4 +327,4 @@ if __name__ == "__main__":
     app = Application()
     app.protocol("WM_DELETE_WINDOW", on_closing)
     app.mainloop()
-    tracker.save_state('../data/tracker.txt', s)
+    tracker.save_state(tracker.FILENAME, s)

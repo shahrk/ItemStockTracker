@@ -219,6 +219,11 @@ class TrackedItemsListbox(ttk.Treeview):
 
     def delete_item(self):
         for item in self.selection():
+            origin_name = self.set(item)['1']
+            origin_url = self.set(item)['2']
+            for row in s.item:
+                if row['item'] == origin_name and row['url'] == origin_url:
+                    s.item.remove(row)
             self.delete(item)
 
     def edit_item(self):

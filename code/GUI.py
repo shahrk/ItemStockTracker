@@ -263,7 +263,8 @@ class TrackedItemsListbox(ttk.Treeview):
             email = app.email_addr_entry.get()
             sendEmail.sendEmail(email, name, url)
 
-        tempWin = tk.Tk() #Te
+        tempWin = tk.Tk() # Temporary, invisible window to use as a popup's root
+                          # This way the root will always be in the same thread as the popup
         tempWin.withdraw()
         popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
 

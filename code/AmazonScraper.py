@@ -1,5 +1,4 @@
 import requests
-from time import sleep
 from bs4 import BeautifulSoup
 
 
@@ -23,13 +22,15 @@ class AmazonScraper:
         }
 
         page = requests.get(url, headers=headers)
-
         soup = BeautifulSoup(page.text, "html.parser")  # parsing the content of the page
 
         try:
             sub_class = soup.find("div", {"id": "availability"})  # finding the div containing stock info
             if sub_class:
-                return "".format(sub_class.find("span", {"class": "a-size-medium a-color-success"}).text.strip())
+                # Handling 'order soon' and 'Out of Stock' options
+                if "soon" in str(sub_class) or "Out of Stock" in str(sub_class):
+                    return "Out of Stock"
+                return "In Stock"
             else:
                 return "No Stock Info"
         except:

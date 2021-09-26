@@ -50,22 +50,23 @@ class Application(tk.Tk):
         self.add_button.place(x=769, y=52)
 
         # Create a frame for program settings
-        self.settings = ttk.Frame(self.tabs)
+        ttk.Style().configure("BW.TFrame", background="white")
+
+        self.settings = ttk.Frame(self.tabs, style="BW.TFrame")
 
         for i in range(3):
             self.settings.rowconfigure(i, pad=5)
 
-        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in minutes):  ", )
+        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in seconds):  ", bg="white")
         check_numeric = (self.register(self.__verify_numeric), '%d', '%P')
-        self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3)
-        self.interval_entry.insert(0, '10')
+        self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3, bg="white")
 
         self.is_checked = tk.IntVar()
-        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ")
-        self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked)
+        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ", bg="white")
+        self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked, bg="white")
 
-        self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ")
-        self.email_addr_entry = tk.Entry(self.settings, validate='focus', width=30)
+        self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ", bg="white")
+        self.email_addr_entry = tk.Entry(self.settings, validate='focus', width=30, bg="white")
 
         self.interval_label.grid(row=0, column=0, sticky='E')
         self.interval_entry.grid(row=0, column=1, sticky='W')

@@ -6,6 +6,7 @@ import sendEmail
 import webbrowser
 from Scraper import Scraper
 import time
+import threading
 
 
 class Application(tk.Tk):
@@ -114,6 +115,19 @@ class Application(tk.Tk):
         # Check the refresh interval
         s.updateSetting(self.interval_entry.get())
 
+    def scraper_data(self):
+        for entry in self.items_list.get_children():
+            item_name = self.items_list.item(entry)["values"][0]
+            item_url = self.items_list.item(entry)["values"][1]
+            item_stock = self.scraper.ChooseScraper(item_url)
+
+            self.update_stock_info(entry, item_name, item_url, item_stock)
+            time.sleep(1)
+
+    def update_stock_info(self, entry, item_name, item_url, item_stock):
+        self.items_list.delete(entry)
+        self.items_list.insert('', 'end', values=(item_name, item_url, item_stock))
+
     # After this function is called for the first time, it will be called again
     # every second until the application is closed.
     def run_timer(self):
@@ -121,11 +135,9 @@ class Application(tk.Tk):
 
         if self.min_count % int(self.interval_entry.get()) == 0:
             self.min_count = 0
-
-            # TODO: Add a function to check the stock status of each item
-            for entry in self.items_list.get_children():
-                time.sleep(1)
-                self.scraper.ChooseScraper(self.items_list.item(entry)["values"][1])
+            # A separate thread to handle scraping
+            thread = threading.Thread(target=self.scraper_data, args=())
+            thread.start()
 
         self.after(1000, self.run_timer)
 
@@ -187,9 +199,6 @@ class TrackedItemsListbox(ttk.Treeview):
         self.insert('', 'end', values=(name, url, "?"))
         # Add the item - backend
         s.updateItem({'item': name, 'url': url})
-        # TODO: Add a method for checking if an item is in stock
-
-        self.scraper.ChooseScraper(url)
 
         # Testing code for giving the plus button alert function
         # self.alert("jb","www.jb.com")

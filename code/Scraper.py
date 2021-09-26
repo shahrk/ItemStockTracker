@@ -9,8 +9,8 @@ class Scraper:
     def ChooseScraper(self, url):
 
         if "amazon" in url:
-            amazonscraper = AmazonScraper()
-            amazonscraper.SetURL(url)
-            amazonscraper.job()
+            amazonscraper = AmazonScraper(url)
+            stock_info = amazonscraper.job()
+            return stock_info
 
         # TODO: Add logic for other retailers

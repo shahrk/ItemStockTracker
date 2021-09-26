@@ -7,9 +7,6 @@ import webbrowser
 from Scraper import Scraper
 import time
 import threading
-import sys
-
-lock = threading.Lock()
 
 
 class Application(tk.Tk):
@@ -85,7 +82,10 @@ class Application(tk.Tk):
         self.min_count = 0
         self.run_timer()
 
-        self.scraper = Scraper(self.interval_entry.get())
+        # Scarper object that is used to choose which scraper to run
+        self.scraper = Scraper()
+        # A lock to keep scarping thread safe
+        self.lock = threading.Lock()
 
     def reload_state(self):
         # Populate the listbox with saved values
@@ -118,8 +118,11 @@ class Application(tk.Tk):
         # Check the refresh interval
         s.updateSetting(self.interval_entry.get())
 
+    # Obtains stock info from appropriate scrapers
+    # Threads run this method
+    # Delegates GUI updating to update_stock_info
     def scraper_data(self):
-        lock.acquire()
+        self.lock.acquire()
         for entry in self.items_list.get_children():
             print(entry)
 
@@ -133,8 +136,13 @@ class Application(tk.Tk):
                 self.items_list.alert(item_name, item_url)
             s.updateStatus(item_name, item_url, item_stock)
             time.sleep(1)
-        lock.release()
+        self.lock.release()
 
+    # Updates the items in the GUI with the stock information
+    # @param entry one of the items in the list
+    # @param item_name name of the item
+    # @param item_url url of the item
+    # @param item_stock stock info of the item
     def update_stock_info(self, entry, item_name, item_url, item_stock):
         self.items_list.delete(entry)
         self.items_list.insert('', 'end', values=(item_name, item_url, item_stock))
@@ -149,6 +157,7 @@ class Application(tk.Tk):
             self.min_count = 0
             # A separate thread to handle scraping
             thread = threading.Thread(target=self.scraper_data, args=())
+            thread.setDaemon(True)
             thread.start()
 
         self.after(1000, self.run_timer)

@@ -191,7 +191,7 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_command(label="Edit",
                                        command=self.edit_item)
 
-        # TODO: Remove these command before realease. They are for debugging only
+        # TODO: Remove these command before release. They are for debugging only
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Trigger Restock",
                                        command=lambda: self.alert(self.set(self.selection()[0])['1'],

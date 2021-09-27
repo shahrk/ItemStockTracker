@@ -28,6 +28,6 @@ def test_ChooseScraper():
     assert stock_info == "In Stock"
 
 
-if __name__ == '__main__':
-    test_init()
-    test_ChooseScraper()
+# if __name__ == '__main__':
+#     test_init()
+#     test_ChooseScraper()

@@ -1,10 +1,15 @@
 from AmazonScraper import AmazonScraper
 from BestBuyScraper import BestBuyScraper
 
+# Scraper chooses which scraper to run
+# 'ChooseScraper' chooses the scraper
+# @author Arcane94
+
 
 class Scraper:
 
-    # Chooses which scraper to run
+    # Chooses the scraper based on product url
+    # @param url URL of the product
     def ChooseScraper(self, url):
 
         if "amazon" in url:

@@ -1,13 +1,18 @@
 import requests
 from bs4 import BeautifulSoup
 
+# Scraper for Amazon
+# Takes in product url as input upon object creation
+# 'job' prints progress while 'CheckStock' obtains stock info
+# @author Arcane94
+
 
 class AmazonScraper:
     def __init__(self, url):
         self.url = url
 
     # Obtains stock information from the given url
-    # @param url URL of the item
+    # @param url URL of the product
     def CheckStock(self, url):
         headers = {
             'authority': 'www.amazon.com',
@@ -22,14 +27,17 @@ class AmazonScraper:
             'sec-fetch-dest': 'document',
             'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
         }
-
-        page = requests.get(url, headers=headers)
-        soup = BeautifulSoup(page.text, "html.parser")  # parsing the content of the page
+        try:
+            page = requests.get(url, headers=headers)
+            soup = BeautifulSoup(page.text, "html.parser")  # parsing the content of the page
+        # Handles invalid URLs/timeouts
+        except:
+            return "Error Occurred"
 
         try:
             sub_class = soup.find("div", {"id": "availability"})  # finding the div containing stock info
             if sub_class:
-                # Handling 'order soon' and 'Out of Stock' options
+                # Handling 'order soon' and 'Out of Stock' cases
                 if "soon" in str(sub_class) or "Out of Stock" in str(sub_class):
                     return "Out of Stock"
                 return "In Stock"

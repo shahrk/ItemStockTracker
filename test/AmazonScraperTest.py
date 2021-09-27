@@ -1,6 +1,10 @@
 import unittest
 from AmazonScraper import *
 
+# Unit tests for AmazonScraper.py
+# Tests the object construction, class variable initiation, and all the methods
+# @author Arcane94
+
 
 class AmazonScraperTest(unittest.TestCase):
     def setUp(self):
@@ -10,8 +14,10 @@ class AmazonScraperTest(unittest.TestCase):
         self.NoStockInfo_URL = "https://www.amazon.com/Lays-Classic-Potato-Chips-Ounce/dp/B072M1NC4M/ref=sr_1_4?crid=D95KX8ETF064&dchild=1&keywords=lays&qid=1632689409&sprefix=lays%2Caps%2C174&sr=8-4"
         self.Invalid_URL = "https://amazon_this_is_an_invalid_url"
 
+    # Tests for object creation, and url variable initiation
     def test_init(self):
         amazon = AmazonScraper(self.InStock_URL)
+        self.assertNotEqual(amazon, None)
         self.assertEqual(self.InStock_URL, amazon.url)
 
     def test_CheckStock(self):
@@ -39,8 +45,6 @@ class AmazonScraperTest(unittest.TestCase):
         amazon = AmazonScraper(self.Invalid_URL)
         stock_info = amazon.CheckStock(self.Invalid_URL)
         self.assertEqual("Error Occurred", stock_info)
-
-
 
     def test_job(self):
         # Testing No Stock Info

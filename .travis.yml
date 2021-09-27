@@ -12,6 +12,6 @@ install:
 # command to run tests
 script:
   - pytest
-  - "coverage run --source=AmazonScraper.py,BestBuyScraper.py,Scraper.py,tracker.py,_init_.py -m pytest"
+  - "coverage run --source=./code/AmazonScraper.py,./code/BestBuyScraper.py,./code/Scraper.py,./code/tracker.py,./code/_init_.py -m pytest"
 after_success:
   coveralls

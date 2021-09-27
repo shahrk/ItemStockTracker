@@ -34,9 +34,10 @@ def test_updateStatus():
 
 def test_deleteAlert():
     tracker.read_state(full_path, s)
+    initial_size = len(s.alert)
     s.deleteAlert('Email')
     s.deleteEmail()
-    assert len(s.alert) == 0, "Should be no alert"
+    assert len(s.alert) == initial_size - 1, "Alert was not removed!"
     assert s.email == '', "Should be empty"
 
 

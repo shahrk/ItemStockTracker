@@ -1,4 +1,5 @@
 language: python
+source: .
 python:
   - "3.9"
 # command to install dependencies
@@ -14,5 +15,4 @@ script:
   - pytest
   - "coverage run -m pytest"
 after_success:
-  source = .
   coveralls

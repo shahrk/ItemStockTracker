@@ -25,7 +25,7 @@ class Application(tk.Tk):
         self.rowconfigure(1, weight=6, pad=5)
 
         welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
-                          "different digital retailers. \n Currently supported retailers include: <TODO: Add these>"
+                          "different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com"
 
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 
@@ -47,22 +47,23 @@ class Application(tk.Tk):
         self.add_button.place(x=769, y=52)
 
         # Create a frame for program settings
-        self.settings = ttk.Frame(self.tabs)
+        ttk.Style().configure("BW.TFrame", background="white")
+
+        self.settings = ttk.Frame(self.tabs, style="BW.TFrame")
 
         for i in range(3):
             self.settings.rowconfigure(i, pad=5)
 
-        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in minutes):  ", )
+        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in seconds):  ", bg="white")
         check_numeric = (self.register(self.__verify_numeric), '%d', '%P')
-        self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3)
-        self.interval_entry.insert(0, '10')
+        self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3, bg="white")
 
         self.is_checked = tk.IntVar()
-        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ")
-        self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked)
+        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ", bg="white")
+        self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked, bg="white")
 
-        self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ")
-        self.email_addr_entry = tk.Entry(self.settings, validate='focus', width=30)
+        self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ", bg="white")
+        self.email_addr_entry = tk.Entry(self.settings, validate='focus', width=30, bg="white")
 
         self.interval_label.grid(row=0, column=0, sticky='E')
         self.interval_entry.grid(row=0, column=1, sticky='W')
@@ -187,8 +188,10 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Delete",
                                        command=self.delete_item)
+        self.selected_menu.add_command(label="Edit",
+                                       command=self.edit_item)
 
-        # TODO: Remove these command before realease. They are for debugging only
+        # TODO: Remove these command before release. They are for debugging only
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Trigger Restock",
                                        command=lambda: self.alert(self.set(self.selection()[0])['1'],
@@ -225,7 +228,29 @@ class TrackedItemsListbox(ttk.Treeview):
 
     def delete_item(self):
         for item in self.selection():
+            origin_name = self.set(item)['1']
+            origin_url = self.set(item)['2']
+            for row in s.item:
+                if row['item'] == origin_name and row['url'] == origin_url:
+                    s.item.remove(row)
             self.delete(item)
+
+    def edit_item(self):
+        for item in self.selection():
+            origin_name = self.set(item)['1']
+            origin_url = self.set(item)['2']
+            popup = GetItemURLDialogue(self, "Edit Item", origin_name, origin_url)
+
+            self.item(item, values=(popup.name, popup.url, self.set(item)['3']))
+            self.set(item)['2'] = popup.url
+
+            # Edit the item - backend
+            for row in s.item:
+                if row['item'] == origin_name and row['url'] == origin_url:
+                    s.item.remove(row)
+            s.updateItem({'item': popup.name, 'url': popup.url})
+
+
 
     def add_item_popup(self):
         popup = GetItemURLDialogue(self, "Add Item", "", "")
@@ -238,7 +263,8 @@ class TrackedItemsListbox(ttk.Treeview):
             email = app.email_addr_entry.get()
             sendEmail.sendEmail(email, name, url)
 
-        tempWin = tk.Tk() #Te
+        tempWin = tk.Tk() # Temporary, invisible window to use as a popup's root
+                          # This way the root will always be in the same thread as the popup
         tempWin.withdraw()
         popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
 
@@ -319,4 +345,4 @@ if __name__ == "__main__":
     app = Application()
     app.protocol("WM_DELETE_WINDOW", on_closing)
     app.mainloop()
-    tracker.save_state('../data/tracker.txt', s)
+    tracker.save_state(tracker.FILENAME, s)

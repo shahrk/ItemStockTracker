@@ -35,12 +35,16 @@ class AmazonScraper:
             return "Error Occurred"
 
         try:
-            sub_class = soup.find("div", {"id": "availability"})  # finding the div containing stock info
-            if sub_class:
-                # Handling 'order soon' and 'Out of Stock' cases
-                if "soon" in str(sub_class) or "Out of Stock" in str(sub_class):
+            sub_class_stock = soup.find("div", {"id": "availability"})  # finding the div containing stock info
+            sub_class_no_stock = soup.find("div", {"id": "outOfStock"})  # finding the div containing out of stock info
+            if sub_class_stock and not sub_class_no_stock:
+                if "order soon" in str(sub_class_stock):
+                    return "In Stock"
+                elif "In stock soon" in str(sub_class_stock):
                     return "Out of Stock"
                 return "In Stock"
+            elif sub_class_no_stock:
+                return "Out of Stock"
             # This handles the case of having no stock info
             else:
                 return "No Stock Info"

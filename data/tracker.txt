@@ -4,6 +4,6 @@ Lunch Bag,https://www.amazon.com/adidas-Santiago-Lunch-Black-White/dp/B07KDSWWXK
 RTX 3080,https://www.bestbuy.com/site/evga-rtx-3080-xc3-ultra-gaming-10g-p5-3885-kh-pci-express-4-0-lhr/6471615.p?skuId=6471615
 Power Supply,https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244
 Alert:
-Email,test@email.com
+Email,
 Setting:
 5

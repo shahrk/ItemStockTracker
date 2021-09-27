@@ -162,7 +162,10 @@ class Application(tk.Tk):
                 item_pstock = status.get('pstatus')
                 self.update_stock_info(entry, item_name, item_url, item_stock)
                 if item_stock == 'In Stock' and item_pstock != 'In Stock':
+                    app.update()
                     self.items_list.alert(item_name, item_url)
+                    self.interval_entry.focus_force()
+                    self.email_addr_entry.focus_force()
 
         self.after(1000, self.run_timer)
 

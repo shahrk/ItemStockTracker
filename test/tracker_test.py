@@ -27,7 +27,7 @@ def test_deleteAlert():
 
 
 def test_saveState():
-    tracker.save_state('testsave.txt', s)
+    tracker.save_state('../data/testsave.txt', s)
 
 # if __name__ == "__main__":
 #     test_readState()

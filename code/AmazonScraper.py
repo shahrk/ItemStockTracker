@@ -11,7 +11,7 @@ from bs4 import BeautifulSoup
 #   "Only x left Order soon" - Product is in stock - return "In Stock"
 #   "Currently unavailable" - product is out of Stock - return "Out of Stock"
 #   "In stock soon" - Product is out of stock - return "Out of Stock"
-#   No stock information on the page - No stock info - return "No Stock Info"
+#   No stock information on the page/Captcha page - No stock info - return "No Stock Info"
 # @author Arcane94
 
 
@@ -54,7 +54,7 @@ class AmazonScraper:
                 return "In Stock"
             elif sub_class_no_stock:
                 return "Out of Stock"
-            # This handles the case of having no stock info on the page
+            # This handles the case of having no stock info on the page/captcha page
             else:
                 return "No Stock Info"
         except:

@@ -4,9 +4,12 @@ python:
 # command to install dependencies
 before_install:
   - "pip install -U pip"
+  - "pip install --user codecov"
   - "export PYTHONPATH=$PYTHONPATH:$(pwd)"
 install:
   - pip install -r requirements.txt
 # command to run tests
 script:
   - pytest
+after_success:
+  - codecov --file coverage/lcov.info --disable search

@@ -191,7 +191,7 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_command(label="Edit",
                                        command=self.edit_item)
 
-        # TODO: Remove these command before realease. They are for debugging only
+        # TODO: Remove these command before release. They are for debugging only
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Trigger Restock",
                                        command=lambda: self.alert(self.set(self.selection()[0])['1'],
@@ -263,7 +263,8 @@ class TrackedItemsListbox(ttk.Treeview):
             email = app.email_addr_entry.get()
             sendEmail.sendEmail(email, name, url)
 
-        tempWin = tk.Tk() #Te
+        tempWin = tk.Tk() # Temporary, invisible window to use as a popup's root
+                          # This way the root will always be in the same thread as the popup
         tempWin.withdraw()
         popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
 

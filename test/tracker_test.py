@@ -1,5 +1,9 @@
 from code import tracker
 
+# Unit tests for tracker.py
+# Tests the reload_state, modify the status, save_state
+# @author qchen59
+
 s = tracker.State()
 powerSupply = "Power Supply"
 url = "https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244"

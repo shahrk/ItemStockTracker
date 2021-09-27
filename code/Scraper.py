@@ -1,5 +1,5 @@
-from AmazonScraper import AmazonScraper
-from BestBuyScraper import BestBuyScraper
+from code.AmazonScraper import AmazonScraper
+from code.BestBuyScraper import BestBuyScraper
 
 # Scraper chooses which scraper to run
 # 'ChooseScraper' chooses the scraper

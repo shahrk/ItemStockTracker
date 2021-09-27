@@ -1,0 +1,2 @@
+[run]
+omit = ./code/GUI.py, ./code/sendEmail.py

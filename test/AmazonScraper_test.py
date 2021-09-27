@@ -68,7 +68,7 @@ def test_job():
     assert "Error Occurred", stock_info
 
 
-if __name__ == "__main__":
-    test_init()
-    test_CheckStock()
-    test_job()
+# if __name__ == "__main__":
+#     test_init()
+#     test_CheckStock()
+#     test_job()

@@ -228,7 +228,7 @@ class TrackedItemsListbox(ttk.Treeview):
     def add_item(self, name, url):
         self.insert('', 'end', values=(name, url, "?"))
         # Add the item - backend
-        s.updateItem({'item': name, 'url': url})
+        s.updateItem({'item': name, 'url': url, 'status': '', 'pstatus': ''})
 
         self.selection_clear()
 

@@ -1,6 +1,11 @@
 import requests
 from bs4 import BeautifulSoup
 
+# Scraper for Amazon
+# Takes in product url as input upon object creation
+# 'job' prints progress while 'CheckStock' obtains stock info
+# @author Arcane94
+
 
 class AmazonScraper:
     def __init__(self, url):
@@ -22,9 +27,12 @@ class AmazonScraper:
             'sec-fetch-dest': 'document',
             'accept-language': 'en-GB,en-US;q=0.9,en;q=0.8',
         }
-
-        page = requests.get(url, headers=headers)
-        soup = BeautifulSoup(page.text, "html.parser")  # parsing the content of the page
+        try:
+            page = requests.get(url, headers=headers)
+            soup = BeautifulSoup(page.text, "html.parser")  # parsing the content of the page
+        # Handles invalid URLs/timeouts
+        except:
+            return "Error Occurred"
 
         try:
             sub_class = soup.find("div", {"id": "availability"})  # finding the div containing stock info

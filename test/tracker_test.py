@@ -4,13 +4,14 @@ from code import tracker
 # Tests the reload_state, modify the status, save_state
 # @author qchen59
 
+
 s = tracker.State()
 powerSupply = "Power Supply"
 url = "https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244"
 
 
 def test_readState():
-    tracker.read_state('../data/testtracker.txt', s)
+    tracker.read_state('testtracker.txt', s)
     assert len(s.item) == 4, "Should be 4 items"
     assert s.email == 'test@email.com', "Should be test@email.com"
     assert len(s.alert) == 1, "Should be only 1 alert"
@@ -31,7 +32,7 @@ def test_deleteAlert():
 
 
 def test_saveState():
-    tracker.save_state('../data/testsave.txt', s)
+    tracker.save_state('testsave.txt', s)
 
 # if __name__ == "__main__":
 #     test_readState()

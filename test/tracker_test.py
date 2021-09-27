@@ -20,11 +20,13 @@ def test_readState():
 
 
 def test_updateStatus():
+    tracker.read_state('testtracker.txt', s)
     s.updateStatus(powerSupply, url, 'In Stock')
     assert s.getStatus(powerSupply, url).get('status') == 'In Stock', "Should be In Stock"
 
 
 def test_deleteAlert():
+    tracker.read_state('testtracker.txt', s)
     s.deleteAlert('Email')
     s.deleteEmail()
     assert len(s.alert) == 0, "Should be no alert"

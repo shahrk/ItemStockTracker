@@ -1,5 +1,5 @@
 from AmazonScraper import AmazonScraper
-from BestBuyScraper import BestbuyScraper
+from BestBuyScraper import BestBuyScraper
 
 
 class Scraper:
@@ -13,6 +13,6 @@ class Scraper:
             return stock_info
 
         if "bestbuy" in url:
-            bestbuyscraper = BestbuyScraper(url)
+            bestbuyscraper = BestBuyScraper(url)
             stock_info = bestbuyscraper.job()
             return stock_info

@@ -26,17 +26,18 @@ class State:
         self.alert.remove(alert)
 
     def deleteEmail(self):
-        email = ''
+        self.email = ''
 
     def updateStatus(self, item, url, status):
         for it in self.item:
             if it.get('item') == item and it.get('url') == url:
+                it['pstatus'] = it['status']
                 it['status'] = status
 
     def getStatus(self, item, url):
         for it in self.item:
             if it.get('item') == item and it.get('url') == url:
-                return it.get('status')
+                return {'status': it.get('status'), 'pstatus': it.get('pstatus')}
 
 
 def read_state(filename, s):
@@ -50,7 +51,7 @@ def read_state(filename, s):
         # proceed the item
         for i in range(iidx + 1, aidx):
             iturl = lines[i].split(',')
-            s.updateItem({'item': iturl[0], 'url': iturl[1], 'status': 'N/A'})
+            s.updateItem({'item': iturl[0], 'url': iturl[1], 'status': '', 'pstatus': ''})
         # porceed the alert
         for i in range(aidx + 1, sidx):
             alt = lines[i]

@@ -2,13 +2,13 @@ import requests
 from bs4 import BeautifulSoup
 
 
-class BestbuyScraper:
+class BestBuyScraper:
     def __init__(self, url):
         self.url = url
 
     def CheckStock(self, url):
         headers = {
-            'User-Agent': 'Mozilla/5.0 (X11; Ubuntu; Linux x86_64; rv:79.0) Gecko/20100101 Firefox/79.0',
+            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0',
             'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
             'Accept-Language': 'en-US,en;q=0.5',
             'DNT': '1',

@@ -2,10 +2,17 @@ import requests
 from bs4 import BeautifulSoup
 
 
+# Scraper for BestBuy
+# Takes in product url as input upon object creation
+# 'job' prints progress while 'CheckStock' obtains stock info
+# @author qchen59
+
 class BestBuyScraper:
     def __init__(self, url):
         self.url = url
 
+    # Obtains stock information from the given url
+    # @param url URL of the product
     def CheckStock(self, url):
         headers = {
             'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0',
@@ -27,6 +34,7 @@ class BestBuyScraper:
         except:
             return "Error Occurred"
 
+    # Prints the progress, and delegates the task to 'CheckStock'
     def job(self):
         print("Tracking....")
         print("Processing: " + self.url)

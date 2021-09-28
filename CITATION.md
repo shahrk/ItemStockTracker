@@ -1,6 +1,6 @@
-# Citing CSC510G30
+# Citing ItemStockTracker
 
-There is no reason to ever cite this particular repository. However, if you are caught in a fit of madness, please use the following formats:
+If citing our project, please use the following formats:
 
 ## BibTeX
 

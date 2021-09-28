@@ -6,7 +6,7 @@ There is no reason to ever cite this particular repository. However, if you are 
 
 ```
 bibtex
-@misc{CSC510G30,
+@misc{ItemStockTracker,
   author = {Q. Chen, N. Rajapaksha, J. Wright, and J. Yang},
   title = {Item Stock Tracker},
   year = {2021},

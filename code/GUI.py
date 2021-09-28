@@ -90,7 +90,9 @@ class Application(tk.Tk):
         self.lock = threading.Lock()
 
     def reload_state(self):
-        # Populate the listbox with saved values
+        """
+        # Populates the listbox with saved values
+        """
         if len(s.item) > 0:
             for item in s.item:
                 self.items_list.insert('', 'end', values=(item.get('item'), item.get('url'), ' '))
@@ -107,8 +109,10 @@ class Application(tk.Tk):
             self.email_addr_entry.insert(0, emaddress)
 
     def save_setting(self):
-        # Save the updated setting
-        # Check email alert
+        """
+        # Saves the updated setting
+        # Checks email alert
+        """
         if self.is_checked.get():
             if 'Email' not in s.alert:
                 s.updateAlert('Email')
@@ -120,9 +124,11 @@ class Application(tk.Tk):
         # Check the refresh interval
         s.updateSetting(self.interval_entry.get())
 
-    # Obtains stock info from appropriate scrapers
-    # Threads run this method
     def scraper_data(self):
+        """
+        # Obtains stock info from appropriate scrapers
+        # Threads run this method
+        """
         self.lock.acquire()
         for item in s.item:
             item_name = item.get('item')
@@ -133,19 +139,23 @@ class Application(tk.Tk):
 
         self.lock.release()
 
-    # Updates the items in the GUI with the stock information
-    # @param entry one of the items in the list
-    # @param item_name name of the item
-    # @param item_url url of the item
-    # @param item_stock stock info of the item
     def update_stock_info(self, entry, item_name, item_url, item_stock):
+        """
+        Updates the items in the GUI with the stock information
+        :param entry: one of the items in the products list
+        :param item_name: name of the product
+        :param item_url: url of the product
+        :param item_stock: stock info of the product
+        """
         self.items_list.delete(entry)
         self.items_list.insert('', 'end', values=(item_name, item_url, item_stock))
 
-    # After this function is called for the first time, it will be called again
-    # every second until the application is closed.
-    # Delegates GUI updating to update_stock_info and send an alert when item restock
     def run_timer(self):
+        """
+        # After this function is called for the first time, it will be called again
+        # every second until the application is closed.
+        # Delegates GUI updating to update_stock_info and send an alert when item restock
+        """
         self.min_count += 1
 
         if self.min_count % int(self.interval_entry.get()) == 0:

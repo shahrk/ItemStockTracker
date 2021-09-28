@@ -1,27 +1,36 @@
 import requests
 from bs4 import BeautifulSoup
 
-# Scraper for Amazon
-# Takes in product url as input upon object creation
-# 'job' prints progress while 'CheckStock' obtains stock info
-
-# Amazon pages can have stock info in different ways.
-# Following are the possible cases, interpretations, and return values of each case.
-#   "In Stock" - Product is in stock - return "In Stock"
-#   "Only x left Order soon" - Product is in stock - return "In Stock"
-#   "Currently unavailable" - product is out of Stock - return "Out of Stock"
-#   "In stock soon" - Product is out of stock - return "Out of Stock"
-#   No stock information on the page/Captcha page - No stock info - return "No Stock Info"
-# @author Arcane94
-
 
 class AmazonScraper:
+    """
+    # Scraper for Amazon
+    # Takes in product url as input upon object creation
+    # 'job' prints progress while 'check_stock' obtains stock info
+
+    # Amazon pages can have stock info in different ways.
+    # Following are the possible cases, interpretations, and return values of each case.
+    #   "In Stock" - Product is in stock - return "In Stock"
+    #   "Only x left Order soon" - Product is in stock - return "In Stock"
+    #   "Currently unavailable" - product is out of Stock - return "Out of Stock"
+    #   "In stock soon" - Product is out of stock - return "Out of Stock"
+    #   No stock information on the page/Captcha page - No stock info - return "No Stock Info"
+    # @author: Arcane94
+    """
+
     def __init__(self, url):
+        """
+        Initializes url upon object construction
+        :param url: URL of the product
+        """
         self.url = url
 
-    # Obtains stock information from the given url
-    # @param url URL of the product
-    def CheckStock(self, url):
+    def check_stock(self, url):
+        """
+        Obtains stock information from the given url
+        :param url: URL of the product
+        :return: a string indicating the stock information
+        """
         headers = {
             'authority': 'www.amazon.com',
             'pragma': 'no-cache',
@@ -60,10 +69,13 @@ class AmazonScraper:
         except:
             return "Error Occurred"
 
-    # Prints the progress, and delegates the task to 'CheckStock'
     def job(self):
+        """
+        Prints the progress, and delegates the task to 'check_stock'
+        :return: a string indicating the stock information
+        """
         print("Tracking....")
         print("Processing: " + self.url)
-        stock = self.CheckStock(self.url)
+        stock = self.check_stock(self.url)
         print(stock)
         return stock

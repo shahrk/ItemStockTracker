@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
 from code import tracker
-import sendEmail
+import SendEmail
 import webbrowser
 from Scraper import Scraper
 import time
@@ -275,7 +275,7 @@ class TrackedItemsListbox(ttk.Treeview):
         email = ''
         if app.is_checked.get():
             email = app.email_addr_entry.get()
-            sendEmail.sendEmail(email, name, url)
+            SendEmail.sendEmail(email, name, url)
 
         # tempWin = tk.Tk() # Temporary, invisible window to use as a popup's root
         #                   # This way the root will always be in the same thread as the popup

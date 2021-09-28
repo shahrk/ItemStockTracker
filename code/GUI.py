@@ -179,8 +179,14 @@ class Application(tk.Tk):
 
         self.after(1000, self.run_timer)
 
-    # This function is used in an entry object, to verify that the input is a number
     def __verify_numeric(self, action, value):
+        """
+        # This function is used in an entry object, to verify that the input is a number.
+        # To use it, specify this function as the "validatecommand" option when creating a
+        # tkinter entry object.
+        # :param action: Whether data is being inserted or deleted from the entry object, represented as an int
+        # :param value: The current text of the entry object
+        """
         if action != '1':  # if the action is anything other than inserting:
             return True
         try:

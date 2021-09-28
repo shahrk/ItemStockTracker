@@ -1,2 +1,2 @@
 [run]
-omit = ./code/GUI.py, ./code/sendEmail.py
+omit = ./code/GUI.py, ./code/SendEmail.py

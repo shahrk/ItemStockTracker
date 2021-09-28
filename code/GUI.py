@@ -4,6 +4,9 @@ from tkinter import simpledialog
 from code import tracker
 import sendEmail
 import webbrowser
+from Scraper import Scraper
+import time
+import threading
 
 
 class Application(tk.Tk):
@@ -13,7 +16,7 @@ class Application(tk.Tk):
         # Check if reloaded
         self.reload = False
 
-        self.geometry('800x500')
+        self.geometry('850x550')
         self.resizable(0, 0)
 
         self.title('Item Stock Tracker')
@@ -22,7 +25,7 @@ class Application(tk.Tk):
         self.rowconfigure(1, weight=6, pad=5)
 
         welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
-                          "different digital retailers. \n Currently supported retailers include: <TODO: Add these>"
+                          "different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com"
 
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 
@@ -44,22 +47,24 @@ class Application(tk.Tk):
         self.add_button.place(x=769, y=52)
 
         # Create a frame for program settings
-        self.settings = ttk.Frame(self.tabs)
+        ttk.Style().configure("BW.TFrame", background="white")
+
+        self.settings = ttk.Frame(self.tabs, style="BW.TFrame")
 
         for i in range(3):
             self.settings.rowconfigure(i, pad=5)
 
-        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in minutes):  ", )
+        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in seconds):  ", bg="white")
         check_numeric = (self.register(self.__verify_numeric), '%d', '%P')
-        self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3)
-        self.interval_entry.insert(0, '10')
+        self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3,
+                                       bg="white")
 
         self.is_checked = tk.IntVar()
-        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ")
-        self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked)
+        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ", bg="white")
+        self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked, bg="white")
 
-        self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ")
-        self.email_addr_entry = tk.Entry(self.settings, validate='focus', width=30)
+        self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ", bg="white")
+        self.email_addr_entry = tk.Entry(self.settings, validate='focus', width=30, bg="white")
 
         self.interval_label.grid(row=0, column=0, sticky='E')
         self.interval_entry.grid(row=0, column=1, sticky='W')
@@ -79,8 +84,15 @@ class Application(tk.Tk):
         self.min_count = 0
         self.run_timer()
 
+        # Scarper object that is used to choose which scraper to run
+        self.scraper = Scraper()
+        # A lock to keep scarping thread safe
+        self.lock = threading.Lock()
+
     def reload_state(self):
-        # Populate the listbox with saved values
+        """
+        # Populates the listbox with saved values
+        """
         if len(s.item) > 0:
             for item in s.item:
                 self.items_list.insert('', 'end', values=(item.get('item'), item.get('url'), ' '))
@@ -97,8 +109,10 @@ class Application(tk.Tk):
             self.email_addr_entry.insert(0, emaddress)
 
     def save_setting(self):
-        # Save the updated setting
-        # Check email alert
+        """
+        # Saves the updated setting
+        # Checks email alert
+        """
         if self.is_checked.get():
             if 'Email' not in s.alert:
                 s.updateAlert('Email')
@@ -110,16 +124,60 @@ class Application(tk.Tk):
         # Check the refresh interval
         s.updateSetting(self.interval_entry.get())
 
-    # After this function is called for the first time, it will be called again
-    # every minute until the application is closed.
+    def scraper_data(self):
+        """
+        # Obtains stock info from appropriate scrapers
+        # Threads run this method
+        """
+        self.lock.acquire()
+        for item in s.item:
+            item_name = item.get('item')
+            item_url = item.get('url')
+            item_stock = self.scraper.ChooseScraper(item_url)
+            s.updateStatus(item_name, item_url, item_stock)
+            time.sleep(1)
+
+        self.lock.release()
+
+    def update_stock_info(self, entry, item_name, item_url, item_stock):
+        """
+        Updates the items in the GUI with the stock information
+        :param entry: one of the items in the products list
+        :param item_name: name of the product
+        :param item_url: url of the product
+        :param item_stock: stock info of the product
+        """
+        self.items_list.delete(entry)
+        self.items_list.insert('', 'end', values=(item_name, item_url, item_stock))
+
     def run_timer(self):
+        """
+        # After this function is called for the first time, it will be called again
+        # every second until the application is closed.
+        # Delegates GUI updating to update_stock_info and send an alert when item restock
+        """
         self.min_count += 1
 
         if self.min_count % int(self.interval_entry.get()) == 0:
             self.min_count = 0
-            # TODO: Add a function to check the stock status of each item
+            # A separate thread to handle scraping
+            thread = threading.Thread(target=self.scraper_data, args=())
+            thread.setDaemon(True)
+            thread.start()
+            for entry in self.items_list.get_children():
+                item_name = self.items_list.item(entry)["values"][0]
+                item_url = self.items_list.item(entry)["values"][1]
+                status = s.getStatus(item_name, item_url)
+                item_stock = status.get('status')
+                item_pstock = status.get('pstatus')
+                self.update_stock_info(entry, item_name, item_url, item_stock)
+                if item_stock == 'In Stock' and item_pstock != 'In Stock':
+                    app.update()
+                    self.items_list.alert(item_name, item_url)
+                    self.interval_entry.focus_force()
+                    self.email_addr_entry.focus_force()
 
-        self.after(60000, self.run_timer)
+        self.after(1000, self.run_timer)
 
     # This function is used in an entry object, to verify that the input is a number
     def __verify_numeric(self, action, value):
@@ -146,8 +204,10 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Delete",
                                        command=self.delete_item)
+        self.selected_menu.add_command(label="Edit",
+                                       command=self.edit_item)
 
-        # TODO: Remove these command before realease. They are for debugging only
+        # TODO: Remove these command before release. They are for debugging only
         self.selected_menu.add_separator()
         self.selected_menu.add_command(label="Trigger Restock",
                                        command=lambda: self.alert(self.set(self.selection()[0])['1'],
@@ -178,16 +238,33 @@ class TrackedItemsListbox(ttk.Treeview):
     def add_item(self, name, url):
         self.insert('', 'end', values=(name, url, "?"))
         # Add the item - backend
-        s.updateItem({'item': name, 'url': url})
-        # TODO: Add a method for checking if an item is in stock
+        s.updateItem({'item': name, 'url': url, 'status': '', 'pstatus': ''})
 
-        # Testing code for giving the plus button alert function
-        # self.alert("jb","www.jb.com")
         self.selection_clear()
 
     def delete_item(self):
         for item in self.selection():
+            origin_name = self.set(item)['1']
+            origin_url = self.set(item)['2']
+            for row in s.item:
+                if row['item'] == origin_name and row['url'] == origin_url:
+                    s.item.remove(row)
             self.delete(item)
+
+    def edit_item(self):
+        for item in self.selection():
+            origin_name = self.set(item)['1']
+            origin_url = self.set(item)['2']
+            popup = GetItemURLDialogue(self, "Edit Item", origin_name, origin_url)
+
+            self.item(item, values=(popup.name, popup.url, self.set(item)['3']))
+            self.set(item)['2'] = popup.url
+
+            # Edit the item - backend
+            for row in s.item:
+                if row['item'] == origin_name and row['url'] == origin_url:
+                    s.item.remove(row)
+            s.updateItem({'item': popup.name, 'url': popup.url})
 
     def add_item_popup(self):
         popup = GetItemURLDialogue(self, "Add Item", "", "")
@@ -198,8 +275,12 @@ class TrackedItemsListbox(ttk.Treeview):
         email = ''
         if app.is_checked.get():
             email = app.email_addr_entry.get()
+            sendEmail.sendEmail(email, name, url)
 
-        sendEmail.sendEmail(email, name, url)
+        # tempWin = tk.Tk() # Temporary, invisible window to use as a popup's root
+        #                   # This way the root will always be in the same thread as the popup
+        # tempWin.withdraw()
+        # popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 
 
@@ -279,4 +360,4 @@ if __name__ == "__main__":
     app = Application()
     app.protocol("WM_DELETE_WINDOW", on_closing)
     app.mainloop()
-    tracker.save_state('../data/testsave.txt', s)
+    tracker.save_state(tracker.FILENAME, s)

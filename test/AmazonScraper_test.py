@@ -19,30 +19,30 @@ def test_init():
     assert InStock_URL == amazon.url
 
 
-def test_CheckStock():
+def test_check_stock():
     # Testing In Stock case. Remove the 'or' condition when Git Issue #22 is fixed.
     amazon = AmazonScraper(InStock_URL)
-    stock_info = amazon.CheckStock(InStock_URL)
+    stock_info = amazon.check_stock(InStock_URL)
     assert stock_info == "In Stock" or stock_info == "No Stock Info"
 
     # Testing Order Soon case. Remove the 'or' condition when Git Issue #22 is fixed.
     amazon = AmazonScraper(OrderSoon_URL)
-    stock_info = amazon.CheckStock(OrderSoon_URL)
+    stock_info = amazon.check_stock(OrderSoon_URL)
     assert stock_info == "In Stock" or stock_info == "No Stock Info"
 
     # Testing Out of Stock(currently unavailable) case. Remove the 'or' condition when Git Issue #22 is fixed.
     amazon = AmazonScraper(OutOfStock_URL)
-    stock_info = amazon.CheckStock(OutOfStock_URL)
+    stock_info = amazon.check_stock(OutOfStock_URL)
     assert stock_info == "Out of Stock" or stock_info == "No Stock Info"
 
     # Testing In Stock Soon case. Remove the 'or' condition when Git Issue #22 is fixed.
     amazon = AmazonScraper(InStockSoon_URL)
-    stock_info = amazon.CheckStock(OutOfStock_URL)
+    stock_info = amazon.check_stock(OutOfStock_URL)
     assert stock_info == "Out of Stock" or stock_info == "No Stock Info"
 
     # Testing an invalid URL
     amazon = AmazonScraper(Invalid_URL)
-    stock_info = amazon.CheckStock(Invalid_URL)
+    stock_info = amazon.check_stock(Invalid_URL)
     assert "Error Occurred", stock_info
 
 
@@ -70,5 +70,5 @@ def test_job():
 
 # if __name__ == "__main__":
 #     test_init()
-#     test_CheckStock()
+#     test_check_stock()
 #     test_job()

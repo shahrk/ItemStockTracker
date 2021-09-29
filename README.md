@@ -10,7 +10,7 @@
 
 https://user-images.githubusercontent.com/34405372/135197073-457a72df-799f-49d6-afbd-bb8f17bf2ba5.mp4
 
-# Prerequisites
+### Prerequisites
 Make sure you have installed and followed all of the following prerequisites on your development machine:
 
 * Python-- [Download & Install Python 3.9](https://www.python.org/downloads/release/python-390/)

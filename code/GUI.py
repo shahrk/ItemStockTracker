@@ -2,7 +2,7 @@ import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
 from code import tracker
-import sendEmail
+import SendEmail
 import webbrowser
 from Scraper import Scraper
 import time
@@ -179,8 +179,14 @@ class Application(tk.Tk):
 
         self.after(1000, self.run_timer)
 
-    # This function is used in an entry object, to verify that the input is a number
     def __verify_numeric(self, action, value):
+        """
+        # This function is used in an entry object, to verify that the input is a number.
+        # To use it, specify this function as the "validatecommand" option when creating a
+        # tkinter entry object.
+        # :param action: Whether data is being inserted or deleted from the entry object, represented as an int
+        # :param value: The current text of the entry object
+        """
         if action != '1':  # if the action is anything other than inserting:
             return True
         try:
@@ -275,7 +281,7 @@ class TrackedItemsListbox(ttk.Treeview):
         email = ''
         if app.is_checked.get():
             email = app.email_addr_entry.get()
-            sendEmail.sendEmail(email, name, url)
+            SendEmail.sendEmail(email, name, url)
 
         # tempWin = tk.Tk() # Temporary, invisible window to use as a popup's root
         #                   # This way the root will always be in the same thread as the popup

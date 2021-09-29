@@ -1,6 +1,17 @@
 # Item Stock Tracker
 
 
+# Prerequisites
+Make sure you have installed and followed all of the following prerequisites on your development machine:
+
+* Python-- [Download & Install Python 3.9](https://www.python.org/downloads/release/python-390/)
+* Email-- Fill out the email address(gmail_user) and password(gmail_password) in SendEmail.py as the sender email
+* pillow-- [Download & Install Pillow for python with version>=8.3.0](https://pillow.readthedocs.io/en/stable/)
+* requests-- [Download & Install Requests for python with version~=2.26.0](https://docs.python-requests.org/en/latest/)
+* beautifulsoup4-- [Download & Install Beautifulsoup4 for python with version~=4.10.0](https://pypi.org/project/beautifulsoup4/)
+* lxml-- [Download & Install lxml for Python with version~=4.6.3](https://lxml.de)
+* setuptools-- [Download & Install lxml for Python with version~=57.0.0](https://pypi.org/project/setuptools/)
+
 
 
 

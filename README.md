@@ -1,5 +1,14 @@
 # Item Stock Tracker
+[![Build Status](https://app.travis-ci.com/qchen59/ItemStockTracker.svg?branch=main)](https://app.travis-ci.com/qchen59/ItemStockTracker)
+[![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
+![GitHub release (latest by date)](https://img.shields.io/github/v/release/qchen59/ItemStockTracker)
+<a href="https://zenodo.org/badge/latestdoi/404936268"><img src="https://zenodo.org/badge/404936268.svg" alt="DOI"></a>
+![GitHub issues](https://img.shields.io/github/issues/qchen59/ItemStockTracker)
+![GitHub all releases](https://img.shields.io/github/downloads/qchen59/ItemStockTracker/total)
 
+\<Name TBD\> (Item Stock Tracker) is a program designed to alert users when specific items from an online retailer are back in stock.
+
+https://user-images.githubusercontent.com/34405372/135197073-457a72df-799f-49d6-afbd-bb8f17bf2ba5.mp4
 
 # Prerequisites
 Make sure you have installed and followed all of the following prerequisites on your development machine:
@@ -12,20 +21,6 @@ Make sure you have installed and followed all of the following prerequisites on 
 * lxml-- [Download & Install lxml for Python with version~=4.6.3](https://lxml.de)
 * setuptools-- [Download & Install lxml for Python with version~=57.0.0](https://pypi.org/project/setuptools/)
 
-
-
-
-
-[![Build Status](https://app.travis-ci.com/qchen59/ItemStockTracker.svg?branch=main)](https://app.travis-ci.com/qchen59/ItemStockTracker)
-[![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/qchen59/ItemStockTracker)
-<a href="https://zenodo.org/badge/latestdoi/404936268"><img src="https://zenodo.org/badge/404936268.svg" alt="DOI"></a>
-![GitHub issues](https://img.shields.io/github/issues/qchen59/ItemStockTracker)
-![GitHub all releases](https://img.shields.io/github/downloads/qchen59/ItemStockTracker/total)
-
-\<Name TBD\> (Item Stock Tracker) is a program designed to alert users when specific items from an online retailer are back in stock.
-
-https://user-images.githubusercontent.com/34405372/135197073-457a72df-799f-49d6-afbd-bb8f17bf2ba5.mp4
 
 ### Documentation
 

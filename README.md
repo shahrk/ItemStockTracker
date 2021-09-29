@@ -19,7 +19,7 @@ Make sure you have installed and followed all of the following prerequisites on 
 * requests-- [Download & Install Requests for python with version~=2.26.0](https://docs.python-requests.org/en/latest/)
 * beautifulsoup4-- [Download & Install Beautifulsoup4 for python with version~=4.10.0](https://pypi.org/project/beautifulsoup4/)
 * lxml-- [Download & Install lxml for Python with version~=4.6.3](https://lxml.de)
-* setuptools-- [Download & Install lxml for Python with version~=57.0.0](https://pypi.org/project/setuptools/)
+* setuptools-- [Download & Install setuptools for Python with version~=57.0.0](https://pypi.org/project/setuptools/)
 
 
 ### Documentation

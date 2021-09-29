@@ -393,8 +393,8 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
     This class defines the popup that is used to alert a user of a restock.
     :param parent: the parent object for the popup
     :param title: the title of the new window
-    :param name: the default name of the item
-    :param url: the default url of the item
+    :param name: the name of the item
+    :param url: the url of the item
     """
     def __init__(self, parent, title, name, url):
         self.name = name

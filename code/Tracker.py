@@ -1,70 +1,111 @@
+"""
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
 import os.path
 
-# save state, reload state and other related functions
-# @author qchen59
+"""
+The Tracker serves as the backend of our program.
+Supports the save and reload of state, modify to the item list and settings.
+# @author: qchen59
+"""
+
 
 FILENAME = '../data/tracker.txt'
 
 
 class State:
+    """
+    The State class which holds all state data.
+    Such as the alert setting and the item list.
+    """
     def __init__(self):
         self.alert = []
         self.item = []
         self.setting = ''
         self.email = ''
 
-    # Update the setting with given setting
-    # param setting given setting
     def updateSetting(self, setting):
+        """
+        Update the setting with given setting
+        @param setting: the given setting
+        """
         self.setting = setting
 
-    # Update the item list with given item dict
-    # param iturl given item dict
     def updateItem(self, iturl):
+        """
+        Update the item list with given item dict
+        @param iturl: the given item dict,contains the item name, url, status and previous status
+        """
         self.item.append(iturl)
 
-    # Update the alert with given alert
-    # param alert given alert
     def updateAlert(self, alert):
+        """
+        Update the alert with given alert, add the new aler to the alert list
+        @param alert: given alert
+        """
         self.alert.append(alert)
 
-    # Update the email with given email
-    # param email given email address
     def updateEmail(self, email):
+        """
+        Update the email with given email
+        @param email: the given email
+        """
         self.email = email
 
-    # Delete an alert
-    # param alert the alert which we want to delete
     def deleteAlert(self, alert):
+        """
+        Delete an alert
+        @param alert: given the alert name which we want to delete
+        @return:
+        """
         self.alert.remove(alert)
 
-    # Clear the email address
     def deleteEmail(self):
+        """
+        Clear the email address
+        """
         self.email = ''
 
-    # Update the item status
-    # param item is the given item
-    # param url is the item's url
-    # param status is the item new status
     def updateStatus(self, item, url, status):
+        """
+        Update the item status
+        @param item: given item name
+        @param url: given item url
+        @param status: new item status
+        """
         for it in self.item:
             if it.get('item') == item and it.get('url') == url:
                 it['pstatus'] = it['status']
                 it['status'] = status
 
-    # Get the item status
-    # param item is the given item
-    # param url is the item's url
     def getStatus(self, item, url):
+        """
+        Get the item status for specific item
+        @param item: given item name
+        @param url: given item url
+        @return: the item status for given item
+        """
         for it in self.item:
             if it.get('item') == item and it.get('url') == url:
                 return {'status': it.get('status'), 'pstatus': it.get('pstatus')}
 
 
-# Read in a state from file
-# param filename is the filename
-# param s is the state
 def read_state(filename, s):
+    """
+    Read in a state from file
+    @param filename: given filename we want to read in
+    @param s: is the sate we want add state data to
+    """
     if os.path.exists(filename):
         with open(filename, 'r') as file:
             lines = file.read().splitlines()
@@ -89,10 +130,12 @@ def read_state(filename, s):
         s.updateSetting(lines[sidx + 1])
 
 
-# Save the state to the file
-# param filename is the filename
-# param s is the state
 def save_state(filename, s):
+    """
+    Save the state to the file
+    @param filename: the filename we want to save the state to
+    @param s: is the state instance which stores the state data
+    """
     # write the current state to the file
     with open(filename, 'w') as file:
         file.writelines('Item:\n')

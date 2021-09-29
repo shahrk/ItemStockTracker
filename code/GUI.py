@@ -1,7 +1,20 @@
+"""
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+ http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+"""
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
-from code import tracker
+from code import Tracker
 import SendEmail
 import webbrowser
 from Scraper import Scraper
@@ -361,9 +374,9 @@ def on_closing():
 
 
 if __name__ == "__main__":
-    s = tracker.State()
-    tracker.read_state(tracker.FILENAME, s)
+    s = Tracker.State()
+    Tracker.read_state(Tracker.FILENAME, s)
     app = Application()
     app.protocol("WM_DELETE_WINDOW", on_closing)
     app.mainloop()
-    tracker.save_state(tracker.FILENAME, s)
+    Tracker.save_state(Tracker.FILENAME, s)

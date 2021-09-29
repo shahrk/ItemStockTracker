@@ -1,4 +1,4 @@
-from code import tracker
+from code import Tracker
 import os
 
 # Unit tests for tracker.py
@@ -6,7 +6,7 @@ import os
 # @author qchen59
 
 
-s = tracker.State()
+s = Tracker.State()
 powerSupply = "Power Supply"
 url = "https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244"
 
@@ -18,7 +18,7 @@ full_path = os.path.abspath('testtracker.txt')
 
 
 def test_readState():
-    tracker.read_state(full_path, s)
+    Tracker.read_state(full_path, s)
     assert len(s.item) == 4, "Should be 4 items"
     assert s.email == 'test@email.com', "Should be test@email.com"
     assert len(s.alert) == 1, "Should be only 1 alert"
@@ -27,13 +27,13 @@ def test_readState():
 
 
 def test_updateStatus():
-    tracker.read_state(full_path, s)
+    Tracker.read_state(full_path, s)
     s.updateStatus(powerSupply, url, 'In Stock')
     assert s.getStatus(powerSupply, url).get('status') == 'In Stock', "Should be In Stock"
 
 
 def test_deleteAlert():
-    tracker.read_state(full_path, s)
+    Tracker.read_state(full_path, s)
     initial_size = len(s.alert)
     s.deleteAlert('Email')
     s.deleteEmail()
@@ -42,7 +42,7 @@ def test_deleteAlert():
 
 
 def test_saveState():
-    tracker.save_state(full_path, s)
+    Tracker.save_state(full_path, s)
 
 # if __name__ == "__main__":
 #     test_readState()

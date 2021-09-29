@@ -1,7 +1,7 @@
 # Item Stock Tracker
 
 
-https://user-images.githubusercontent.com/34405372/135197073-457a72df-799f-49d6-afbd-bb8f17bf2ba5.mp4
+
 
 
 
@@ -13,6 +13,8 @@ https://user-images.githubusercontent.com/34405372/135197073-457a72df-799f-49d6-
 ![GitHub all releases](https://img.shields.io/github/downloads/qchen59/ItemStockTracker/total)
 
 \<Name TBD\> (Item Stock Tracker) is a program designed to alert users when specific items from an online retailer are back in stock.
+
+https://user-images.githubusercontent.com/34405372/135197073-457a72df-799f-49d6-afbd-bb8f17bf2ba5.mp4
 
 ### Documentation
 

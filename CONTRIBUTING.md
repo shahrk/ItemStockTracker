@@ -54,5 +54,6 @@ Create a new branch for the feature you want to work on.
 Before you pull to the main branch, make sure you have tested all functions. Use a style checker and formatter to organize your code.
 
 **Before pull request**
+
 The Travis_CI build should succeed. Coverage should > 80%. Request review before the pull to the main branch.
 

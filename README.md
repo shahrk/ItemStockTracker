@@ -8,7 +8,11 @@
 
 \<Name TBD\> (Item Stock Tracker) is a program designed to alert users when specific items from an online retailer are back in stock.
 
-https://user-images.githubusercontent.com/34405372/135197073-457a72df-799f-49d6-afbd-bb8f17bf2ba5.mp4
+
+
+https://user-images.githubusercontent.com/34405372/135356983-439e7808-8268-41aa-ad82-38615d4a773e.mp4
+
+
 
 ### Prerequisites
 Make sure you have installed and followed all of the following prerequisites on your development machine:

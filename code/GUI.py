@@ -23,6 +23,9 @@ import threading
 
 
 class Application(tk.Tk):
+    """
+    The main application class for the project.
+    """
     def __init__(self):
         super().__init__()
 
@@ -104,7 +107,7 @@ class Application(tk.Tk):
 
     def reload_state(self):
         """
-        # Populates the listbox with saved values
+        Populates the listbox with saved values
         """
         if len(s.item) > 0:
             for item in s.item:
@@ -123,8 +126,8 @@ class Application(tk.Tk):
 
     def save_setting(self):
         """
-        # Saves the updated setting
-        # Checks email alert
+        Saves the updated setting
+        Checks email alert
         """
         if self.is_checked.get():
             if 'Email' not in s.alert:
@@ -139,8 +142,8 @@ class Application(tk.Tk):
 
     def scraper_data(self):
         """
-        # Obtains stock info from appropriate scrapers
-        # Threads run this method
+        Obtains stock info from appropriate scrapers
+        Threads run this method
         """
         self.lock.acquire()
         for item in s.item:
@@ -165,9 +168,9 @@ class Application(tk.Tk):
 
     def run_timer(self):
         """
-        # After this function is called for the first time, it will be called again
-        # every second until the application is closed.
-        # Delegates GUI updating to update_stock_info and send an alert when item restock
+        After this function is called for the first time, it will be called again
+        every second until the application is closed.
+        Delegates GUI updating to update_stock_info and send an alert when item restock
         """
         self.min_count += 1
 
@@ -194,11 +197,11 @@ class Application(tk.Tk):
 
     def __verify_numeric(self, action, value):
         """
-        # This function is used in an entry object, to verify that the input is a number.
-        # To use it, specify this function as the "validatecommand" option when creating a
-        # tkinter entry object.
-        # :param action: Whether data is being inserted or deleted from the entry object, represented as an int
-        # :param value: The current text of the entry object
+        This function is used in an entry object, to verify that the input is a number.
+        To use it, specify this function as the "validatecommand" option when creating a
+        tkinter entry object.
+        :param action: Whether data is being inserted or deleted from the entry object, represented as an int
+        :param value: The current text of the entry object
         """
         if action != '1':  # if the action is anything other than inserting:
             return True
@@ -209,6 +212,10 @@ class Application(tk.Tk):
 
 
 class TrackedItemsListbox(ttk.Treeview):
+    """
+    This object is for holding and displaying the list of items that are being tracked by the program.
+    It is built off of the ttk.Treeview class, and contains 3 columns (Name, URL, Stock Status).
+    """
     def __init__(self, parent, **kwargs):
         ttk.Treeview.__init__(self, parent, **kwargs)
 
@@ -240,9 +247,13 @@ class TrackedItemsListbox(ttk.Treeview):
         self.heading(3, text='Stock Status')
         self.column(3, width='100')
 
-        self.bind("<Button-3>", self.popup)
+        self.bind("<Button-3>", self.menu_popup)
 
-    def popup(self, event):
+    def menu_popup(self, event):
+        """
+        This function causes a menu with a list of commands to appear. It is intended to be used when the user right
+        clicks on the item list.
+        """
         if not self.selection():
             try:
                 self.none_selected_menu.tk_popup(event.x_root, event.y_root)
@@ -255,13 +266,21 @@ class TrackedItemsListbox(ttk.Treeview):
                 self.selected_menu.grab_release()
 
     def add_item(self, name, url):
-        self.insert('', 'end', values=(name, url, "?"))
+        """
+        Adds an item to the list to be tracked.
+        :param name: name of the item to be added
+        :param url: URL of the product page
+        """
+        self.insert('', 'end', values=(name, url, ""))
         # Add the item - backend
         s.updateItem({'item': name, 'url': url, 'status': '', 'pstatus': ''})
 
         self.selection_clear()
 
     def delete_item(self):
+        """
+        Deletes the currently selected item.
+        """
         for item in self.selection():
             origin_name = self.set(item)['1']
             origin_url = self.set(item)['2']
@@ -271,6 +290,9 @@ class TrackedItemsListbox(ttk.Treeview):
             self.delete(item)
 
     def edit_item(self):
+        """
+        Edits the currently selected item. To do this, it creates a popup to gather the new item information.
+        """
         for item in self.selection():
             origin_name = self.set(item)['1']
             origin_url = self.set(item)['2']
@@ -286,11 +308,20 @@ class TrackedItemsListbox(ttk.Treeview):
             s.updateItem({'item': popup.name, 'url': popup.url})
 
     def add_item_popup(self):
+        """
+        Adds a new item to the list. It launches a popup to gather the name and url for the item from the user.
+        """
         popup = GetItemURLDialogue(self, "Add Item", "", "")
         if not popup.cancelled:
             self.add_item(popup.name, popup.url)
 
     def alert(self, name, url):
+        """
+        Alerts the user that a particular product is back in stock by launching a popup and, if the email setting is
+        active, sending an email.
+        :param name: name of the item to be added
+        :param url: URL of the product page
+        """
         email = ''
         if app.is_checked.get():
             email = app.email_addr_entry.get()
@@ -304,6 +335,15 @@ class TrackedItemsListbox(ttk.Treeview):
 
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):
+    """
+    This is a popup for getting the name and url for a product.
+    It is build off of the tkinter.simpledialog.Dialog class.
+    Information can be retrieved by checking the name and url attributes after the popup has been closed.
+    :param parent: the parent object for the popup
+    :param title: the title of the new window
+    :param name: the default name of the item
+    :param url: the default url of the item
+    """
     def __init__(self, parent, title, name, url):
         self.name = name
         self.url = url
@@ -312,6 +352,12 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
         super().__init__(parent, title)
 
     def body(self, frame):
+        """
+        This function is called automatically by the object. It controls what objects should be contained in the popup
+        frame.
+        :param frame:
+        :return: the modified frame
+        """
         frame.rowconfigure(0, weight=0, pad=5)
         frame.rowconfigure(1, weight=0)
         frame.columnconfigure(0, weight=0)
@@ -334,21 +380,41 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
         return frame
 
     def apply(self):
+        """
+        This function controls what values are applied to the object after the popup closes.
+        """
         self.name = self.name_box.get()
         self.url = self.url_box.get()
         self.cancelled = False
 
 
 class ItemAlertDialogue(tk.simpledialog.Dialog):
+    """
+    This class defines the popup that is used to alert a user of a restock.
+    :param parent: the parent object for the popup
+    :param title: the title of the new window
+    :param name: the default name of the item
+    :param url: the default url of the item
+    """
     def __init__(self, parent, title, name, url):
         self.name = name
         self.url = url
         super().__init__(parent, title)
 
     def followlink(self, event):
+        """
+        Opens the url displayed in the popup in a web browser.
+        :param event: The popup event
+        """
         webbrowser.open(self.url)
 
     def body(self, frame):
+        """
+        This function is called automatically by the object. It controls what objects should be contained in the popup
+        frame.
+        :param frame:
+        :return: the modified frame
+        """
         frame.rowconfigure(0, weight=0, pad=10)
         frame.rowconfigure(1, weight=0)
 
@@ -363,12 +429,17 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         return frame
 
     def buttonbox(self):
+        """
+        This function is called automatically by the object. It controls what buttons should be contained in the popup.
+        """
         self.ok_button = tk.Button(self, text='OK', width=5, command=lambda: self.destroy())
         self.ok_button.pack(pady=10)
 
 
 def on_closing():
-    # Save the setting when closing
+    """
+    Save the setting when closing
+    """
     app.save_setting()
     app.destroy()
 

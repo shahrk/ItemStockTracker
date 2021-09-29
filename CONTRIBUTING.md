@@ -7,7 +7,7 @@ Each contribution counts for our project. So make sure to classify which is your
 - Split the homework into different tasks and create issues for each task.
 - Please include a detailed description of this task and reference if needed.
 
-**Assign yourself tasksAssign yourself with tasks.**
+**Assign yourself with tasks.**
 
 - Completed the tasks in time.
 - Close the issue once you have done.
@@ -38,3 +38,21 @@ Write readable code, follow basic style standards.Document your code.Keep functi
 **Attribution**
 
 The general format and large parts of the text of this file were taken from Atom’s contribution guidelines.
+
+# Extend the system without screwing things up
+
+**Create new issue**
+
+Create a new issue for the feature you want to extend, get some comments and reviews from other authors.
+
+**Create a new branch**
+
+Create a new branch for the feature you want to work on.
+
+**Tests, tyle check and formatter**
+
+Before you pull to the main branch, make sure you have tested all functions. Use a style checker and formatter to organize your code.
+
+**Before pull request**
+The Travis_CI build should succeed. Coverage should > 80%. Request review before the pull to the main branch.
+

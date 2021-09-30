@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" >
+<head>
+  <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tracker module &mdash; Item Stock Tracker v1.0.0 documentation</title>
+      <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+      <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <!--[if lt IE 9]>
+    <script src="_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script data-url_root="./" id="documentation_options" src="_static/documentation_options.js"></script>
+        <script src="_static/jquery.js"></script>
+        <script src="_static/underscore.js"></script>
+        <script src="_static/doctools.js"></script>
+    <script src="_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="SendEmail module" href="SendEmail.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+            <a href="index.html" class="icon icon-home"> Item Stock Tracker
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <p class="caption" role="heading"><span class="caption-text">Packages and Modules:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">code</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="AmazonScraper.html">AmazonScraper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="BestBuyScraper.html">BestBuyScraper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="GUI.html">GUI module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Scraper.html">Scraper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SendEmail.html">SendEmail module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Tracker module</a></li>
+</ul>
+</li>
+</ul>
+
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Item Stock Tracker</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="index.html" class="icon icon-home"></a> &raquo;</li>
+          <li><a href="modules.html">code</a> &raquo;</li>
+      <li>Tracker module</li>
+      <li class="wy-breadcrumbs-aside">
+            <a href="_sources/Tracker.rst.txt" rel="nofollow"> View page source</a>
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <section id="module-Tracker">
+<span id="tracker-module"></span><h1>Tracker module<a class="headerlink" href="#module-Tracker" title="Permalink to this headline"></a></h1>
+<dl class="py class">
+<dt class="sig sig-object py" id="Tracker.State">
+<em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">Tracker.</span></span><span class="sig-name descname"><span class="pre">State</span></span><a class="headerlink" href="#Tracker.State" title="Permalink to this definition"></a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<div class="line-block">
+<div class="line">The State class that holds all state data. Holds alert settings and the item list.</div>
+<div class="line"><br /></div>
+</div>
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.deleteAlert">
+<span class="sig-name descname"><span class="pre">deleteAlert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alert</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.deleteAlert" title="Permalink to this definition"></a></dt>
+<dd><p>Delete an alert.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alert</strong> – given the alert name which we want to delete</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.deleteEmail">
+<span class="sig-name descname"><span class="pre">deleteEmail</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.deleteEmail" title="Permalink to this definition"></a></dt>
+<dd><p>Clear the email address.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.getStatus">
+<span class="sig-name descname"><span class="pre">getStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.getStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Get the item status for specific item.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item</strong> – given item name</p></li>
+<li><p><strong>url</strong> – given item url</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the item status for given item</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.read_state">
+<span class="sig-name descname"><span class="pre">read_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.read_state" title="Permalink to this definition"></a></dt>
+<dd><p>Read in a state from file.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>filename</strong> – given filename we want to read in</p></li>
+<li><p><strong>s</strong> – is the sate we want add state data to</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.save_state">
+<span class="sig-name descname"><span class="pre">save_state</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">s</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.save_state" title="Permalink to this definition"></a></dt>
+<dd><p>Save the state to the file.</p>
+<p>&#64;param filename: the filename we want to save the state to
+&#64;param s: is the state instance which stores the state data</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.updateAlert">
+<span class="sig-name descname"><span class="pre">updateAlert</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">alert</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.updateAlert" title="Permalink to this definition"></a></dt>
+<dd><p>Update the alert with given alert, add the new aler to the alert list.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>alert</strong> – given alert</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.updateEmail">
+<span class="sig-name descname"><span class="pre">updateEmail</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">email</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.updateEmail" title="Permalink to this definition"></a></dt>
+<dd><p>Update the email with given email.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>email</strong> – the given email</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.updateItem">
+<span class="sig-name descname"><span class="pre">updateItem</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">iturl</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.updateItem" title="Permalink to this definition"></a></dt>
+<dd><p>Update the item list with given item dict.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>iturl</strong> – the given item dict,contains the item name, url, status and previous status</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.updateSetting">
+<span class="sig-name descname"><span class="pre">updateSetting</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">setting</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.updateSetting" title="Permalink to this definition"></a></dt>
+<dd><p>Update the setting with given setting.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>setting</strong> – the given setting</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="Tracker.State.updateStatus">
+<span class="sig-name descname"><span class="pre">updateStatus</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">item</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">url</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">status</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#Tracker.State.updateStatus" title="Permalink to this definition"></a></dt>
+<dd><p>Update the item status.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>item</strong> – given item name</p></li>
+<li><p><strong>url</strong> – given item url</p></li>
+<li><p><strong>status</strong> – new item status</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</section>
+
+
+           </div>
+          </div>
+          <footer><div class="rst-footer-buttons" role="navigation" aria-label="Footer">
+        <a href="SendEmail.html" class="btn btn-neutral float-left" title="SendEmail module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left" aria-hidden="true"></span> Previous</a>
+    </div>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2021, Qiuyu Chen, Yasitha Rajapaksha, Jiacheng Yang, Hugh Wright.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

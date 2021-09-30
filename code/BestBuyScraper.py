@@ -4,22 +4,23 @@ from bs4 import BeautifulSoup
 
 class BestBuyScraper:
     """
-    # Scraper for BestBuy
-    # Takes in product url as input upon object creation
-    # 'job' prints progress while 'check_stock' obtains stock info
-    # @author: qchen59
+    This is the Scraper for BestBuy. Takes in product url as input upon object creation.
+    Method 'job' prints progress while the method 'check_stock' obtains stock info.
+
+    @author: qchen59
     """
 
     def __init__(self, url):
         """
-        Initializes url upon object construction
+        Initializes url upon object construction.
         :param url: URL of the product
         """
         self.url = url
 
     def check_stock(self, url):
         """
-        Obtains stock information from the given url
+        Obtains stock information from the given url.
+
         :param url: URL of the product
         :return: a string indicating the stock information
         """
@@ -45,7 +46,8 @@ class BestBuyScraper:
 
     def job(self):
         """
-        Prints the progress, and delegates the task to 'check_stock'
+        Prints the progress, and delegates the task to 'check_stock'.
+        
         :return: a string indicating the stock information
         """
         print("Tracking....")

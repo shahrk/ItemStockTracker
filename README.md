@@ -25,6 +25,9 @@ Make sure you have installed and followed all of the following prerequisites on 
 * lxml-- [Download & Install lxml for Python with version~=4.6.3](https://lxml.de)
 * setuptools-- [Download & Install setuptools for Python with version~=57.0.0](https://pypi.org/project/setuptools/)
 
+### Documentation
+[Item Stock Tracker’s documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ItemStockTracker/blob/main/docs/build/html/index.html)
+
 
 ### Usage
 

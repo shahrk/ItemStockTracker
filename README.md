@@ -51,4 +51,5 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 
 
 ### Questions?
-Contact email: jyang31@ncsu.edu, ncsuemailtest@gmail.com
+If you encountered any questions and seeking for helps, please contact the following emails.
+jyang31@ncsu.edu, ncsuemailtest@gmail.com

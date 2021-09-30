@@ -26,7 +26,7 @@ Make sure you have installed and followed all of the following prerequisites on 
 * setuptools-- [Download & Install setuptools for Python with version~=57.0.0](https://pypi.org/project/setuptools/)
 
 
-### Documentation
+### Usage
 
 To use our program, download this repository and run the `GUI.py` file that can be found in the `code` directory. After running that file, you should see a GUI like the one below:
 

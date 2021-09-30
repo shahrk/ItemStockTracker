@@ -1,28 +1,38 @@
 from setuptools import setup
 
 setup(
-    name='CSC510G30',
-    version='0.1',
-    description='CSC510 Group30 Homework',
-    author='Kornelia Bastin,Qiuyu Chen,Yasitha Nisansala Rajapaksha,Jiacheng Yang,Hugh Wright', 
-    author_email='kabastin@ncsu.edu,qnchen@ncsu.edu,yrajapa@ncsu.edu,jyang31@ncsu.edu,jhwrigh2@ncsu.edu',
-    url='',
+    name='ItemStockTracker',
+    version='1.0.0',
+    description='Tracks stock info from retailer websites',
+    author='Qiuyu Chen, Yasitha Rajapaksha, Jiacheng Yang, Hugh Wright',
+    author_email='qnchen@ncsu.edu, yrajapa@ncsu.edu, jyang31@ncsu.edu, jhwrigh2@ncsu.edu',
+    url='https://github.com/qchen59/ItemStockTracker',
     packages=['code'],
       long_description="""\
         Module:
-            * Sample
+            * AmazonScraper
+            * BestBuyScraper
+            * GUI
+            * Scraper
+            * SendEmail
+            * Tracker
       """,
       classifiers=[
           "License :: Apache-2.0 License",
           "Programming Language :: Python",
           "Development Status :: ",
-          "Intended Audience :: Developers",
+          "Intended Audience :: Customers, Developers",
           "Topic :: D",
       ],
       keywords='',
       license='Apache-2.0 License',
       install_requires=[
-        'numpy',
-        'scipy',
+        'pillow',
+        'requests',
+        'beautifulsoup4',
+        'lxml',
+        'setuptools',
+        'sphinx',
+        'sphinx-rtd-theme',
       ],
       )

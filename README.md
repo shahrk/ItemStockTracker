@@ -47,3 +47,8 @@ When an item is restocked, a popup will appear. Optionally, an email alert will 
 Lastly, in the "Settings" tab you can adjust the refresh interval (how often the program will poll the website to check the stock status of your items), and configure your email alert settings.
 
   ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
+
+
+
+### Questions?
+Contact email: jyang31@ncsu.edu, ncsuemailtest@gmail.com

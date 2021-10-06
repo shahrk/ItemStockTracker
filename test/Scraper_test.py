@@ -1,5 +1,6 @@
-from code.BestBuyScraper import BestBuyScraper
-from code.AmazonScraper import AmazonScraper
+import sys
+sys.path.insert(0, './code/')
+from code.Scraper import Scraper
 
 
 # Unit tests for Scraper.py

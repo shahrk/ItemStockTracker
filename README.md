@@ -30,10 +30,31 @@ Make sure you have installed and followed all of the following prerequisites on 
 ### Documentation
 [Item Stock Tracker’s documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ItemStockTracker/blob/main/docs/build/html/index.html)
 
+### Installation
+
+1. Download the project from GitHub or clone the repository.
+
+`git clone https://github.com/qchen59/ItemStockTracker.git`
+
+
+
+<img width="714" alt="Screen Shot 2021-10-06 at 3 30 28 AM" src="https://user-images.githubusercontent.com/34405372/136159116-5de09c46-95ac-4531-ada6-d14933d41478.png">
+
+2. Change the current directory to the project folder, install the required packages.
+
+`cd ItemStockTracker`
+
+`pip install -r requirements.txt`
+
+3. Change the current directory to `code`, then run the `GUI.py`.
+
+`cd code`
+
+`python3 GUI.py`
+
 
 ### Usage
 
-To use our program, download this repository and run the `GUI.py` file that can be found in the `code` directory. After running that file, you should see a GUI like the one below:
 
 ![image](https://user-images.githubusercontent.com/30803969/134994728-681060a5-626a-4f5b-85b1-0936a7a9a697.png)
 
@@ -52,9 +73,28 @@ When an item is restocked, a popup will appear. Optionally, an email alert will 
 Lastly, in the "Settings" tab you can adjust the refresh interval (how often the program will poll the website to check the stock status of your items), and configure your email alert settings.
 
   ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
+  
+  
+### Future Goals
+
+- Text alert.
+- Collect the in-stock drop data and predict the next drop time.
+- More supported retailers.
+- [Other enhancements](https://github.com/qchen59/ItemStockTracker/issues)
 
 
 
 ### Questions?
 If you encountered any questions and seeking for helps, please contact the following emails.
 jyang31@ncsu.edu, ncsuemailtest@gmail.com
+
+### Team Members
+[Qiuyu Chen](https://github.com/qchen59)
+
+[Yasitha Nisansala Rajapaksha](https://github.com/Arcane94)
+
+[Hugh Wright](https://github.com/hughman98)
+
+[Jiacheng Yang](https://github.com/Fishish)
+
+

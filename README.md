@@ -77,6 +77,7 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
   
 ### Future Goals
 
+- Come up with a good name！
 - Text alert.
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.

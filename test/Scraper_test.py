@@ -1,4 +1,5 @@
-from code.Scraper import Scraper
+from code.BestBuyScraper import BestBuyScraper
+from code.AmazonScraper import AmazonScraper
 
 
 # Unit tests for Scraper.py

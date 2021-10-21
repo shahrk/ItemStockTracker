@@ -63,7 +63,6 @@ class BestBuyScraper:
         
         :return: a string indicating the stock information
         """
-        print("Tracking....")
         print("Processing: " + self.url)
         stock = self.check_stock(self.url)
         print(stock)

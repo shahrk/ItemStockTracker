@@ -20,6 +20,7 @@ import webbrowser
 from Scraper import Scraper
 import time
 import threading
+import concurrent.futures
 
 
 class Application(tk.Tk):
@@ -102,7 +103,7 @@ class Application(tk.Tk):
 
         # Scarper object that is used to choose which scraper to run
         self.scraper = Scraper()
-        # A lock to keep scarping thread safe
+        # A lock to keep scraping thread safe
         self.lock = threading.Lock()
 
     def reload_state(self):
@@ -140,20 +141,32 @@ class Application(tk.Tk):
         # Check the refresh interval
         s.updateSetting(self.interval_entry.get())
 
+    def scrape_data_imp(self, item_name, item_url):
+        print(item_name, item_url)
+        item_stock = self.scraper.ChooseScraper(item_url)
+        self.lock.acquire()
+        s.updateStatus(item_name, item_url, item_stock)
+        self.lock.release()
+
     def scraper_data(self):
         """
         Obtains stock info from appropriate scrapers
         Threads run this method
         """
-        self.lock.acquire()
-        for item in s.item:
-            item_name = item.get('item')
-            item_url = item.get('url')
-            item_stock = self.scraper.ChooseScraper(item_url)
-            s.updateStatus(item_name, item_url, item_stock)
-            time.sleep(1)
 
-        self.lock.release()
+        with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
+
+            future_to_scrapers = {executor.submit(self.scrape_data_imp, item.get('item'), item.get('url')): item for item in s.item}
+            for future in concurrent.futures.as_completed(future_to_scrapers):
+                url = future_to_scrapers[future]
+                print("Processed item    :    [%r]" % url['item'])
+            try:
+                future.result()
+            except Exception as exc:
+                print('%r generated an exception: %s' % (url['item'], exc))
+            else:
+                print("Processed all items.")
+
 
     def update_stock_info(self, entry, item_name, item_url, item_stock):
         """

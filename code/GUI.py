@@ -142,7 +142,6 @@ class Application(tk.Tk):
         s.updateSetting(self.interval_entry.get())
 
     def scrape_data_imp(self, item_name, item_url):
-        print(item_name, item_url)
         item_stock = self.scraper.ChooseScraper(item_url)
         s.updateStatus(item_name, item_url, item_stock)
 

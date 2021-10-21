@@ -144,9 +144,7 @@ class Application(tk.Tk):
     def scrape_data_imp(self, item_name, item_url):
         print(item_name, item_url)
         item_stock = self.scraper.ChooseScraper(item_url)
-        self.lock.acquire()
         s.updateStatus(item_name, item_url, item_stock)
-        self.lock.release()
 
     def scraper_data(self):
         """
@@ -154,8 +152,8 @@ class Application(tk.Tk):
         Threads run this method
         """
 
+        self.lock.acquire()
         with concurrent.futures.ThreadPoolExecutor(max_workers=5) as executor:
-
             future_to_scrapers = {executor.submit(self.scrape_data_imp, item.get('item'), item.get('url')): item for item in s.item}
             for future in concurrent.futures.as_completed(future_to_scrapers):
                 url = future_to_scrapers[future]
@@ -166,6 +164,7 @@ class Application(tk.Tk):
                 print('%r generated an exception: %s' % (url['item'], exc))
             else:
                 print("Processed all items.")
+        self.lock.release()
 
 
     def update_stock_info(self, entry, item_name, item_url, item_stock):

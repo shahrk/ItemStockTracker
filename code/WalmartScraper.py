@@ -79,7 +79,4 @@ class WalmartScraper:
         print(stock)
         return stock
 
-#InStockUrl = 'https://www.walmart.com/ip/KingSo-Bedside-Table-Nightstand-Tall-Wood-Accent-End-Tables-for-Bedroom-Living-Room-Brown/258766761'
-#OutStockUrl = 'https://www.walmart.com/ip/Maybelline-SuperStay-24hr-2-Step-Lipcolor-Always-Blazing/126088124'
-#objs = WalmartScraper(OutStockUrl)
-#objs.job()
+

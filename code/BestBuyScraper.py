@@ -83,6 +83,6 @@ class BestBuyScraper:
 
 
 # The lines below are just for testing purpose
-url = 'https://www.bestbuy.com/site/apple-10-2-inch-ipad-8th-generation-with-wi-fi-cellular-32gb-unlocked-space-gray/6340423.p?skuId=6340423'
-bestbuy_obj = BestBuyScraper(url)
-stock_info = bestbuy_obj.job()
+# url = 'https://www.bestbuy.com/site/apple-10-2-inch-ipad-8th-generation-with-wi-fi-cellular-32gb-unlocked-space-gray/6340423.p?skuId=6340423'
+# bestbuy_obj = BestBuyScraper(url)
+# stock_info = bestbuy_obj.job()

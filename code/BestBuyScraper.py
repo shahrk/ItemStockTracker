@@ -13,6 +13,7 @@ limitations under the License.
 """
 import requests
 from bs4 import BeautifulSoup
+import re
 
 
 class BestBuyScraper:
@@ -46,10 +47,21 @@ class BestBuyScraper:
             'Upgrade-Insecure-Requests': '1',
         }
         page = requests.get(url, headers=headers, timeout=5)
-        soup = BeautifulSoup(page.text, 'lxml')  # parsing the content of the page
+        # parsing the content of the page
+        soup = BeautifulSoup(page.text, 'lxml')
+
+        cost = soup.find(
+            'div', {'class': 'priceView-hero-price priceView-customer-price'})
+        cost = str(cost.contents[0])
+        #price = re.match("\$(\d*,)*\d*\.\d*", cost)
+        price = '$'+cost.split("$")[1].split("<")[0]
+        print(price)
+
         try:
-            button_add = soup.find('button', {'data-button-state': 'ADD_TO_CART'})
-            button_sold_out = soup.find('button', {'data-button-state': 'SOLD_OUT'})
+            button_add = soup.find(
+                'button', {'data-button-state': 'ADD_TO_CART'})
+            button_sold_out = soup.find(
+                'button', {'data-button-state': 'SOLD_OUT'})
             if button_add and not button_sold_out:
                 return "In Stock"
             if button_sold_out:
@@ -60,7 +72,7 @@ class BestBuyScraper:
     def job(self):
         """
         Prints the progress, and delegates the task to 'check_stock'.
-        
+
         :return: a string indicating the stock information
         """
         print("Tracking....")
@@ -68,3 +80,9 @@ class BestBuyScraper:
         stock = self.check_stock(self.url)
         print(stock)
         return stock
+
+
+# The lines below are just for testing purpose
+# url = 'https://www.bestbuy.com/site/apple-10-2-inch-ipad-8th-generation-with-wi-fi-cellular-32gb-unlocked-space-gray/6340423.p?skuId=6340423'
+# bestbuy_obj = BestBuyScraper(url)
+# stock_info = bestbuy_obj.job()

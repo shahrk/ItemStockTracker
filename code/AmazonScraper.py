@@ -13,6 +13,7 @@ limitations under the License.
 """
 import requests
 from bs4 import BeautifulSoup
+import re
 
 
 class AmazonScraper:
@@ -63,14 +64,22 @@ class AmazonScraper:
         }
         try:
             page = requests.get(url, headers=headers)
-            soup = BeautifulSoup(page.text, "html.parser")  # parsing the content of the page
+            # parsing the content of the page
+            soup = BeautifulSoup(page.text, "html.parser")
         # Handles invalid URLs/timeouts
         except:
             return "Error Occurred"
 
         try:
-            sub_class_stock = soup.find("div", {"id": "availability"})  # finding the div containing stock info
-            sub_class_no_stock = soup.find("div", {"id": "outOfStock"})  # finding the div containing out of stock info
+            # finding the div containing stock info
+            sub_class_stock = soup.find("div", {"id": "availability"})
+            # finding the div containing out of stock info
+            sub_class_no_stock = soup.find("div", {"id": "outOfStock"})
+
+            cost = soup.find("span", {"id": "priceblock_ourprice"})
+            #price = re.match("\$(\d*,)*\d*\.\d*", cost)
+            price = cost.contents[0]
+            print(price)
 
             if sub_class_stock and not sub_class_no_stock:
                 if "order soon" in str(sub_class_stock):
@@ -97,3 +106,9 @@ class AmazonScraper:
         stock = self.check_stock(self.url)
         print(stock)
         return stock
+
+
+# The lines below are just for testing purpose
+# url = 'https://www.amazon.com/Gigabyte-Protection-WINDFORCE-DisplayPort-Mytrix_HDMI/dp/B09DR8C9B8/ref=sr_1_1_sspa?dchild=1&keywords=graphic+card&qid=1631860747&sr=8-1-spons&psc=1&spLa=ZW5jcnlwdGVkUXVhbGlmaWVyPUEyR1NMTjRET1ZHUU9CJmVuY3J5cHRlZElkPUEwNDIyMDMxM1A5T0VUWVE4OEtETiZlbmNyeXB0ZWRBZElkPUEwNzE5Nzg1MzlTTFBWVEw2RklLQyZ3aWRnZXROYW1lPXNwX2F0ZiZhY3Rpb249Y2xpY2tSZWRpcmVjdCZkb05vdExvZ0NsaWNrPXRydWU='
+# amazonscraper = AmazonScraper(url)
+# stock_info = amazonscraper.job()

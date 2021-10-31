@@ -28,6 +28,7 @@ class State:
     The State class which holds all state data.
     Such as the alert setting and the item list.
     """
+
     def __init__(self):
         self.alert = []
         self.item = []
@@ -50,7 +51,7 @@ class State:
 
     def updateAlert(self, alert):
         """
-        Update the alert with given alert, add the new aler to the alert list
+        Update the alert with given alert, add the new alert to the alert list
         @param alert: given alert
         """
         self.alert.append(alert)
@@ -116,7 +117,8 @@ def read_state(filename, s):
         # proceed the item
         for i in range(iidx + 1, aidx):
             iturl = lines[i].split(',')
-            s.updateItem({'item': iturl[0], 'url': iturl[1], 'status': '', 'pstatus': ''})
+            s.updateItem(
+                {'item': iturl[0], 'url': iturl[1], 'status': '', 'pstatus': ''})
         # proceed the alert
         for i in range(aidx + 1, sidx):
             alt = lines[i]

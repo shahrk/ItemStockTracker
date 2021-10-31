@@ -13,6 +13,7 @@ limitations under the License.
 """
 from AmazonScraper import AmazonScraper
 from BestBuyScraper import BestBuyScraper
+from WalmartScraper import WalmartScraper
 
 
 class Scraper:
@@ -37,4 +38,9 @@ class Scraper:
         if "bestbuy" in url:
             bestbuyscraper = BestBuyScraper(url)
             stock_info = bestbuyscraper.job()
+            return stock_info
+
+        if "walmart" in url:
+            walmartscraper = WalmartScraper(url)
+            stock_info = walmartscraper.job()
             return stock_info

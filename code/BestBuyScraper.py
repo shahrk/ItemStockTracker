@@ -55,7 +55,7 @@ class BestBuyScraper:
         cost = str(cost.contents[0])
         #price = re.match("\$(\d*,)*\d*\.\d*", cost)
         price = '$'+cost.split("$")[1].split("<")[0]
-        print(price)
+        # print(price)
 
         try:
             button_add = soup.find(

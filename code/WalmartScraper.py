@@ -66,11 +66,11 @@ class WalmartScraper:
             cost = cost.contents[0]
             # print(cost)
             if button_add:
-                return "In Stock"
+                return "In Stock", cost
             else:
-                return "Out of Stock"
+                return "Out of Stock", "NA"
         except:
-            return "Error Occurred"
+            return "Error Occurred", "NA"
 
     def job(self):
         """
@@ -80,9 +80,9 @@ class WalmartScraper:
         """
         print("Tracking....")
         print("Processing: " + self.url)
-        stock = self.check_stock(self.url)
-        print(stock)
-        return stock
+        stock, cost = self.check_stock(self.url)
+        print(stock, cost)
+        return stock, cost
 
 
 # The lines below are just for testing purpose

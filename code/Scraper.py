@@ -32,15 +32,15 @@ class Scraper:
 
         if "amazon" in url:
             amazonscraper = AmazonScraper(url)
-            stock_info = amazonscraper.job()
-            return stock_info
+            stock_info, cost = amazonscraper.job()
+            return stock_info, cost
 
         if "bestbuy" in url:
             bestbuyscraper = BestBuyScraper(url)
-            stock_info = bestbuyscraper.job()
-            return stock_info
+            stock_info, cost = bestbuyscraper.job()
+            return stock_info, cost
 
         if "walmart" in url:
             walmartscraper = WalmartScraper(url)
-            stock_info = walmartscraper.job()
-            return stock_info
+            stock_info, cost = walmartscraper.job()
+            return stock_info, cost

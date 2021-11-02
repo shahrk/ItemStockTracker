@@ -23,7 +23,7 @@ import plyer
 
 import Tracker
 import pystray
-from pystray import MenuItem as item
+from pystray import MenuItem as item, Menu as menu
 from PIL import Image
 
 class Application(tk.Tk):
@@ -463,8 +463,8 @@ def on_closing():
     # app.destroy()
     app.withdraw()
     image = Image.open("data\\plus.png")
-    menu = (item('Quit', quit_window), item('Show', show_window, default=True))
-    icon = pystray.Icon("name", image, "My System Tray Icon", menu)
+    menus = menu(item('Quit', quit_window), item('Show', show_window, default=True))
+    icon = pystray.Icon("name", image, "My System Tray Icon", menus)
     icon.run()
 
 if __name__ == "__main__":

@@ -29,7 +29,7 @@ def test_readState():
 
 def test_updateStatus():
     Tracker.read_state(full_path, s)
-    s.updateStatus(powerSupply, url, "In Stock")
+    s.updateStatus(powerSupply, url, "In Stock", "$200")
     assert (
         s.getStatus(powerSupply, url).get("status") == "In Stock"
     ), "Should be In Stock"
@@ -47,9 +47,3 @@ def test_deleteAlert():
 def test_saveState():
     Tracker.save_state(full_path, s)
 
-
-# if __name__ == "__main__":
-#     test_readState()
-#     test_updateStatus()
-#     test_deleteAlert()
-#     test_saveState()

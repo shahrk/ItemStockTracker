@@ -40,7 +40,7 @@ class AmazonScraper:
         """
         self.url = url
 
-    def check_stock(self, url):
+    def check_stock_price(self, url):
         """
         Obtains stock information from the given url.
 
@@ -103,7 +103,7 @@ class AmazonScraper:
         """
         print("Tracking....")
         print("Processing: " + self.url)
-        stock, cost = self.check_stock(self.url)
+        stock, cost = self.check_stock_price(self.url)
         print(stock, cost)
         return stock, cost
 

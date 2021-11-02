@@ -4,7 +4,8 @@
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
 ![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
 ![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
-[![DOI](https://zenodo.org/badge/416888118.svg)](https://zenodo.org/badge/latestdoi/416888118)
+<a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>
+
 
 
 # "Item Stock Tracker" is a program designed to alert users when specific items from an online retailer are back in stock.

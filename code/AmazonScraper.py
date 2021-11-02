@@ -45,7 +45,7 @@ class AmazonScraper:
         Obtains stock information from the given url.
 
         :param url: URL of the product
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
         headers = {
             "authority": "www.amazon.com",
@@ -99,7 +99,7 @@ class AmazonScraper:
         """
         Prints the progress, and delegates the task to 'check_stock'.
 
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
         print("Tracking....")
         print("Processing: " + self.url)

@@ -36,7 +36,7 @@ class BestBuyScraper:
         Obtains stock information from the given url.
 
         :param url: URL of the product
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
         headers = {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0",
@@ -60,9 +60,11 @@ class BestBuyScraper:
 
         try:
 
-            button_add = soup.find("button", {"data-button-state": "ADD_TO_CART"})
-            button_sold_out = soup.find("button", {"data-button-state": "SOLD_OUT"})
-            
+            button_add = soup.find(
+                "button", {"data-button-state": "ADD_TO_CART"})
+            button_sold_out = soup.find(
+                "button", {"data-button-state": "SOLD_OUT"})
+
             if button_add and not button_sold_out:
                 return "In Stock", price
             if button_sold_out:
@@ -74,7 +76,7 @@ class BestBuyScraper:
         """
         Prints the progress, and delegates the task to 'check_stock'.
 
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
         print("Tracking....")
         print("Processing: " + self.url)

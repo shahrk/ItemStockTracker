@@ -42,12 +42,12 @@ class AmazonScraper:
         Obtains stock information from the given url.
 
         :param url: URL of the product
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
 
     def job(self):
         """
         Prints the progress, and delegates the task to 'check_stock'.
 
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """

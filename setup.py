@@ -1,31 +1,32 @@
 from setuptools import setup
 
 setup(
-    name='ItemStockTracker',
-    version='1.0.0',
-    description='Tracks stock info from retailer websites',
-    author='Krishna Saurabh Vankadaru, Rohan Prabhune, Swetha Gavini, Arjun Madhusudan, Ramya Sai Mullapudi',
-    author_email='kvankad@ncsu.edu, rjprabhu@ncsu.edu,  lgavini@ncsu.edu, amadhus2@ncsu.edu, rmullap@ncsu.edu',
-    url='https://github.com/ramyasaimullapudi/ItemStockTracker',
-    packages=['code'],
-      long_description="""\
+    name="ItemStockTracker",
+    version="2.1.0",
+    description="Tracks stock info from retailer websites",
+    author="Ramya Sai Mullapudi, Rohan Prabhune, Arjun Madhusudan, Lakshmi Swetha Gavini, Saurabh Krishna Vankad",
+    author_email="rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu",
+    url="https://github.com/ramyasaimullapudi/ItemStockTracker",
+    packages=["code"],
+    long_description="""\
         Module:
             * AmazonScraper
             * BestBuyScraper
+            * WalmartScraper
             * GUI
             * Scraper
             * SendEmail
             * Tracker
       """,
     classifiers=[
-        "License :: Apache-2.0 License",
+        "License :: MIT License",
         "Programming Language :: Python",
         "Development Status :: ",
         "Intended Audience :: Customers, Developers",
         "Topic :: D",
     ],
     keywords="",
-    license="Apache-2.0 License",
+    license="MIT License",
     install_requires=[
         "pillow",
         "requests",
@@ -34,5 +35,6 @@ setup(
         "setuptools",
         "sphinx",
         "sphinx-rtd-theme",
+        "tkinter"
     ],
 )

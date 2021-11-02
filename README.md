@@ -76,7 +76,9 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 
   ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
   
-  
+
+All the info about our application can be found out in newly added INFO tab.
+
 ### Future Goals
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.
@@ -89,8 +91,8 @@ If you encountered any questions and seeking for helps, please contact the follo
 rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu
 
 ### Team Members
-Arjun Madhusudan
-Ramya Sai Mullapudi
-Lakshmi Swetha Gavini
-Rohan Prabhune
-Saurabh Krishna
+Arjun Madhusudan </br>
+Ramya Sai Mullapudi </br>
+Lakshmi Swetha Gavini </br>
+Rohan Prabhune </br>
+Saurabh Krishna </br>

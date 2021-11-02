@@ -20,7 +20,7 @@ Supports the save and reload of state, modify to the item list and settings.
 """
 
 
-FILENAME = '../data/tracker.txt'
+FILENAME = 'data\\tracker.txt'
 
 
 class State:

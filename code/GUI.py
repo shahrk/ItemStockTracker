@@ -14,13 +14,13 @@ limitations under the License.
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
-import Tracker
 import SendEmail
 import webbrowser
 from Scraper import Scraper
 import time
 import threading
 import plyer
+import Tracker
 
 
 class Application(tk.Tk):
@@ -41,9 +41,7 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
 
-        welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \ 
-                          "different digital retailers. \n Currently supported retailers include: amazon.com, " \
-                          "bestbuy.com "
+        welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com "
 
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 
@@ -59,7 +57,7 @@ class Application(tk.Tk):
         self.items_list.pack()
 
         # Add a button for adding an item to track
-        self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
+        self.plus_image = tk.PhotoImage(file="data\\plus.png").subsample(3)
 
         self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
         self.add_button.place(x=769, y=52)

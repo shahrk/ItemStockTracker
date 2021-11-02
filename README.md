@@ -52,7 +52,9 @@ Make sure you have installed and followed all of the following prerequisites on 
 
 `python3 GUI.py`
 
-
+build executable 
+`pyinstaller -w --name "ItemStockTracker"  --distpath ./build/dist --workpath ./build/build --clean  -p ".\code"
+ --add-data ".\data\plus.png;.\data\"  --add-data ".\data\tracker.txt;.\data\" ./code/GUI.py`
 ### Usage
 
 

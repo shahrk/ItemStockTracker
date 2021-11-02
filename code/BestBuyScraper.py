@@ -39,29 +39,30 @@ class BestBuyScraper:
         :return: a string indicating the stock information
         """
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'DNT': '1',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "DNT": "1",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
         }
         page = requests.get(url, headers=headers, timeout=5)
         # parsing the content of the page
-        soup = BeautifulSoup(page.text, 'lxml')
+        soup = BeautifulSoup(page.text, "lxml")
 
         cost = soup.find(
-            'div', {'class': 'priceView-hero-price priceView-customer-price'})
+            "div", {"class": "priceView-hero-price priceView-customer-price"}
+        )
         cost = str(cost.contents[0])
-        #price = re.match("\$(\d*,)*\d*\.\d*", cost)
-        price = '$'+cost.split("$")[1].split("<")[0]
+        # price = re.match("\$(\d*,)*\d*\.\d*", cost)
+        price = "$" + cost.split("$")[1].split("<")[0]
         print(price)
 
         try:
             button_add = soup.find(
-                'button', {'data-button-state': 'ADD_TO_CART'})
+                "button", {"data-button-state": "ADD_TO_CART"})
             button_sold_out = soup.find(
-                'button', {'data-button-state': 'SOLD_OUT'})
+                "button", {"data-button-state": "SOLD_OUT"})
             if button_add and not button_sold_out:
                 return "In Stock", price
             if button_sold_out:
@@ -80,9 +81,3 @@ class BestBuyScraper:
         stock, cost = self.check_stock_price(self.url)
         print(stock, cost)
         return stock, cost
-
-
-# The lines below are just for testing purpose
-# url = 'https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244'
-# bestbuy_obj = BestBuyScraper(url)
-# stock_info = bestbuy_obj.job()

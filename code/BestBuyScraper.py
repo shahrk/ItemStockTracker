@@ -60,15 +60,10 @@ class BestBuyScraper:
 
         try:
 
-<<<<<<< HEAD
             button_add = soup.find(
                 "button", {"data-button-state": "ADD_TO_CART"})
             button_sold_out = soup.find(
                 "button", {"data-button-state": "SOLD_OUT"})
-=======
-            button_add = soup.find("button", {"data-button-state": "ADD_TO_CART"})
-            button_sold_out = soup.find("button", {"data-button-state": "SOLD_OUT"})
->>>>>>> 5c827420ef49da072f0cada63a0ee914a5cdf1f1
 
             if button_add and not button_sold_out:
                 return "In Stock", price

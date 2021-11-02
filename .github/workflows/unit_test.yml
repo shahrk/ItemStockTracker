@@ -5,7 +5,7 @@ name: Build Status
 
 on:
   push:
-    branches: [ github_actions ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 
@@ -25,6 +25,10 @@ jobs:
         python -m pip install --upgrade pip
         pip install pytest
         if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
-    - name: Test with pytest
+    - name: Generate coverage report
       run: |
-        python -m pytest
+        pip install pytest
+        pip install pytest-cov
+        python -m pytest --cov=./ --cov-report=xml
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v2

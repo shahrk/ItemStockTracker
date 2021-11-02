@@ -6,7 +6,7 @@
 name: autoblack
 on:
   push:
-    branches: [ github_actions ]
+    branches: [ master ]
   pull_request:
     branches: [ master ]
 jobs:

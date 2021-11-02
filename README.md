@@ -1,5 +1,5 @@
 # Item Stock Tracker
-[![Build Status](https://app.travis-ci.com/qchen59/ItemStockTracker.svg?branch=main)](https://app.travis-ci.com/qchen59/ItemStockTracker)
+[![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
 [![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
 ![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)

@@ -1,4 +1,3 @@
-
 """
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -48,21 +47,20 @@ class WalmartScraper:
         :return: a string indicating the stock information
         """
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'DNT': '1',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "DNT": "1",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
         }
         page = requests.get(url, headers=headers, timeout=5)
         # parsing the content of the page
-        soup = BeautifulSoup(page.text, 'lxml')
+        soup = BeautifulSoup(page.text, "lxml")
         try:
-            button_add = soup.find('button', {'class': 'w_BS w_BU w_BZ'})
+            button_add = soup.find("button", {"class": "w_BS w_BU w_BZ"})
 
-            cost = soup.find(
-                "span", {"itemprop": "price"})
+            cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]
             # print(cost)
             if button_add:

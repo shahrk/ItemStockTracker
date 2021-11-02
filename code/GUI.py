@@ -23,7 +23,6 @@ import time
 import threading
 import plyer
 
-
 class Application(tk.Tk):
     """
     The main application class for the project.
@@ -43,9 +42,10 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
 
-        welcome_message = "Welcome to Item Stock Tracker. This application tracks the inventory of specified items offered by " \
-                          "different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com, walmart.com"
 
+        welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
+        self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
+        
         self.welcome_text = tk.Label(
             text=welcome_message, wraplength=790, justify='left', pady=8)
 
@@ -68,7 +68,23 @@ class Application(tk.Tk):
             master=self, command=self.items_list.add_item_popup, image=self.plus_image)
         self.add_button.place(x=769, y=52)
 
-        # Create a frame for program settings
+        # Create a frame for program info
+        ttk.Style().configure("BW.TFrame", background="white")
+
+        self.info = ttk.Frame(self.tabs, style="BW.TFrame")
+
+        info_message = "This application tracks the inventory of specified items offered by " \
+                          "different digital retailers. \nTo add your own items,click the plus button in the upper right. You will be prompted to enter a name for the item you are tracking, along with a URL for a specific product page. " \
+                          "You can also edit, add, or delete items by right-clicking on a selected item.\n" \
+                       "\nIn the Settings tab, you can adjust the refresh interval (how often the program will poll the website to check the stock status of your items), and configure your email alert settings.\n\nCurrently, amazon.com, bestbuy.com and walmart.com product pages are supported."
+
+
+
+
+        self.info_message = tk.Label(self.info,text=info_message, wraplength=790, justify='left', pady=8)
+
+
+    # Create a frame for program settings
         ttk.Style().configure("BW.TFrame", background="white")
 
         self.settings = ttk.Frame(self.tabs, style="BW.TFrame")
@@ -100,9 +116,12 @@ class Application(tk.Tk):
         self.email_addr_label.grid(row=2, column=0, sticky='E')
         self.email_addr_entry.grid(row=2, column=1, sticky='W')
 
+        self.info_message.grid(row=4, column=2, sticky='W')
+
         # Add the settings and tracked item frames to the notebook
         self.tabs.add(self.items, text='Tracked Items')
         self.tabs.add(self.settings, text='Settings')
+        self.tabs.add(self.info, text='Info')
         self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
 
         if not self.reload:

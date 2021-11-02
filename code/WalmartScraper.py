@@ -58,14 +58,17 @@ class WalmartScraper:
         # parsing the content of the page
         soup = BeautifulSoup(page.text, "lxml")
         try:
-            button_add = soup.find("button", {"class": "w_BS w_BU w_BZ"})
+
+            scraped_data = soup.find(
+                "div", {"data-testid": "add-to-cart-section"})
 
             cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]
-            # print(cost)
-            if button_add:
+            print("cost", cost)
+
+            if "Add to cart" in str(scraped_data):
                 return "In Stock", cost
-            else:
+            elif "Out of stock" in str(scraped_data):
                 return "Out of Stock", "NA"
         except:
             return "Error Occurred", "NA"
@@ -81,9 +84,3 @@ class WalmartScraper:
         stock, cost = self.check_stock_price(self.url)
         print(stock, cost)
         return stock, cost
-
-
-# The lines below are just for testing purpose
-# url = 'https://www.walmart.com/ip/KingSo-Bedside-Table-Nightstand-Tall-Wood-Accent-End-Tables-for-Bedroom-Living-Room-Brown/258766761'
-# walmart_obj = WalmartScraper(url)
-# stock_info = walmart_obj.job()

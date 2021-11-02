@@ -83,6 +83,6 @@ class BestBuyScraper:
 
 
 # The lines below are just for testing purpose
-url = 'https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244'
-bestbuy_obj = BestBuyScraper(url)
-stock_info = bestbuy_obj.job()
+# url = 'https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244'
+# bestbuy_obj = BestBuyScraper(url)
+# stock_info = bestbuy_obj.job()

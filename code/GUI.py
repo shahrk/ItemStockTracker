@@ -20,6 +20,7 @@ import webbrowser
 from Scraper import Scraper
 import time
 import threading
+import plyer
 
 
 class Application(tk.Tk):
@@ -40,8 +41,9 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
 
-        welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
-                          "different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com"
+        welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \ 
+                          "different digital retailers. \n Currently supported retailers include: amazon.com, " \
+                          "bestbuy.com "
 
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 
@@ -331,7 +333,13 @@ class TrackedItemsListbox(ttk.Treeview):
         #                   # This way the root will always be in the same thread as the popup
         # tempWin.withdraw()
         # popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
+
+        kwargs = {'title': 'Item Stock Tracker', 'ticker': '~Item Stock Tracker~', 'app_name': 'Item Stock Tracker',
+                  'timeout': 10, 'message': name + " is restocked! "}
+        plyer.notification.notify(**kwargs)
+
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
+
 
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):

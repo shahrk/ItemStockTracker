@@ -21,8 +21,8 @@ print(sys.path)
 # -- Project information -----------------------------------------------------
 
 project = "Item Stock Tracker"
-copyright = "2021, Qiuyu Chen, Yasitha Rajapaksha, Jiacheng Yang, Hugh Wright"
-author = "Qiuyu Chen, Yasitha Rajapaksha, Jiacheng Yang, Hugh Wright"
+copyright = "2021, Ramya Sai Mullapudi, Rohan Prabhune, Arjun Madhusudan, Lakshmi Swetha Gavini, Saurabh Krishna Vankad"
+author = "Ramya Sai Mullapudi, Rohan Prabhune, Arjun Madhusudan, Lakshmi Swetha Gavini, Saurabh Krishna Vankad"
 
 # The full version, including alpha/beta/rc tags
 release = "v1.0.0"

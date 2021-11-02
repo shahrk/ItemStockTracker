@@ -14,6 +14,7 @@ limitations under the License.
 from os import stat
 import tkinter as tk
 from tkinter import ttk
+from tkinter import simpledialog
 import Tracker
 import SendEmail
 import webbrowser

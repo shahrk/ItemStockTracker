@@ -20,8 +20,11 @@ from Scraper import Scraper
 import time
 import threading
 import plyer
-import Tracker
 
+import Tracker
+import pystray
+from pystray import MenuItem as item
+from PIL import Image
 
 class Application(tk.Tk):
     """
@@ -333,7 +336,8 @@ class TrackedItemsListbox(ttk.Treeview):
         # popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
 
         kwargs = {'title': 'Item Stock Tracker', 'ticker': '~Item Stock Tracker~', 'app_name': 'Item Stock Tracker',
-                  'timeout': 10, 'message': name + " is restocked! "}
+                  'timeout': 10}
+        kwargs['message'] =  name + " is restocked! "
         plyer.notification.notify(**kwargs)
 
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
@@ -441,14 +445,27 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         self.ok_button = tk.Button(self, text='OK', width=5, command=lambda: self.destroy())
         self.ok_button.pack(pady=10)
 
+# Define a function for quit the window
+def quit_window(icon, item):
+   icon.stop()
+   app.destroy()
+
+# Define a function to show the window again
+def show_window(icon, item):
+   icon.stop()
+   app.after(0,app.deiconify())
 
 def on_closing():
     """
     Save the setting when closing
     """
-    app.save_setting()
-    app.destroy()
-
+    # app.save_setting()
+    # app.destroy()
+    app.withdraw()
+    image = Image.open("data\\plus.png")
+    menu = (item('Quit', quit_window), item('Show', show_window, default=True))
+    icon = pystray.Icon("name", image, "My System Tray Icon", menu)
+    icon.run()
 
 if __name__ == "__main__":
     s = Tracker.State()

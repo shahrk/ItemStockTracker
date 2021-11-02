@@ -22,12 +22,12 @@ def test_init():
 def test_ChooseScraper():
     # Testing Amazon case
     scraper = Scraper()
-    stock_info = scraper.ChooseScraper(amazon_URL)
-    assert stock_info == "No Stock Info" or stock_info == "In Stock"
+    stock_info, cost = scraper.ChooseScraper(amazon_URL)
+    assert stock_info == "Error Occurred" or stock_info == "In Stock"
 
     # Testing BestBuy case
     scraper = Scraper()
-    stock_info = scraper.ChooseScraper(bestBuy_URL)
+    stock_info, cost = scraper.ChooseScraper(bestBuy_URL)
     assert stock_info == "In Stock"
 
 

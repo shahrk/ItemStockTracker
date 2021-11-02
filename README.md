@@ -1,6 +1,5 @@
 # Item Stock Tracker
 [![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
-[![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
 ![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
 ![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
@@ -36,7 +35,7 @@ Make sure you have installed and followed all of the following prerequisites on 
 
 1. Download the project from GitHub or clone the repository.
 
-`git clone https://github.com/qchen59/ItemStockTracker.git`
+`git clone https://github.com/ramyasaimullapudi/ItemStockTracker.git`
 
 
 
@@ -82,7 +81,7 @@ All the info about our application can be found out in newly added INFO tab.
 ### Future Goals
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.
-- [Other enhancements](https://github.com/qchen59/ItemStockTracker/issues)
+- [Other enhancements](https://github.com/ramyasaimullapudi/ItemStockTracker/issues)
 
 
 
@@ -91,8 +90,8 @@ If you encountered any questions and seeking for helps, please contact the follo
 rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu
 
 ### Team Members
-Arjun Madhusudan //
-Ramya Sai Mullapudi //
-Lakshmi Swetha Gavini //
-Rohan Prabhune //
-Saurabh Krishna //
+Arjun Madhusudan </br>
+Ramya Sai Mullapudi </br>
+Lakshmi Swetha Gavini </br>
+Rohan Prabhune </br>
+Saurabh Krishna </br>

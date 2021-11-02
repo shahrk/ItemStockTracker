@@ -19,12 +19,14 @@ def test_init():
 
 def test_InStock():
     bestBuyScraper = BestBuyScraper(InStockUrl)
-    assert bestBuyScraper.job() == "In Stock", "Should be In Stock"
+    stock_info, cost = bestBuyScraper.job()
+    assert stock_info == "In Stock", "Should be In Stock"
 
 
 def test_OutOfStock():
     bestBuyScraper = BestBuyScraper(OutOfStockUrl)
-    assert bestBuyScraper.job() == "Out of Stock", "Should be Out of Stock"
+    stock_info, cost = bestBuyScraper.job()
+    assert stock_info == "Out of Stock", "Should be Out of Stock"
 
 
 # if __name__ == "__main__":

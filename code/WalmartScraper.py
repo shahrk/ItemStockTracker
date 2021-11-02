@@ -59,8 +59,7 @@ class WalmartScraper:
         soup = BeautifulSoup(page.text, "lxml")
         try:
 
-            scraped_data = soup.find(
-                "div", {"data-testid": "add-to-cart-section"})
+            scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
 
             cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]

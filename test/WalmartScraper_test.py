@@ -16,12 +16,14 @@ def test_init():
 
 def test_InStock():
     walmartScraper = WalmartScraper(InStockUrl)
-    assert walmartScraper.job() == "In Stock", "Should be In Stock"
+    stock_info, cost = walmartScraper.job()
+    assert stock_info == "In Stock", "Should be In Stock"
 
 
 def test_OutOfStock():
     walmartScraper = WalmartScraper(OutStockUrl)
-    assert walmartScraper.job() == "Out of Stock", "Should be Out of Stock"
+    stock_info, cost = walmartScraper.job()
+    assert stock_info == "Out of Stock", "Should be Out of Stock"
 
 
 # if __name__ == "__main__":

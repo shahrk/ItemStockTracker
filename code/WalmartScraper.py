@@ -55,17 +55,12 @@ class WalmartScraper:
             "Upgrade-Insecure-Requests": "1",
         }
         page = requests.get(url, headers=headers, timeout=5)
-<<<<<<< HEAD
-        soup = BeautifulSoup(page.text, "lxml")  # parsing the content of the page
-=======
         # parsing the content of the page
-        soup = BeautifulSoup(page.text, 'lxml')
->>>>>>> main
+        soup = BeautifulSoup(page.text, "lxml")
         try:
             button_add = soup.find("button", {"class": "w_BS w_BU w_BZ"})
 
-            cost = soup.find(
-                "span", {"itemprop": "price"})
+            cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]
             # print(cost)
             if button_add:
@@ -83,11 +78,6 @@ class WalmartScraper:
         """
         print("Tracking....")
         print("Processing: " + self.url)
-<<<<<<< HEAD
-        stock = self.check_stock(self.url)
-        print(stock)
-        return stock
-=======
         stock, cost = self.check_stock_price(self.url)
         print(stock, cost)
         return stock, cost
@@ -97,4 +87,3 @@ class WalmartScraper:
 # url = 'https://www.walmart.com/ip/KingSo-Bedside-Table-Nightstand-Tall-Wood-Accent-End-Tables-for-Bedroom-Living-Room-Brown/258766761'
 # walmart_obj = WalmartScraper(url)
 # stock_info = walmart_obj.job()
->>>>>>> main

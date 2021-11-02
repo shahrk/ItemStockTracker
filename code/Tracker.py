@@ -86,16 +86,10 @@ class State:
         @param cost: given item cost
         """
         for it in self.item:
-<<<<<<< HEAD
             if it.get("item") == item and it.get("url") == url:
                 it["pstatus"] = it["status"]
                 it["status"] = status
-=======
-            if it.get('item') == item and it.get('url') == url:
-                it['pstatus'] = it['status']
-                it['status'] = status
-                it['cost'] = cost
->>>>>>> main
+                it["cost"] = cost
 
     def getStatus(self, item, url):
         """
@@ -105,13 +99,12 @@ class State:
         @return: the item status for given item
         """
         for it in self.item:
-<<<<<<< HEAD
             if it.get("item") == item and it.get("url") == url:
-                return {"status": it.get("status"), "pstatus": it.get("pstatus")}
-=======
-            if it.get('item') == item and it.get('url') == url:
-                return {'status': it.get('status'), 'pstatus': it.get('pstatus'), 'cost': it.get('cost')}
->>>>>>> main
+                return {
+                    "status": it.get("status"),
+                    "pstatus": it.get("pstatus"),
+                    "cost": it.get("cost"),
+                }
 
 
 def read_state(filename, s):

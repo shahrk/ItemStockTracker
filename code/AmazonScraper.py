@@ -77,15 +77,9 @@ class AmazonScraper:
             sub_class_no_stock = soup.find("div", {"id": "outOfStock"})
 
             cost = soup.find("span", {"id": "priceblock_ourprice"})
-<<<<<<< HEAD
             # price = re.match("\$(\d*,)*\d*\.\d*", cost)
-            price = cost.contents[0]
-            print(price)
-=======
-            #price = re.match("\$(\d*,)*\d*\.\d*", cost)
             cost = cost.contents[0]
             # print(cost)
->>>>>>> main
 
             if sub_class_stock and not sub_class_no_stock:
                 if "order soon" in str(sub_class_stock):

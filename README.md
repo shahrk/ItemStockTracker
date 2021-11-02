@@ -75,9 +75,6 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
   
   
 ### Future Goals
-
-- Come up with a good name！
-- Text alert.
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.
 - [Other enhancements](https://github.com/qchen59/ItemStockTracker/issues)
@@ -89,12 +86,8 @@ If you encountered any questions and seeking for helps, please contact the follo
 jyang31@ncsu.edu, ncsuemailtest@gmail.com
 
 ### Team Members
-[Qiuyu Chen](https://github.com/qchen59)
-
-[Yasitha Nisansala Rajapaksha](https://github.com/Arcane94)
-
-[Hugh Wright](https://github.com/hughman98)
-
-[Jiacheng Yang](https://github.com/Fishish)
-
-
+Arjun Madhusudan
+Ramya Sai Mullapudi
+Lakshmi Swetha Gavini
+Rohan Prabhune
+Saurabh Krishna

@@ -86,7 +86,7 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 
 ### Questions?
 If you encountered any questions and seeking for helps, please contact the following emails.
-jyang31@ncsu.edu, ncsuemailtest@gmail.com
+rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu
 
 ### Team Members
 Arjun Madhusudan

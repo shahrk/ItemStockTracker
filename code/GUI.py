@@ -15,14 +15,18 @@ from os import stat
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
-import Tracker
 import SendEmail
 import webbrowser
 from Scraper import Scraper
 import time
 import threading
 import plyer
-
+import os
+import Tracker
+import pystray
+from pystray import MenuItem as item, Menu as menu
+from PIL import Image
+import platform
 
 class Application(tk.Tk):
     """
@@ -42,6 +46,7 @@ class Application(tk.Tk):
 
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
+
 
         welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
         self.welcome_text = tk.Label(
@@ -66,12 +71,10 @@ class Application(tk.Tk):
         self.items_list.pack()
 
         # Add a button for adding an item to track
-        self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
-
-        self.add_button = tk.Button(
-            master=self, command=self.items_list.add_item_popup, image=self.plus_image
-        )
-        self.add_button.place(x=769, y=52)
+        plus_image = os.path.join("data", "plus.gif")
+        self.plus_image = tk.PhotoImage(file=plus_image).subsample(3)
+        self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
+        self.add_button.place(x=769, y=40)
 
         # Create a frame for program info
         ttk.Style().configure("BW.TFrame", background="white")
@@ -306,8 +309,10 @@ class TrackedItemsListbox(ttk.Treeview):
         self.column(3, width="150")
         self.heading(4, text="Price")
         self.column(4, width="110")
-
-        self.bind("<Button-3>", self.menu_popup)
+        if(platform.system()=="Windows"):
+            self.bind("<Button-3>", self.menu_popup)
+        else:
+            self.bind("<Button-2>", self.menu_popup)
 
     def menu_popup(self, event):
         """
@@ -391,6 +396,7 @@ class TrackedItemsListbox(ttk.Treeview):
         #                   # This way the root will always be in the same thread as the popup
         # tempWin.withdraw()
         # popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
+
 
         kwargs = {
             "title": "Item Stock Tracker",
@@ -516,14 +522,28 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         )
         self.ok_button.pack(pady=10)
 
+# Define a function for quit the window
+def quit_window(icon, item):
+   icon.stop()
+   app.destroy()
+
+# Define a function to show the window again
+def show_window(icon, item):
+   icon.stop()
+   app.after(0,app.deiconify())
 
 def on_closing():
     """
     Save the setting when closing
     """
-    app.save_setting()
-    app.destroy()
-
+    # app.save_setting()
+    # app.destroy()
+    app.withdraw()
+    plus_image = os.path.join( "data", "plus.gif")
+    image = Image.open(plus_image)
+    menus = menu(item('Quit', quit_window), item('Show', show_window, default=True))
+    icon = pystray.Icon("name", image, "My System Tray Icon", menus)
+    icon.run()
 
 if __name__ == "__main__":
     s = Tracker.State()

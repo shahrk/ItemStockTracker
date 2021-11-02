@@ -53,6 +53,15 @@ Make sure you have installed and followed all of the following prerequisites on 
 
 `python3 GUI.py`
 
+Build executable 
+
+For windows 
+
+`pyinstaller  --name "ItemStockTracker"  --distpath ./build/dist --workpath ./build/build --clean -w -p ".\code" --add-data ".\code\data\plus.gif;.\data\"  --add-data ".\code\data\tracker.txt;.\data\" --hidden-import "plyer.platforms.win.notification" --noconfirm ./code/GUI.py`
+
+For Mac
+
+`pyinstaller  --name "ItemStockTracker"  --distpath ./build/distMac --workpath ./build/buildMac --clean -w -p "./code" --add-data "./code/data/plus.gif:./data/"  --add-data "./code/data/tracker.txt:./data/"  --noconfirm ./code/GUI.py`
 
 ### Usage
 

@@ -21,7 +21,6 @@ from Scraper import Scraper
 import time
 import threading
 
-
 class Application(tk.Tk):
     """
     The main application class for the project.
@@ -62,6 +61,11 @@ class Application(tk.Tk):
         self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
         self.add_button.place(x=769, y=52)
 
+        # Create a frame for program info
+        ttk.Style().configure("BW.TFrame", background="white")
+
+        self.info = ttk.Frame(self.tabs, style="BW.TFrame")
+
         # Create a frame for program settings
         ttk.Style().configure("BW.TFrame", background="white")
 
@@ -92,6 +96,7 @@ class Application(tk.Tk):
         # Add the settings and tracked item frames to the notebook
         self.tabs.add(self.items, text='Tracked Items')
         self.tabs.add(self.settings, text='Settings')
+        self.tabs.add(self.info, text='Info')
         self.tabs.grid(row=1, sticky='NE', padx=5, pady=5)
 
         if not self.reload:

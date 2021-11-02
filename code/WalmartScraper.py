@@ -40,7 +40,7 @@ class WalmartScraper:
         """
         self.url = url
 
-    def check_stock(self, url):
+    def check_stock_price(self, url):
         """
         Obtains stock information from the given url.
 
@@ -56,16 +56,21 @@ class WalmartScraper:
             'Upgrade-Insecure-Requests': '1',
         }
         page = requests.get(url, headers=headers, timeout=5)
-        soup = BeautifulSoup(page.text, 'lxml')  # parsing the content of the page
+        # parsing the content of the page
+        soup = BeautifulSoup(page.text, 'lxml')
         try:
             button_add = soup.find('button', {'class': 'w_BS w_BU w_BZ'})
 
+            cost = soup.find(
+                "span", {"itemprop": "price"})
+            cost = cost.contents[0]
+            # print(cost)
             if button_add:
-                return "In Stock"
+                return "In Stock", cost
             else:
-                return "Out of Stock"
+                return "Out of Stock", "NA"
         except:
-            return "Error Occurred"
+            return "Error Occurred", "NA"
 
     def job(self):
         """
@@ -75,8 +80,12 @@ class WalmartScraper:
         """
         print("Tracking....")
         print("Processing: " + self.url)
-        stock = self.check_stock(self.url)
-        print(stock)
-        return stock
+        stock, cost = self.check_stock_price(self.url)
+        print(stock, cost)
+        return stock, cost
 
 
+# The lines below are just for testing purpose
+# url = 'https://www.walmart.com/ip/KingSo-Bedside-Table-Nightstand-Tall-Wood-Accent-End-Tables-for-Bedroom-Living-Room-Brown/258766761'
+# walmart_obj = WalmartScraper(url)
+# stock_info = walmart_obj.job()

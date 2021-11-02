@@ -31,7 +31,7 @@ class BestBuyScraper:
         """
         self.url = url
 
-    def check_stock(self, url):
+    def check_stock_price(self, url):
         """
         Obtains stock information from the given url.
 
@@ -63,11 +63,11 @@ class BestBuyScraper:
             button_sold_out = soup.find(
                 'button', {'data-button-state': 'SOLD_OUT'})
             if button_add and not button_sold_out:
-                return "In Stock"
+                return "In Stock", price
             if button_sold_out:
-                return "Out of Stock"
+                return "Out of Stock", "NA"
         except:
-            return "Error Occurred"
+            return "Error Occurred", "NA"
 
     def job(self):
         """
@@ -77,12 +77,12 @@ class BestBuyScraper:
         """
         print("Tracking....")
         print("Processing: " + self.url)
-        stock = self.check_stock(self.url)
-        print(stock)
-        return stock
+        stock, cost = self.check_stock_price(self.url)
+        print(stock, cost)
+        return stock, cost
 
 
 # The lines below are just for testing purpose
-# url = 'https://www.bestbuy.com/site/apple-10-2-inch-ipad-8th-generation-with-wi-fi-cellular-32gb-unlocked-space-gray/6340423.p?skuId=6340423'
+# url = 'https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244'
 # bestbuy_obj = BestBuyScraper(url)
 # stock_info = bestbuy_obj.job()

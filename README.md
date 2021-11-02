@@ -74,7 +74,8 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 
   ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
   
-  
+All the information about our application can be seen in INFO tab.
+
 ### Future Goals
 
 - Come up with a good name！

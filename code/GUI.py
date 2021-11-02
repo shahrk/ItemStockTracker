@@ -26,7 +26,7 @@ import Tracker
 import pystray
 from pystray import MenuItem as item, Menu as menu
 from PIL import Image
-import sys
+import platform
 
 class Application(tk.Tk):
     """
@@ -309,8 +309,10 @@ class TrackedItemsListbox(ttk.Treeview):
         self.column(3, width="150")
         self.heading(4, text="Price")
         self.column(4, width="110")
-
-        self.bind("<Button-3>", self.menu_popup)
+        if(platform.system()=="Windows"):
+            self.bind("<Button-3>", self.menu_popup)
+        else:
+            self.bind("<Button-2>", self.menu_popup)
 
     def menu_popup(self, event):
         """

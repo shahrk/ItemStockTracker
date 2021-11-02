@@ -11,7 +11,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import os.path
+import os
+import sys
 
 """
 The Tracker serves as the backend of our program.
@@ -20,7 +21,7 @@ Supports the save and reload of state, modify to the item list and settings.
 """
 
 
-FILENAME = 'data\\tracker.txt'
+FILENAME = os.path.join(os.path.dirname(sys.executable), "data", "tracker.txt")
 
 
 class State:

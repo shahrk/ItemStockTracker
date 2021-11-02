@@ -40,7 +40,7 @@ class AmazonScraper:
         """
         self.url = url
 
-    def check_stock(self, url):
+    def check_stock_price(self, url):
         """
         Obtains stock information from the given url.
 
@@ -68,7 +68,7 @@ class AmazonScraper:
             soup = BeautifulSoup(page.text, "html.parser")
         # Handles invalid URLs/timeouts
         except:
-            return "Error Occurred"
+            return "Error Occurred", "NA"
 
         try:
             # finding the div containing stock info
@@ -78,22 +78,22 @@ class AmazonScraper:
 
             cost = soup.find("span", {"id": "priceblock_ourprice"})
             #price = re.match("\$(\d*,)*\d*\.\d*", cost)
-            price = cost.contents[0]
-            print(price)
+            cost = cost.contents[0]
+            # print(cost)
 
             if sub_class_stock and not sub_class_no_stock:
                 if "order soon" in str(sub_class_stock):
-                    return "In Stock"
+                    return "In Stock", cost
                 elif "In stock soon" in str(sub_class_stock):
-                    return "Out of Stock"
-                return "In Stock"
+                    return "Out of Stock", "NA"
+                return "In Stock", cost
             elif sub_class_no_stock:
-                return "Out of Stock"
+                return "Out of Stock", "NA"
             # This handles the case of having no stock info on the page/captcha page
             else:
-                return "No Stock Info"
+                return "No Stock Info", "NA"
         except:
-            return "Error Occurred"
+            return "Error Occurred", "NA"
 
     def job(self):
         """
@@ -103,9 +103,9 @@ class AmazonScraper:
         """
         print("Tracking....")
         print("Processing: " + self.url)
-        stock = self.check_stock(self.url)
-        print(stock)
-        return stock
+        stock, cost = self.check_stock_price(self.url)
+        print(stock, cost)
+        return stock, cost
 
 
 # The lines below are just for testing purpose

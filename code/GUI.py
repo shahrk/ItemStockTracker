@@ -11,6 +11,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+from os import stat
 import tkinter as tk
 from tkinter import ttk
 from tkinter import simpledialog
@@ -20,11 +21,13 @@ import webbrowser
 from Scraper import Scraper
 import time
 import threading
+import plyer
 
 class Application(tk.Tk):
     """
     The main application class for the project.
     """
+
     def __init__(self):
         super().__init__()
 
@@ -39,8 +42,12 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
 
+
         welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
+        
+        self.welcome_text = tk.Label(
+            text=welcome_message, wraplength=790, justify='left', pady=8)
 
         self.welcome_text.grid(row=0, sticky='NW')
 
@@ -50,13 +57,15 @@ class Application(tk.Tk):
         self.items = ttk.Frame(self.tabs)
 
         # Add a listbox to items
-        self.items_list = TrackedItemsListbox(self.items, height=21, columns=(1, 2, 3), show='headings')
+        self.items_list = TrackedItemsListbox(
+            self.items, height=21, columns=(1, 2, 3, 4), show='headings')
         self.items_list.pack()
 
         # Add a button for adding an item to track
         self.plus_image = tk.PhotoImage(file="../data/plus.png").subsample(3)
 
-        self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
+        self.add_button = tk.Button(
+            master=self, command=self.items_list.add_item_popup, image=self.plus_image)
         self.add_button.place(x=769, y=52)
 
         # Create a frame for program info
@@ -83,17 +92,22 @@ class Application(tk.Tk):
         for i in range(3):
             self.settings.rowconfigure(i, pad=5)
 
-        self.interval_label = tk.Label(self.settings, text="Refresh Interval (in seconds):  ", bg="white")
+        self.interval_label = tk.Label(
+            self.settings, text="Refresh Interval (in seconds):  ", bg="white")
         check_numeric = (self.register(self.__verify_numeric), '%d', '%P')
         self.interval_entry = tk.Entry(self.settings, validate='key', validatecommand=check_numeric, width=3,
                                        bg="white")
 
         self.is_checked = tk.IntVar()
-        self.email_alert_label = tk.Label(self.settings, text="Send Email Alerts:  ", bg="white")
-        self.email_alert_box = tk.Checkbutton(self.settings, variable=self.is_checked, bg="white")
+        self.email_alert_label = tk.Label(
+            self.settings, text="Send Email Alerts:  ", bg="white")
+        self.email_alert_box = tk.Checkbutton(
+            self.settings, variable=self.is_checked, bg="white")
 
-        self.email_addr_label = tk.Label(self.settings, text="User Email Address:  ", bg="white")
-        self.email_addr_entry = tk.Entry(self.settings, validate='focus', width=30, bg="white")
+        self.email_addr_label = tk.Label(
+            self.settings, text="User Email Address:  ", bg="white")
+        self.email_addr_entry = tk.Entry(
+            self.settings, validate='focus', width=30, bg="white")
 
         self.interval_label.grid(row=0, column=0, sticky='E')
         self.interval_entry.grid(row=0, column=1, sticky='W')
@@ -127,7 +141,8 @@ class Application(tk.Tk):
         """
         if len(s.item) > 0:
             for item in s.item:
-                self.items_list.insert('', 'end', values=(item.get('item'), item.get('url'), ' '))
+                self.items_list.insert('', 'end', values=(
+                    item.get('item'), item.get('url'), ' '))
         # Update with saved settings
         # Update the refresh interval
         if s.setting != '':
@@ -165,22 +180,24 @@ class Application(tk.Tk):
         for item in s.item:
             item_name = item.get('item')
             item_url = item.get('url')
-            item_stock = self.scraper.ChooseScraper(item_url)
-            s.updateStatus(item_name, item_url, item_stock)
+            item_stock, item_cost = self.scraper.ChooseScraper(item_url)
+            s.updateStatus(item_name, item_url, item_stock, item_cost)
             time.sleep(1)
 
         self.lock.release()
 
-    def update_stock_info(self, entry, item_name, item_url, item_stock):
+    def update_stock_info(self, entry, item_name, item_url, item_stock, item_cost):
         """
         Updates the items in the GUI with the stock information
         :param entry: one of the items in the products list
         :param item_name: name of the product
         :param item_url: url of the product
         :param item_stock: stock info of the product
+        :param item_cost: price info of the product
         """
         self.items_list.delete(entry)
-        self.items_list.insert('', 'end', values=(item_name, item_url, item_stock))
+        self.items_list.insert('', 'end', values=(
+            item_name, item_url, item_stock, item_cost))
 
     def run_timer(self):
         """
@@ -202,7 +219,10 @@ class Application(tk.Tk):
                 status = s.getStatus(item_name, item_url)
                 item_stock = status.get('status')
                 item_pstock = status.get('pstatus')
-                self.update_stock_info(entry, item_name, item_url, item_stock)
+                item_cost = status.get('cost')
+
+                self.update_stock_info(
+                    entry, item_name, item_url, item_stock, item_cost)
                 if item_stock == 'In Stock' and item_pstock != 'In Stock':
                     app.update()
                     self.items_list.alert(item_name, item_url)
@@ -232,6 +252,7 @@ class TrackedItemsListbox(ttk.Treeview):
     This object is for holding and displaying the list of items that are being tracked by the program.
     It is built off of the ttk.Treeview class, and contains 3 columns (Name, URL, Stock Status).
     """
+
     def __init__(self, parent, **kwargs):
         ttk.Treeview.__init__(self, parent, **kwargs)
 
@@ -257,11 +278,13 @@ class TrackedItemsListbox(ttk.Treeview):
 
         # Make the columns
         self.heading(1, text='Name')
-        self.column(1, width='190')
+        self.column(1, width='120')
         self.heading(2, text='URL')
-        self.column(2, width='490')
+        self.column(2, width='400')
         self.heading(3, text='Stock Status')
-        self.column(3, width='100')
+        self.column(3, width='150')
+        self.heading(4, text='Price')
+        self.column(4, width='110')
 
         self.bind("<Button-3>", self.menu_popup)
 
@@ -312,9 +335,11 @@ class TrackedItemsListbox(ttk.Treeview):
         for item in self.selection():
             origin_name = self.set(item)['1']
             origin_url = self.set(item)['2']
-            popup = GetItemURLDialogue(self, "Edit Item", origin_name, origin_url)
+            popup = GetItemURLDialogue(
+                self, "Edit Item", origin_name, origin_url)
 
-            self.item(item, values=(popup.name, popup.url, self.set(item)['3']))
+            self.item(item, values=(
+                popup.name, popup.url, self.set(item)['3']))
             self.set(item)['2'] = popup.url
 
             # Edit the item - backend
@@ -347,7 +372,13 @@ class TrackedItemsListbox(ttk.Treeview):
         #                   # This way the root will always be in the same thread as the popup
         # tempWin.withdraw()
         # popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
+
+        kwargs = {'title': 'Item Stock Tracker', 'ticker': '~Item Stock Tracker~', 'app_name': 'Item Stock Tracker',
+                  'timeout': 10, 'message': name + " is restocked! "}
+        plyer.notification.notify(**kwargs)
+
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
+
 
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):
@@ -360,6 +391,7 @@ class GetItemURLDialogue(tk.simpledialog.Dialog):
     :param name: the default name of the item
     :param url: the default url of the item
     """
+
     def __init__(self, parent, title, name, url):
         self.name = name
         self.url = url
@@ -412,6 +444,7 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
     :param name: the name of the item
     :param url: the url of the item
     """
+
     def __init__(self, parent, title, name, url):
         self.name = name
         self.url = url
@@ -435,10 +468,12 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         frame.rowconfigure(1, weight=0)
 
         popup_text = "Your item '" + self.name + "' is back in stock!"
-        self.text = tk.Label(frame, text=popup_text, wraplength=300, justify=tk.LEFT)
+        self.text = tk.Label(frame, text=popup_text,
+                             wraplength=300, justify=tk.LEFT)
         self.text.grid(row=0)
 
-        self.link = tk.Label(frame, text=self.url, fg="blue", cursor="hand2", wraplength=300, justify=tk.LEFT)
+        self.link = tk.Label(frame, text=self.url, fg="blue",
+                             cursor="hand2", wraplength=300, justify=tk.LEFT)
         self.link.grid(row=1)
         self.link.bind("<Button-1>", self.followlink)
 
@@ -448,7 +483,8 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         """
         This function is called automatically by the object. It controls what buttons should be contained in the popup.
         """
-        self.ok_button = tk.Button(self, text='OK', width=5, command=lambda: self.destroy())
+        self.ok_button = tk.Button(
+            self, text='OK', width=5, command=lambda: self.destroy())
         self.ok_button.pack(pady=10)
 
 

@@ -17,22 +17,22 @@ setup(
             * SendEmail
             * Tracker
       """,
-      classifiers=[
-          "License :: Apache-2.0 License",
-          "Programming Language :: Python",
-          "Development Status :: ",
-          "Intended Audience :: Customers, Developers",
-          "Topic :: D",
-      ],
-      keywords='',
-      license='Apache-2.0 License',
-      install_requires=[
-        'pillow',
-        'requests',
-        'beautifulsoup4',
-        'lxml',
-        'setuptools',
-        'sphinx',
-        'sphinx-rtd-theme',
-      ],
-      )
+    classifiers=[
+        "License :: Apache-2.0 License",
+        "Programming Language :: Python",
+        "Development Status :: ",
+        "Intended Audience :: Customers, Developers",
+        "Topic :: D",
+    ],
+    keywords="",
+    license="Apache-2.0 License",
+    install_requires=[
+        "pillow",
+        "requests",
+        "beautifulsoup4",
+        "lxml",
+        "setuptools",
+        "sphinx",
+        "sphinx-rtd-theme",
+    ],
+)

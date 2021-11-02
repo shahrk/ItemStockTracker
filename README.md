@@ -1,12 +1,14 @@
 # Item Stock Tracker
-[![Build Status](https://app.travis-ci.com/qchen59/ItemStockTracker.svg?branch=main)](https://app.travis-ci.com/qchen59/ItemStockTracker)
+[![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
 [![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/qchen59/ItemStockTracker)
-<a href="https://zenodo.org/badge/latestdoi/404936268"><img src="https://zenodo.org/badge/404936268.svg" alt="DOI"></a>
-![GitHub issues](https://img.shields.io/github/issues/qchen59/ItemStockTracker)
-![GitHub all releases](https://img.shields.io/github/downloads/qchen59/ItemStockTracker/total)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
+![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
+![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
+<a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>
+[![codecov](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker/branch/main/graph/badge.svg?token=EHYPNZ5ACP)](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker)
 
-\<Name TBD\> (Item Stock Tracker) is a program designed to alert users when specific items from an online retailer are back in stock.
+
+# "Item Stock Tracker" is a program designed to alert users when specific items from an online retailer are back in stock.
 
 
 
@@ -83,11 +85,10 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 
   ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
   
-  
-### Future Goals
 
-- Come up with a good name！
-- Text alert.
+All the info about our application can be found out in newly added INFO tab.
+
+### Future Goals
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.
 - [Other enhancements](https://github.com/qchen59/ItemStockTracker/issues)
@@ -96,15 +97,11 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 
 ### Questions?
 If you encountered any questions and seeking for helps, please contact the following emails.
-jyang31@ncsu.edu, ncsuemailtest@gmail.com
+rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu
 
 ### Team Members
-[Qiuyu Chen](https://github.com/qchen59)
-
-[Yasitha Nisansala Rajapaksha](https://github.com/Arcane94)
-
-[Hugh Wright](https://github.com/hughman98)
-
-[Jiacheng Yang](https://github.com/Fishish)
-
-
+Arjun Madhusudan </br>
+Ramya Sai Mullapudi </br>
+Lakshmi Swetha Gavini </br>
+Rohan Prabhune </br>
+Saurabh Krishna </br>

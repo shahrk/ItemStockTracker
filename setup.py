@@ -35,6 +35,6 @@ setup(
         "setuptools",
         "sphinx",
         "sphinx-rtd-theme",
-        "tkinter"
+        "tkinter",
     ],
 )

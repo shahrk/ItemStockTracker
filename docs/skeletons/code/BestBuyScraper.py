@@ -31,10 +31,8 @@ class BestBuyScraper:
         # parsing the content of the page
         soup = BeautifulSoup(page.text, "lxml")
         try:
-            button_add = soup.find(
-                "button", {"data-button-state": "ADD_TO_CART"})
-            button_sold_out = soup.find(
-                "button", {"data-button-state": "SOLD_OUT"})
+            button_add = soup.find("button", {"data-button-state": "ADD_TO_CART"})
+            button_sold_out = soup.find("button", {"data-button-state": "SOLD_OUT"})
             if button_add and not button_sold_out:
                 return "In Stock"
             if button_sold_out:

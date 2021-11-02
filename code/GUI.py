@@ -28,6 +28,7 @@ from pystray import MenuItem as item, Menu as menu
 from PIL import Image
 import platform
 
+
 class Application(tk.Tk):
     """
     The main application class for the project.
@@ -46,7 +47,6 @@ class Application(tk.Tk):
 
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
-
 
         welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
         self.welcome_text = tk.Label(
@@ -73,7 +73,9 @@ class Application(tk.Tk):
         # Add a button for adding an item to track
         plus_image = os.path.join("data", "plus.gif")
         self.plus_image = tk.PhotoImage(file=plus_image).subsample(3)
-        self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
+        self.add_button = tk.Button(
+            master=self, command=self.items_list.add_item_popup, image=self.plus_image
+        )
         self.add_button.place(x=769, y=40)
 
         # Create a frame for program info
@@ -309,7 +311,7 @@ class TrackedItemsListbox(ttk.Treeview):
         self.column(3, width="150")
         self.heading(4, text="Price")
         self.column(4, width="110")
-        if(platform.system()=="Windows"):
+        if platform.system() == "Windows":
             self.bind("<Button-3>", self.menu_popup)
         else:
             self.bind("<Button-2>", self.menu_popup)
@@ -396,7 +398,6 @@ class TrackedItemsListbox(ttk.Treeview):
         #                   # This way the root will always be in the same thread as the popup
         # tempWin.withdraw()
         # popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
-
 
         kwargs = {
             "title": "Item Stock Tracker",
@@ -522,15 +523,18 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         )
         self.ok_button.pack(pady=10)
 
+
 # Define a function for quit the window
 def quit_window(icon, item):
-   icon.stop()
-   app.destroy()
+    icon.stop()
+    app.destroy()
+
 
 # Define a function to show the window again
 def show_window(icon, item):
-   icon.stop()
-   app.after(0,app.deiconify())
+    icon.stop()
+    app.after(0, app.deiconify())
+
 
 def on_closing():
     """
@@ -539,11 +543,12 @@ def on_closing():
     # app.save_setting()
     # app.destroy()
     app.withdraw()
-    plus_image = os.path.join( "data", "plus.gif")
+    plus_image = os.path.join("data", "plus.gif")
     image = Image.open(plus_image)
-    menus = menu(item('Quit', quit_window), item('Show', show_window, default=True))
+    menus = menu(item("Quit", quit_window), item("Show", show_window, default=True))
     icon = pystray.Icon("name", image, "My System Tray Icon", menus)
     icon.run()
+
 
 if __name__ == "__main__":
     s = Tracker.State()

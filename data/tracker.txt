@@ -8,4 +8,4 @@ Lip Colour,https://www.walmart.com/ip/Maybelline-SuperStay-24hr-2-Step-Lipcolor-
 Alert:
 Email,
 Setting:
-600
+5

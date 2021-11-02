@@ -5,7 +5,7 @@
 ![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
 ![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
 <a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>
-
+[![codecov](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker/branch/main/graph/badge.svg?token=EHYPNZ5ACP)](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker)
 
 
 # "Item Stock Tracker" is a program designed to alert users when specific items from an online retailer are back in stock.
@@ -76,8 +76,9 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 
   ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
   
+
 All the info about our application can be found out in newly added INFO tab.
-  
+
 ### Future Goals
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.
@@ -87,7 +88,7 @@ All the info about our application can be found out in newly added INFO tab.
 
 ### Questions?
 If you encountered any questions and seeking for helps, please contact the following emails.
-jyang31@ncsu.edu, ncsuemailtest@gmail.com
+rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu
 
 ### Team Members
 Arjun Madhusudan

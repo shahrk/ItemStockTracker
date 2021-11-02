@@ -39,9 +39,10 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
 
-        welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
-                          "different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com"
+       # welcome_message = "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by " \
+        #                  "different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com"
 
+        welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
         self.welcome_text = tk.Label(text=welcome_message, wraplength=790, justify='left', pady=8)
 
         self.welcome_text.grid(row=0, sticky='NW')
@@ -66,7 +67,18 @@ class Application(tk.Tk):
 
         self.info = ttk.Frame(self.tabs, style="BW.TFrame")
 
-        # Create a frame for program settings
+        info_message = "This application tracks the inventory of specified items offered by " \
+                          "different digital retailers. \nTo add your own items,click the plus button in the upper right. You will be prompted to enter a name for the item you are tracking, along with a URL for a specific product page. " \
+                          "You can also edit, add, or delete items by right-clicking on a selected item.\n" \
+                       "\nIn the Settings tab, you can adjust the refresh interval (how often the program will poll the website to check the stock status of your items), and configure your email alert settings.\n\nCurrently, amazon.com, bestbuy.com and walmart.com product pages are supported."
+
+
+
+
+        self.info_message = tk.Label(self.info,text=info_message, wraplength=790, justify='left', pady=8)
+
+
+    # Create a frame for program settings
         ttk.Style().configure("BW.TFrame", background="white")
 
         self.settings = ttk.Frame(self.tabs, style="BW.TFrame")
@@ -92,6 +104,8 @@ class Application(tk.Tk):
         self.email_alert_box.grid(row=1, column=1, sticky='W')
         self.email_addr_label.grid(row=2, column=0, sticky='E')
         self.email_addr_entry.grid(row=2, column=1, sticky='W')
+
+        self.info_message.grid(row=4, column=2, sticky='W')
 
         # Add the settings and tracked item frames to the notebook
         self.tabs.add(self.items, text='Tracked Items')

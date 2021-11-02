@@ -58,6 +58,7 @@ class WalmartScraper:
         # parsing the content of the page
         soup = BeautifulSoup(page.text, "lxml")
         try:
+
             scraped_data = soup.find(
                 "div", {"data-testid": "add-to-cart-section"})
 

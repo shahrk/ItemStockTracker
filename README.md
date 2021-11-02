@@ -1,5 +1,5 @@
 # Item Stock Tracker
-[![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/unit_test/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
+[![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
 [![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/qchen59/ItemStockTracker)
 <a href="https://zenodo.org/badge/latestdoi/404936268"><img src="https://zenodo.org/badge/404936268.svg" alt="DOI"></a>

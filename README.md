@@ -3,10 +3,11 @@
 [![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
 ![GitHub release (latest by date)](https://img.shields.io/github/v/release/qchen59/ItemStockTracker)
 <a href="https://zenodo.org/badge/latestdoi/404936268"><img src="https://zenodo.org/badge/404936268.svg" alt="DOI"></a>
-![GitHub issues](https://img.shields.io/github/issues/qchen59/ItemStockTracker)
-![GitHub all releases](https://img.shields.io/github/downloads/qchen59/ItemStockTracker/total)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
+![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
+![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
 
-\<Name TBD\> (Item Stock Tracker) is a program designed to alert users when specific items from an online retailer are back in stock.
+# "Item Stock Tracker" is a program designed to alert users when specific items from an online retailer are back in stock.
 
 
 

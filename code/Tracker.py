@@ -77,17 +77,25 @@ class State:
         """
         self.email = ""
 
-    def updateStatus(self, item, url, status):
+    def updateStatus(self, item, url, status, cost):
         """
         Update the item status
         @param item: given item name
         @param url: given item url
         @param status: new item status
+        @param cost: given item cost
         """
         for it in self.item:
+<<<<<<< HEAD
             if it.get("item") == item and it.get("url") == url:
                 it["pstatus"] = it["status"]
                 it["status"] = status
+=======
+            if it.get('item') == item and it.get('url') == url:
+                it['pstatus'] = it['status']
+                it['status'] = status
+                it['cost'] = cost
+>>>>>>> main
 
     def getStatus(self, item, url):
         """
@@ -97,8 +105,13 @@ class State:
         @return: the item status for given item
         """
         for it in self.item:
+<<<<<<< HEAD
             if it.get("item") == item and it.get("url") == url:
                 return {"status": it.get("status"), "pstatus": it.get("pstatus")}
+=======
+            if it.get('item') == item and it.get('url') == url:
+                return {'status': it.get('status'), 'pstatus': it.get('pstatus'), 'cost': it.get('cost')}
+>>>>>>> main
 
 
 def read_state(filename, s):

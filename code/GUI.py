@@ -11,6 +11,7 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
+from os import stat
 import tkinter as tk
 from tkinter import ttk
 import Tracker
@@ -19,6 +20,7 @@ import webbrowser
 from Scraper import Scraper
 import time
 import threading
+import plyer
 
 
 class Application(tk.Tk):
@@ -40,9 +42,9 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
 
-        welcome_message = (
-            "Welcome to <Name TBD>. This application tracks the inventory of specified items offered by "
-            "different digital retailers. \n Currently supported retailers include: amazon.com, bestbuy.com"
+        welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
+        self.welcome_text = tk.Label(
+            text=welcome_message, wraplength=790, justify="left", pady=8
         )
 
         self.welcome_text = tk.Label(
@@ -58,7 +60,7 @@ class Application(tk.Tk):
 
         # Add a listbox to items
         self.items_list = TrackedItemsListbox(
-            self.items, height=21, columns=(1, 2, 3), show="headings"
+            self.items, height=21, columns=(1, 2, 3, 4), show="headings"
         )
         self.items_list.pack()
 
@@ -69,6 +71,22 @@ class Application(tk.Tk):
             master=self, command=self.items_list.add_item_popup, image=self.plus_image
         )
         self.add_button.place(x=769, y=52)
+
+        # Create a frame for program info
+        ttk.Style().configure("BW.TFrame", background="white")
+
+        self.info = ttk.Frame(self.tabs, style="BW.TFrame")
+
+        info_message = (
+            "This application tracks the inventory of specified items offered by "
+            "different digital retailers. \nTo add your own items,click the plus button in the upper right. You will be prompted to enter a name for the item you are tracking, along with a URL for a specific product page. "
+            "You can also edit, add, or delete items by right-clicking on a selected item.\n"
+            "\nIn the Settings tab, you can adjust the refresh interval (how often the program will poll the website to check the stock status of your items), and configure your email alert settings.\n\nCurrently, amazon.com, bestbuy.com and walmart.com product pages are supported."
+        )
+
+        self.info_message = tk.Label(
+            self.info, text=info_message, wraplength=790, justify="left", pady=8
+        )
 
         # Create a frame for program settings
         ttk.Style().configure("BW.TFrame", background="white")
@@ -112,9 +130,12 @@ class Application(tk.Tk):
         self.email_addr_label.grid(row=2, column=0, sticky="E")
         self.email_addr_entry.grid(row=2, column=1, sticky="W")
 
+        self.info_message.grid(row=4, column=2, sticky="W")
+
         # Add the settings and tracked item frames to the notebook
         self.tabs.add(self.items, text="Tracked Items")
         self.tabs.add(self.settings, text="Settings")
+        self.tabs.add(self.info, text="Info")
         self.tabs.grid(row=1, sticky="NE", padx=5, pady=5)
 
         if not self.reload:
@@ -174,22 +195,25 @@ class Application(tk.Tk):
         for item in s.item:
             item_name = item.get("item")
             item_url = item.get("url")
-            item_stock = self.scraper.ChooseScraper(item_url)
-            s.updateStatus(item_name, item_url, item_stock)
+            item_stock, item_cost = self.scraper.ChooseScraper(item_url)
+            s.updateStatus(item_name, item_url, item_stock, item_cost)
             time.sleep(1)
 
         self.lock.release()
 
-    def update_stock_info(self, entry, item_name, item_url, item_stock):
+    def update_stock_info(self, entry, item_name, item_url, item_stock, item_cost):
         """
         Updates the items in the GUI with the stock information
         :param entry: one of the items in the products list
         :param item_name: name of the product
         :param item_url: url of the product
         :param item_stock: stock info of the product
+        :param item_cost: price info of the product
         """
         self.items_list.delete(entry)
-        self.items_list.insert("", "end", values=(item_name, item_url, item_stock))
+        self.items_list.insert(
+            "", "end", values=(item_name, item_url, item_stock, item_cost)
+        )
 
     def run_timer(self):
         """
@@ -211,7 +235,11 @@ class Application(tk.Tk):
                 status = s.getStatus(item_name, item_url)
                 item_stock = status.get("status")
                 item_pstock = status.get("pstatus")
-                self.update_stock_info(entry, item_name, item_url, item_stock)
+                item_cost = status.get("cost")
+
+                self.update_stock_info(
+                    entry, item_name, item_url, item_stock, item_cost
+                )
                 if item_stock == "In Stock" and item_pstock != "In Stock":
                     app.update()
                     self.items_list.alert(item_name, item_url)
@@ -270,11 +298,13 @@ class TrackedItemsListbox(ttk.Treeview):
 
         # Make the columns
         self.heading(1, text="Name")
-        self.column(1, width="190")
+        self.column(1, width="120")
         self.heading(2, text="URL")
-        self.column(2, width="490")
+        self.column(2, width="400")
         self.heading(3, text="Stock Status")
-        self.column(3, width="100")
+        self.column(3, width="150")
+        self.heading(4, text="Price")
+        self.column(4, width="110")
 
         self.bind("<Button-3>", self.menu_popup)
 
@@ -360,6 +390,16 @@ class TrackedItemsListbox(ttk.Treeview):
         #                   # This way the root will always be in the same thread as the popup
         # tempWin.withdraw()
         # popup = ItemAlertDialogue(tempWin, "Item Restocked!", name, url)
+
+        kwargs = {
+            "title": "Item Stock Tracker",
+            "ticker": "~Item Stock Tracker~",
+            "app_name": "Item Stock Tracker",
+            "timeout": 10,
+            "message": name + " is restocked! ",
+        }
+        plyer.notification.notify(**kwargs)
+
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 
 

@@ -1,12 +1,13 @@
 # Item Stock Tracker
 [![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
 [![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/qchen59/ItemStockTracker)
-<a href="https://zenodo.org/badge/latestdoi/404936268"><img src="https://zenodo.org/badge/404936268.svg" alt="DOI"></a>
-![GitHub issues](https://img.shields.io/github/issues/qchen59/ItemStockTracker)
-![GitHub all releases](https://img.shields.io/github/downloads/qchen59/ItemStockTracker/total)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
+![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
+![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
+[![DOI](https://zenodo.org/badge/416888118.svg)](https://zenodo.org/badge/latestdoi/416888118)
 
-\<Name TBD\> (Item Stock Tracker) is a program designed to alert users when specific items from an online retailer are back in stock.
+
+# "Item Stock Tracker" is a program designed to alert users when specific items from an online retailer are back in stock.
 
 
 
@@ -76,9 +77,6 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
   
   
 ### Future Goals
-
-- Come up with a good name！
-- Text alert.
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.
 - [Other enhancements](https://github.com/qchen59/ItemStockTracker/issues)
@@ -90,12 +88,8 @@ If you encountered any questions and seeking for helps, please contact the follo
 jyang31@ncsu.edu, ncsuemailtest@gmail.com
 
 ### Team Members
-[Qiuyu Chen](https://github.com/qchen59)
-
-[Yasitha Nisansala Rajapaksha](https://github.com/Arcane94)
-
-[Hugh Wright](https://github.com/hughman98)
-
-[Jiacheng Yang](https://github.com/Fishish)
-
-
+Arjun Madhusudan
+Ramya Sai Mullapudi
+Lakshmi Swetha Gavini
+Rohan Prabhune
+Saurabh Krishna

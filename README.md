@@ -92,7 +92,7 @@ rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvanka
 
 ### Team Members
 Arjun Madhusudan </br>
-Ramya Sai Mullapudi 
-Lakshmi Swetha Gavini 
-Rohan Prabhune //
-Saurabh Krishna //
+Ramya Sai Mullapudi </br>
+Lakshmi Swetha Gavini </br>
+Rohan Prabhune </br>
+Saurabh Krishna </br>

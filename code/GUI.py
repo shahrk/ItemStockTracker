@@ -61,7 +61,7 @@ class Application(tk.Tk):
         self.items_list.pack()
 
         # Add a button for adding an item to track
-        plus_image = os.path.join(os.path.dirname(sys.executable), "data", "plus.png")
+        plus_image = os.path.join("data", "plus.png")
         self.plus_image = tk.PhotoImage(file=plus_image).subsample(3)
         self.add_button = tk.Button(master=self, command=self.items_list.add_item_popup, image=self.plus_image)
         self.add_button.place(x=769, y=52)
@@ -463,7 +463,7 @@ def on_closing():
     # app.save_setting()
     # app.destroy()
     app.withdraw()
-    plus_image = os.path.join(os.path.dirname(sys.executable), "data", "plus.png")
+    plus_image = os.path.join( "data", "plus.png")
     image = Image.open(plus_image)
     menus = menu(item('Quit', quit_window), item('Show', show_window, default=True))
     icon = pystray.Icon("name", image, "My System Tray Icon", menus)

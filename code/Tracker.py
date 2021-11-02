@@ -21,7 +21,7 @@ Supports the save and reload of state, modify to the item list and settings.
 """
 
 
-FILENAME = os.path.join(os.path.dirname(sys.executable), "data", "tracker.txt")
+FILENAME = os.path.join("data", "tracker.txt")
 
 
 class State:

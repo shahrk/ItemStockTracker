@@ -46,4 +46,3 @@ def test_deleteAlert():
 
 def test_saveState():
     Tracker.save_state(full_path, s)
-

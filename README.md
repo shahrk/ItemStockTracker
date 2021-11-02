@@ -91,8 +91,8 @@ If you encountered any questions and seeking for helps, please contact the follo
 rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu
 
 ### Team Members
-Arjun Madhusudan
-Ramya Sai Mullapudi
-Lakshmi Swetha Gavini
-Rohan Prabhune
-Saurabh Krishna
+Arjun Madhusudan //
+Ramya Sai Mullapudi //
+Lakshmi Swetha Gavini //
+Rohan Prabhune //
+Saurabh Krishna //

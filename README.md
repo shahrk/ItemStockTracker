@@ -1,11 +1,13 @@
 # Item Stock Tracker
 [![Build Status](https://app.travis-ci.com/qchen59/ItemStockTracker.svg?branch=main)](https://app.travis-ci.com/qchen59/ItemStockTracker)
 [![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/qchen59/ItemStockTracker)
-[![DOI](https://zenodo.org/badge/416888118.svg)](https://zenodo.org/badge/latestdoi/416888118)![GitHub issues](https://img.shields.io/github/issues/qchen59/ItemStockTracker)
-![GitHub all releases](https://img.shields.io/github/downloads/qchen59/ItemStockTracker/total)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
+![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
+![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
+[![DOI](https://zenodo.org/badge/416888118.svg)](https://zenodo.org/badge/latestdoi/416888118)
 
-\<Name TBD\> (Item Stock Tracker) is a program designed to alert users when specific items from an online retailer are back in stock.
+
+# "Item Stock Tracker" is a program designed to alert users when specific items from an online retailer are back in stock.
 
 
 

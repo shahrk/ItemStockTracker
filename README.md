@@ -79,7 +79,7 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 
 
 All the info about our application can be found out in newly added INFO tab.
-![image](https://user-images.githubusercontent.com/19464321/139944383-42c2d554-dc54-4c80-84a8-58cb60fc2c68.png)
+  ![image](https://user-images.githubusercontent.com/19464321/139944383-42c2d554-dc54-4c80-84a8-58cb60fc2c68.png)
 
 ### Future Goals
 - Collect the in-stock drop data and predict the next drop time.

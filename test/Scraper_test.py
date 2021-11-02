@@ -1,5 +1,6 @@
 import sys
-sys.path.insert(0, './code/')
+
+sys.path.insert(0, "./code/")
 from code.Scraper import Scraper
 
 

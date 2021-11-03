@@ -50,7 +50,6 @@ class BestBuyScraper:
             page = requests.get(url, headers=headers, timeout=5)
             # parsing the content of the page
             soup = BeautifulSoup(page.text, "lxml")
-        # Handles invalid URLs/timeouts
         except:
             return "Error Occurred", "NA"
 

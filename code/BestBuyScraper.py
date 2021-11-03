@@ -46,9 +46,13 @@ class BestBuyScraper:
             "Connection": "keep-alive",
             "Upgrade-Insecure-Requests": "1",
         }
-        page = requests.get(url, headers=headers, timeout=5)
-        # parsing the content of the page
-        soup = BeautifulSoup(page.text, "lxml")
+        try:
+            page = requests.get(url, headers=headers, timeout=5)
+            # parsing the content of the page
+            soup = BeautifulSoup(page.text, "lxml")
+        # Handles invalid URLs/timeouts
+        except:
+            return "Error Occurred", "NA"
 
         cost = soup.find(
             "div", {"class": "priceView-hero-price priceView-customer-price"}
@@ -60,8 +64,10 @@ class BestBuyScraper:
 
         try:
 
-            button_add = soup.find("button", {"data-button-state": "ADD_TO_CART"})
-            button_sold_out = soup.find("button", {"data-button-state": "SOLD_OUT"})
+            button_add = soup.find(
+                "button", {"data-button-state": "ADD_TO_CART"})
+            button_sold_out = soup.find(
+                "button", {"data-button-state": "SOLD_OUT"})
 
             if button_add and not button_sold_out:
                 return "In Stock", price

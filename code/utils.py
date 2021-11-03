@@ -19,3 +19,9 @@ def become_persistent(filename):
         shortcut.IconLocation = icon
         shortcut.save()
 
+def remove_startup():
+    USER_NAME = getpass.getuser()
+    path = r'C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup' % USER_NAME
+    path = os.path.join(path, "ItemStockTracker.lnk")
+    if os.path.exists(path):
+        os.remove(path)

@@ -27,7 +27,7 @@ import pystray
 from pystray import MenuItem as item, Menu as menu
 from PIL import Image
 import platform
-from utils import become_persistent
+from utils import become_persistent, remove_startup
 class Application(tk.Tk):
     """
     The main application class for the project.
@@ -233,8 +233,12 @@ class Application(tk.Tk):
 
         if self.is_launch_at_start_up.get():
             s.updateLaunchAtStartup("True")
+            become_persistent(__file__)
         else:
             s.updateLaunchAtStartup("False")
+            remove_startup()
+
+
         s.updateSetting(self.interval_entry.get())
         Tracker.save_state(Tracker.FILENAME, s)
 
@@ -599,7 +603,6 @@ def on_closing():
 
 
 if __name__ == "__main__":
-    become_persistent(__file__)
     s = Tracker.State()
     Tracker.read_state(Tracker.FILENAME, s)
     app = Application()

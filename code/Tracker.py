@@ -11,7 +11,8 @@ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 See the License for the specific language governing permissions and
 limitations under the License.
 """
-import os.path
+import os
+import sys
 
 """
 The Tracker serves as the backend of our program.
@@ -20,7 +21,7 @@ Supports the save and reload of state, modify to the item list and settings.
 """
 
 
-FILENAME = '../data/tracker.txt'
+FILENAME = os.path.join("data", "tracker.txt")
 
 
 class State:
@@ -28,11 +29,14 @@ class State:
     The State class which holds all state data.
     Such as the alert setting and the item list.
     """
+
     def __init__(self):
         self.alert = []
         self.item = []
-        self.setting = ''
-        self.email = ''
+        self.setting = ""
+        self.email = ""
+        self.Minimize = ""
+        self.LaunchAtStartup = ""
 
     def updateSetting(self, setting):
         """
@@ -40,6 +44,20 @@ class State:
         @param setting: the given setting
         """
         self.setting = setting
+
+    def updateMinimize(self, Minimize):
+        """
+        Update the Minimize with given setting
+        @param Minimize: the given Minimize
+        """
+        self.Minimize = Minimize
+
+    def updateLaunchAtStartup(self, LaunchAtStartup):
+        """
+        Update the Minimize with given setting
+        @param LaunchAtStartup: the given LaunchAtStartup
+        """
+        self.LaunchAtStartup = LaunchAtStartup
 
     def updateItem(self, iturl):
         """
@@ -50,7 +68,7 @@ class State:
 
     def updateAlert(self, alert):
         """
-        Update the alert with given alert, add the new aler to the alert list
+        Update the alert with given alert, add the new alert to the alert list
         @param alert: given alert
         """
         self.alert.append(alert)
@@ -74,19 +92,21 @@ class State:
         """
         Clear the email address
         """
-        self.email = ''
+        self.email = ""
 
-    def updateStatus(self, item, url, status):
+    def updateStatus(self, item, url, status, cost):
         """
         Update the item status
         @param item: given item name
         @param url: given item url
         @param status: new item status
+        @param cost: given item cost
         """
         for it in self.item:
-            if it.get('item') == item and it.get('url') == url:
-                it['pstatus'] = it['status']
-                it['status'] = status
+            if it.get("item") == item and it.get("url") == url:
+                it["pstatus"] = it["status"]
+                it["status"] = status
+                it["cost"] = cost
 
     def getStatus(self, item, url):
         """
@@ -96,8 +116,12 @@ class State:
         @return: the item status for given item
         """
         for it in self.item:
-            if it.get('item') == item and it.get('url') == url:
-                return {'status': it.get('status'), 'pstatus': it.get('pstatus')}
+            if it.get("item") == item and it.get("url") == url:
+                return {
+                    "status": it.get("status"),
+                    "pstatus": it.get("pstatus"),
+                    "cost": it.get("cost"),
+                }
 
 
 def read_state(filename, s):
@@ -107,27 +131,33 @@ def read_state(filename, s):
     @param s: is the sate we want add state data to
     """
     if os.path.exists(filename):
-        with open(filename, 'r') as file:
+        with open(filename, "r") as file:
             lines = file.read().splitlines()
         file.close()
-        iidx = lines.index('Item:')
-        aidx = lines.index('Alert:')
-        sidx = lines.index('Setting:')
+        iidx = lines.index("Item:")
+        aidx = lines.index("Alert:")
+        sidx = lines.index("Setting:")
+        midx = lines.index("Minimize:")
+        lidx = lines.index("LaunchAtStartup:")
         # proceed the item
         for i in range(iidx + 1, aidx):
-            iturl = lines[i].split(',')
-            s.updateItem({'item': iturl[0], 'url': iturl[1], 'status': '', 'pstatus': ''})
+            iturl = lines[i].split(",")
+            s.updateItem(
+                {"item": iturl[0], "url": iturl[1], "status": "", "pstatus": ""}
+            )
         # proceed the alert
         for i in range(aidx + 1, sidx):
             alt = lines[i]
-            if 'Email' in alt:
-                em = alt.split(',')
+            if "Email" in alt:
+                em = alt.split(",")
                 s.updateAlert(em[0])
                 s.updateEmail(em[1])
             else:
                 s.updateAlert(alt)
             # proceed the setting
         s.updateSetting(lines[sidx + 1])
+        s.updateMinimize(lines[midx + 1])
+        s.updateLaunchAtStartup(lines[lidx + 1])
 
 
 def save_state(filename, s):
@@ -137,20 +167,26 @@ def save_state(filename, s):
     @param s: is the state instance which stores the state data
     """
     # write the current state to the file
-    with open(filename, 'w') as file:
-        file.writelines('Item:\n')
+    with open(filename, "w") as file:
+        file.writelines("Item:\n")
         for i in s.item:
-            file.write(i.get('item'))
-            file.write(',')
-            file.write(i.get('url'))
-            file.write('\n')
-        file.writelines('Alert:\n')
+            file.write(i.get("item"))
+            file.write(",")
+            file.write(i.get("url"))
+            file.write("\n")
+        file.writelines("Alert:\n")
         for a in s.alert:
             file.write(a)
-            if a == 'Email':
-                file.write(',')
+            if a == "Email":
+                file.write(",")
                 file.write(s.email)
-            file.write('\n')
-        file.writelines('Setting:\n')
+            file.write("\n")
+        file.writelines("Setting:\n")
         file.write(s.setting)
+        file.write("\n")
+        file.writelines("Minimize:\n")
+        file.write(s.Minimize)
+        file.write("\n")
+        file.writelines("LaunchAtStartup:\n")
+        file.write(s.LaunchAtStartup)
     file.close()

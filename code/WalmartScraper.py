@@ -44,7 +44,7 @@ class WalmartScraper:
         Obtains stock information from the given url.
 
         :param url: URL of the product
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
         headers = {
             "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0",
@@ -54,6 +54,7 @@ class WalmartScraper:
             "Connection": "keep-alive",
             "Upgrade-Insecure-Requests": "1",
         }
+
         try:
             page = requests.get(url, headers=headers, timeout=5)
             # parsing the content of the page
@@ -65,6 +66,15 @@ class WalmartScraper:
 
             scraped_data = soup.find(
                 "div", {"data-testid": "add-to-cart-section"})
+
+
+        page = requests.get(url, headers=headers, timeout=5)
+        # parsing the content of the page
+        soup = BeautifulSoup(page.text, "lxml")
+        try:
+
+            scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
+
 
             cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]
@@ -81,7 +91,7 @@ class WalmartScraper:
         """
         Prints the progress, and delegates the task to 'check_stock'.
 
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
         print("Tracking....")
         print("Processing: " + self.url)

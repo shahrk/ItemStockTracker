@@ -1,5 +1,8 @@
 # Item Stock Tracker
 [![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
+
+[![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
+
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
 ![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
 ![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
@@ -85,9 +88,12 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
   ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
   
 
-All the information about our application can be seen in INFO tab.
- ![image](https://user-images.githubusercontent.com/19464321/139944383-42c2d554-dc54-4c80-84a8-58cb60fc2c68.png)
- 
+
+
+All the info about our application can be found out in newly added INFO tab.
+  ![image](https://user-images.githubusercontent.com/19464321/139944383-42c2d554-dc54-4c80-84a8-58cb60fc2c68.png)
+
+
 ### Future Goals
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.
@@ -100,8 +106,16 @@ If you encountered any questions and seeking for helps, please contact the follo
 rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu
 
 ### Team Members
+
+Arjun Madhusudan
+Ramya Sai Mullapudi
+Lakshmi Swetha Gavini
+Rohan Prabhune
+Saurabh Krishna
+
 Arjun Madhusudan </br>
 Ramya Sai Mullapudi </br>
 Lakshmi Swetha Gavini </br>
 Rohan Prabhune </br>
 Saurabh Krishna </br>
+

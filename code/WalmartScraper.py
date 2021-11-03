@@ -54,12 +54,27 @@ class WalmartScraper:
             "Connection": "keep-alive",
             "Upgrade-Insecure-Requests": "1",
         }
+
+        try:
+            page = requests.get(url, headers=headers, timeout=5)
+            # parsing the content of the page
+            soup = BeautifulSoup(page.text, "lxml")
+        # Handles invalid URLs/timeouts
+        except:
+            return "Error Occurred", "NA"
+        try:
+
+            scraped_data = soup.find(
+                "div", {"data-testid": "add-to-cart-section"})
+
+
         page = requests.get(url, headers=headers, timeout=5)
         # parsing the content of the page
         soup = BeautifulSoup(page.text, "lxml")
         try:
 
             scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
+
 
             cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]

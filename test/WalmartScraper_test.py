@@ -20,7 +20,11 @@ def test_init():
 def test_InStock():
     walmartScraper = WalmartScraper(InStockUrl)
     stock_info, cost = walmartScraper.job()
+
     assert stock_info == "In Stock" or stock_info == "Error Occurred"
+
+    assert stock_info == "In Stock", "Should be In Stock"
+
 
 
 def test_InStock_cost():
@@ -33,13 +37,21 @@ def test_InStock_cost():
 def test_OutOfStock():
     walmartScraper = WalmartScraper(OutStockUrl)
     stock_info, cost = walmartScraper.job()
+
     assert stock_info == "Out of Stock" or stock_info == "Error Occurred"
+
+    assert stock_info == "Out of Stock", "Should be Out of Stock"
+
 
 
 def test_OutOfStock_cost():
     walmartScraper = WalmartScraper(OutStockUrl)
     stock_info, cost = walmartScraper.job()
     assert cost == "NA"
+
+
+
+
 
 # if __name__ == "__main__":
 #     test_init()

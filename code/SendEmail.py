@@ -28,9 +28,9 @@ def sendEmail(receiver, itemName, url):
     """
 
     # The email address of sender
-    gmail_user = '*****'
+    gmail_user = "*****"
     # The password of sender's email
-    gmail_password = '*****'
+    gmail_password = "*****"
 
     # The subject of email content
     subject = "The item " + itemName + " is restocked!!!!!"
@@ -43,12 +43,16 @@ def sendEmail(receiver, itemName, url):
 To: %s
 Subject: %s
 %s
-    """ % (receiver, subject, body)
+    """ % (
+        receiver,
+        subject,
+        body,
+    )
 
     # Login to the sender email and send the email
     # Print "You've Got Mail!"
     try:
-        smtp_server = smtplib.SMTP_SSL('smtp.gmail.com', 465)
+        smtp_server = smtplib.SMTP_SSL("smtp.gmail.com", 465)
         smtp_server.ehlo()
         smtp_server.login(gmail_user, gmail_password)
         smtp_server.sendmail(gmail_user, receiver, email_text)

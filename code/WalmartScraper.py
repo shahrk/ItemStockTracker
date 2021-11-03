@@ -1,4 +1,3 @@
-
 """
 Licensed under the Apache License, Version 2.0 (the "License");
 you may not use this file except in compliance with the License.
@@ -40,43 +39,62 @@ class WalmartScraper:
         """
         self.url = url
 
-    def check_stock(self, url):
+    def check_stock_price(self, url):
         """
         Obtains stock information from the given url.
 
         :param url: URL of the product
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
         headers = {
-            'User-Agent': 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0',
-            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
-            'Accept-Language': 'en-US,en;q=0.5',
-            'DNT': '1',
-            'Connection': 'keep-alive',
-            'Upgrade-Insecure-Requests': '1',
+            "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:92.0) Gecko/20100101 Firefox/92.0",
+            "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8",
+            "Accept-Language": "en-US,en;q=0.5",
+            "DNT": "1",
+            "Connection": "keep-alive",
+            "Upgrade-Insecure-Requests": "1",
         }
-        page = requests.get(url, headers=headers, timeout=5)
-        soup = BeautifulSoup(page.text, 'lxml')  # parsing the content of the page
-        try:
-            button_add = soup.find('button', {'class': 'w_BS w_BU w_BZ'})
 
-            if button_add:
-                return "In Stock"
-            else:
-                return "Out of Stock"
+        try:
+            page = requests.get(url, headers=headers, timeout=5)
+            # parsing the content of the page
+            soup = BeautifulSoup(page.text, "lxml")
+        # Handles invalid URLs/timeouts
         except:
-            return "Error Occurred"
+            return "Error Occurred", "NA"
+        try:
+
+            scraped_data = soup.find(
+                "div", {"data-testid": "add-to-cart-section"})
+
+
+        page = requests.get(url, headers=headers, timeout=5)
+        # parsing the content of the page
+        soup = BeautifulSoup(page.text, "lxml")
+        try:
+
+            scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
+
+
+            cost = soup.find("span", {"itemprop": "price"})
+            cost = cost.contents[0]
+            print("cost", cost)
+
+            if "Add to cart" in str(scraped_data):
+                return "In Stock", cost
+            elif "Out of stock" in str(scraped_data):
+                return "Out of Stock", "NA"
+        except:
+            return "Error Occurred", "NA"
 
     def job(self):
         """
         Prints the progress, and delegates the task to 'check_stock'.
 
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
         print("Tracking....")
         print("Processing: " + self.url)
-        stock = self.check_stock(self.url)
-        print(stock)
-        return stock
-
-
+        stock, cost = self.check_stock_price(self.url)
+        print(stock, cost)
+        return stock, cost

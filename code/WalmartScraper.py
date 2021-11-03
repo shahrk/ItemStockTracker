@@ -63,10 +63,9 @@ class WalmartScraper:
         except:
             return "Error Occurred", "NA"
         try:
-
-            scraped_data = soup.find(
-                "div", {"data-testid": "add-to-cart-section"})
-
+            scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
+        except:
+            return "Error Occurred", "NA"
 
         page = requests.get(url, headers=headers, timeout=5)
         # parsing the content of the page

@@ -3,10 +3,10 @@ class AmazonScraper:
     | This is the Scraper for Amazon. Takes in product url as input upon object creation. Method 'job' prints progress while method 'check_stock' obtains stock info.
 
     | Amazon pages can have stock info in different ways. Following are the possible cases, interpretations, and return values of each case.
-        
+
      .. list-table::
         :header-rows: 1
-        
+
         * - Case
           - Interpretation
           - Scraper return value
@@ -25,14 +25,14 @@ class AmazonScraper:
         * - No stock info or captcha page
           - Stock information not available
           - No Stock Info
-          
+
     |
     """
 
     def __init__(self, url):
         """
         Initializes url upon object construction.
-        
+
         :param url: URL of the product
         """
         self.url = url
@@ -42,14 +42,12 @@ class AmazonScraper:
         Obtains stock information from the given url.
 
         :param url: URL of the product
-        :return: a string indicating the stock information
+        :return: a string indicating the stock information and a string indicating cost of the product
         """
-        
 
     def job(self):
         """
         Prints the progress, and delegates the task to 'check_stock'.
 
-        :return: a string indicating the stock information
-        """  
-      
+        :return: a string indicating the stock information and a string indicating cost of the product
+        """

@@ -6,6 +6,10 @@ Power Supply,https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold
 Bedside Table,https://www.walmart.com/ip/KingSo-Bedside-Table-Nightstand-Tall-Wood-Accent-End-Tables-for-Bedroom-Living-Room-Brown/258766761
 Lip Colour,https://www.walmart.com/ip/Maybelline-SuperStay-24hr-2-Step-Lipcolor-Always-Blazing/126088124
 Alert:
-Email,
+Email,fjdkalfda@gmail.com
 Setting:
 5
+Minimize:
+False
+LaunchAtStartup:
+True

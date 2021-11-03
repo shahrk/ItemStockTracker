@@ -27,8 +27,7 @@ import pystray
 from pystray import MenuItem as item, Menu as menu
 from PIL import Image
 import platform
-
-
+from utils import become_persistent
 class Application(tk.Tk):
     """
     The main application class for the project.
@@ -48,6 +47,9 @@ class Application(tk.Tk):
         self.rowconfigure(0, weight=0)
         self.rowconfigure(1, weight=6, pad=5)
 
+        self.is_minimize_to_system_tray = tk.IntVar()
+
+        self.is_launch_at_start_up = tk.IntVar()
         welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
         self.welcome_text = tk.Label(
             text=welcome_message, wraplength=790, justify="left", pady=8
@@ -99,7 +101,7 @@ class Application(tk.Tk):
 
         self.settings = ttk.Frame(self.tabs, style="BW.TFrame")
 
-        for i in range(3):
+        for i in range(6):
             self.settings.rowconfigure(i, pad=5)
 
         self.interval_label = tk.Label(
@@ -125,16 +127,38 @@ class Application(tk.Tk):
         self.email_addr_label = tk.Label(
             self.settings, text="User Email Address:  ", bg="white"
         )
+
+        self.minimize_system_label = tk.Label(
+            self.settings, text="Minimize to system tray:  ", bg="white"
+        )
+        self.minimize_to_system_tray = tk.Checkbutton(
+            self.settings, variable=self.is_minimize_to_system_tray, bg="white"
+        )
+
+        self.launch_at_start_up_label = tk.Label(
+            self.settings, text="Launch tracker at startup:  ", bg="white"
+        )
+        self.launch_at_start_up = tk.Checkbutton(
+            self.settings, variable=self.is_launch_at_start_up, bg="white"
+        )
+
         self.email_addr_entry = tk.Entry(
             self.settings, validate="focus", width=30, bg="white"
         )
-
+        self.save_button = tk.Button(
+            self.settings, command=self.save_setting, textvariable=tk.StringVar(value="Save")
+        )
         self.interval_label.grid(row=0, column=0, sticky="E")
         self.interval_entry.grid(row=0, column=1, sticky="W")
         self.email_alert_label.grid(row=1, column=0, sticky="E")
         self.email_alert_box.grid(row=1, column=1, sticky="W")
         self.email_addr_label.grid(row=2, column=0, sticky="E")
         self.email_addr_entry.grid(row=2, column=1, sticky="W")
+        self.minimize_system_label.grid(row=3, column=0, sticky="E")
+        self.minimize_to_system_tray.grid(row=3, column=1, sticky="W")
+        self.launch_at_start_up_label.grid(row=4, column=0, sticky="E")
+        self.launch_at_start_up.grid(row=4, column=1, sticky="W")
+        self.save_button.grid(row=5, column=0, sticky="E")
 
         self.info_message.grid(row=4, column=2, sticky="W")
 
@@ -155,6 +179,8 @@ class Application(tk.Tk):
         # A lock to keep scarping thread safe
         self.lock = threading.Lock()
 
+
+
     def reload_state(self):
         """
         Populates the listbox with saved values
@@ -169,12 +195,22 @@ class Application(tk.Tk):
         if s.setting != "":
             self.interval_entry.delete(0, "end")
             self.interval_entry.insert(0, s.setting)
+        if s.LaunchAtStartup == "True":
+            self.launch_at_start_up.select()
+        else:
+            self.launch_at_start_up.deselect()
+        if s.Minimize == "True":
+            self.minimize_to_system_tray.select()
+        else:
+            self.minimize_to_system_tray.deselect()
         # If the email alert is included in the state file
         if "Email" in s.alert:
             self.email_alert_box.select()
             # Display the email address
             emaddress = s.email
             self.email_addr_entry.insert(0, emaddress)
+
+
 
     def save_setting(self):
         """
@@ -190,7 +226,17 @@ class Application(tk.Tk):
                 s.deleteAlert("Email")
                 s.deleteEmail()
         # Check the refresh interval
+        if self.is_minimize_to_system_tray.get():
+            s.updateMinimize("True")
+        else:
+            s.updateMinimize("False")
+
+        if self.is_launch_at_start_up.get():
+            s.updateLaunchAtStartup("True")
+        else:
+            s.updateLaunchAtStartup("False")
         s.updateSetting(self.interval_entry.get())
+        Tracker.save_state(Tracker.FILENAME, s)
 
     def scraper_data(self):
         """
@@ -228,7 +274,7 @@ class Application(tk.Tk):
         Delegates GUI updating to update_stock_info and send an alert when item restock
         """
         self.min_count += 1
-
+        print(self.min_count)
         if self.min_count % int(self.interval_entry.get()) == 0:
             self.min_count = 0
             # A separate thread to handle scraping
@@ -540,17 +586,20 @@ def on_closing():
     """
     Save the setting when closing
     """
-    # app.save_setting()
-    # app.destroy()
-    app.withdraw()
-    plus_image = os.path.join("data", "plus.gif")
-    image = Image.open(plus_image)
-    menus = menu(item("Quit", quit_window), item("Show", show_window, default=True))
-    icon = pystray.Icon("name", image, "My System Tray Icon", menus)
-    icon.run()
+    if not app.is_minimize_to_system_tray.get():
+        app.save_setting()
+        app.destroy()
+    else:
+        app.withdraw()
+        plus_image = os.path.join("data", "plus.gif")
+        image = Image.open(plus_image)
+        menus = menu(item("Quit", quit_window), item("Show", show_window, default=True))
+        icon = pystray.Icon("name", image, "My System Tray Icon", menus)
+        icon.run()
 
 
 if __name__ == "__main__":
+    become_persistent(__file__)
     s = Tracker.State()
     Tracker.read_state(Tracker.FILENAME, s)
     app = Application()

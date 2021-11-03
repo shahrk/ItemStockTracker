@@ -35,6 +35,8 @@ class State:
         self.item = []
         self.setting = ""
         self.email = ""
+        self.Minimize = ""
+        self.LaunchAtStartup = ""
 
     def updateSetting(self, setting):
         """
@@ -42,6 +44,20 @@ class State:
         @param setting: the given setting
         """
         self.setting = setting
+
+    def updateMinimize(self, Minimize):
+        """
+        Update the Minimize with given setting
+        @param Minimize: the given Minimize
+        """
+        self.Minimize = Minimize
+
+    def updateLaunchAtStartup(self, LaunchAtStartup):
+        """
+        Update the Minimize with given setting
+        @param LaunchAtStartup: the given LaunchAtStartup
+        """
+        self.LaunchAtStartup = LaunchAtStartup
 
     def updateItem(self, iturl):
         """
@@ -121,6 +137,8 @@ def read_state(filename, s):
         iidx = lines.index("Item:")
         aidx = lines.index("Alert:")
         sidx = lines.index("Setting:")
+        midx = lines.index("Minimize:")
+        lidx = lines.index("LaunchAtStartup:")
         # proceed the item
         for i in range(iidx + 1, aidx):
             iturl = lines[i].split(",")
@@ -138,6 +156,8 @@ def read_state(filename, s):
                 s.updateAlert(alt)
             # proceed the setting
         s.updateSetting(lines[sidx + 1])
+        s.updateMinimize(lines[midx + 1])
+        s.updateLaunchAtStartup(lines[lidx + 1])
 
 
 def save_state(filename, s):
@@ -163,4 +183,10 @@ def save_state(filename, s):
             file.write("\n")
         file.writelines("Setting:\n")
         file.write(s.setting)
+        file.write("\n")
+        file.writelines("Minimize:\n")
+        file.write(s.Minimize)
+        file.write("\n")
+        file.writelines("LaunchAtStartup:\n")
+        file.write(s.LaunchAtStartup)
     file.close()

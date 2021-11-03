@@ -28,6 +28,8 @@ from pystray import MenuItem as item, Menu as menu
 from PIL import Image
 import platform
 from utils import become_persistent, remove_startup
+
+
 class Application(tk.Tk):
     """
     The main application class for the project.
@@ -146,7 +148,9 @@ class Application(tk.Tk):
             self.settings, validate="focus", width=30, bg="white"
         )
         self.save_button = tk.Button(
-            self.settings, command=self.save_setting, textvariable=tk.StringVar(value="Save")
+            self.settings,
+            command=self.save_setting,
+            textvariable=tk.StringVar(value="Save"),
         )
         self.interval_label.grid(row=0, column=0, sticky="E")
         self.interval_entry.grid(row=0, column=1, sticky="W")
@@ -179,8 +183,6 @@ class Application(tk.Tk):
         # A lock to keep scarping thread safe
         self.lock = threading.Lock()
 
-
-
     def reload_state(self):
         """
         Populates the listbox with saved values
@@ -210,8 +212,6 @@ class Application(tk.Tk):
             emaddress = s.email
             self.email_addr_entry.insert(0, emaddress)
 
-
-
     def save_setting(self):
         """
         Saves the updated setting
@@ -237,7 +237,6 @@ class Application(tk.Tk):
         else:
             s.updateLaunchAtStartup("False")
             remove_startup()
-
 
         s.updateSetting(self.interval_entry.get())
         Tracker.save_state(Tracker.FILENAME, s)

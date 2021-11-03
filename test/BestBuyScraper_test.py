@@ -47,5 +47,5 @@ def test_OutOfStock_cost():
 #     test_init()
 #     test_InStock()
 #     test_OutOfStock()
-    # test_InStock_cost()
-    # test_OutOfStock_cost
+# test_InStock_cost()
+# test_OutOfStock_cost

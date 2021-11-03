@@ -41,6 +41,7 @@ def test_OutOfStock_cost():
     stock_info, cost = walmartScraper.job()
     assert cost == "NA"
 
+
 # if __name__ == "__main__":
 #     test_init()
 #     test_InStock()

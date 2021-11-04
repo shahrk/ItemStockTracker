@@ -78,22 +78,23 @@ The executable will be found in the folder</br>
 
 
 
-### Usage
+### USAGE
+---
 
 
 ![image](https://user-images.githubusercontent.com/19464321/140402539-b528fbaa-b352-454d-96ae-a9af6b01f623.png)
 
 By default, the GUI will already contain some data, which is loaded from `data/tracker.txt`. To add your own items, click the plus button in the upper right. You will be prompted to enter a name for the item you are tracking, along with a URL for a specific product page. Currently, `amazon.com`, `bestbuy.com` and `walmart.com` product pages are supported.
   
-![image](https://user-images.githubusercontent.com/30803969/134995508-7de37397-a552-4af9-82aa-94f13aca6830.png)
+![7](https://user-images.githubusercontent.com/51504486/140412693-de447000-4c6e-47c8-88da-f31ffc6b1c6d.PNG)
 
 You can also edit, add, or delete items by right-clicking on a selected item,
   
-  ![image](https://user-images.githubusercontent.com/19464321/140404137-11669c4b-3b6c-4548-a85b-6a3c845138f3.png)
+![8](https://user-images.githubusercontent.com/51504486/140413151-fa73f2fc-adde-4f8a-ae91-1e95f06a6dce.PNG)
 
-When an item is restocked, a popup will appear. Optionally, an email alert will also be sent to a specified address.
+When an item is restocked, a popup will appear. Aditionally, a system notification will also be generated 
   
-  ![image](https://user-images.githubusercontent.com/30803969/134995936-a4088c47-229a-43cf-b01d-a9ae6e787b7b.png)
+  ![image](https://user-images.githubusercontent.com/30803969/134995936-a4088c47-229a-43cf-b01d-a9ae6e787b7b.png) ![5](https://user-images.githubusercontent.com/51504486/140413777-9632cd0b-9a50-48f6-874b-6cf8fb40c0a4.PNG)
   
 Lastly, in the "Settings" tab you can adjust the refresh interval (how often the program will poll the website to check the stock status of your items), and configure your email alert settings.
 
@@ -106,10 +107,6 @@ Edited the Settings tab with two new features, "Minimize to system tray" (tick/u
 When the minimize to system tray option is selected, the black coloured plus sign gets added as below,
 
 ![image](https://user-images.githubusercontent.com/19464321/140403479-a9b362f3-a8cf-431c-b099-5f3d8b74df3f.png)
-
-Added the Notifications when an item is 'In Stock'
-
-![image](https://user-images.githubusercontent.com/19464321/140395872-d46da42f-bdea-4296-9cc8-6e68aa21c985.png)
 
 All the info about our application can be found out in newly added INFO tab.
   ![image](https://user-images.githubusercontent.com/19464321/139944383-42c2d554-dc54-4c80-84a8-58cb60fc2c68.png)

@@ -19,7 +19,7 @@ import re
 class BestBuyScraper:
     """
     This is the Scraper for BestBuy. Takes in product url as input upon object creation.
-    Method 'job' prints progress while the method 'check_stock' obtains stock info.
+    Method 'job' prints progress while the method 'check_stock' obtains stock info and a string indicating cost of the product.
 
     @author: qchen59
     """

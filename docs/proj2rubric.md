@@ -16,11 +16,11 @@
 |.5|Use of code formatters. | .5| https://github.com/ramyasaimullapudi/ItemStockTracker/blob/main/.github/workflows/BlackFormatChecker.yml
 |.5|Use of style checkers | .5| https://github.com/ramyasaimullapudi/ItemStockTracker/blob/main/.github/workflows/BlackFormatChecker.yml
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. | .5|https://github.com/ramyasaimullapudi/ItemStockTracker#readme
-|.5|test cases exist  | dozens of tests and those test cases are more than 30% of the code base| https://github.com/ramyasaimullapudi/ItemStockTracker/tree/main/test
+|.5|test cases exist  |  .5| https://github.com/ramyasaimullapudi/ItemStockTracker/tree/main/test
 |.5|Use of code coverage  | .5| https://app.codecov.io/gh/ramyasaimullapudi/ItemStockTracker
 |.5|other automated analysis tools  | .5| https://github.com/ramyasaimullapudi/ItemStockTracker/tree/main/.github/workflows
 |.5|test cases:.a large proportion of the issues related to handling failing cases. | .5| https://github.com/ramyasaimullapudi/ItemStockTracker/issues/48 </br> https://github.com/ramyasaimullapudi/ItemStockTracker/issues/50
 |.5|test cases are routinely executed | .5| github actions are being used to execute the test cases every time a commit happens. </br> https://github.com/ramyasaimullapudi/ItemStockTracker/actions/workflows/unit_test.yml
-|1|1| https://github.com/ramyasaimullapudi/ItemStockTracker#readme
+|1|Documentation describing how this version improves on the older version|1| https://github.com/ramyasaimullapudi/ItemStockTracker#readme
 |3|This version is a little(1), some(2), much(3) improved on the last version.|3| ~10 new features added on top of the old version,  we made design changes in the code to be extensible and readable. 
 |16| Total| 16

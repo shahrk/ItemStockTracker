@@ -95,13 +95,13 @@ When an item is restocked, a popup will appear. Optionally, an email alert will 
 Lastly, in the "Settings" tab you can adjust the refresh interval (how often the program will poll the website to check the stock status of your items), and configure your email alert settings.
 
   ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
-  
+
 Edited the Settings tab with two new features, "Minimize to system tray" (tick/untick) and "Launch tracker at startup" (ticl/untick) along with Save button.
 
 ![image](https://user-images.githubusercontent.com/19464321/140394652-f033a3b3-21a7-41d0-976e-2b20531f277f.png)
-
 All the info about our application can be found out in newly added INFO tab.
   ![image](https://user-images.githubusercontent.com/19464321/139944383-42c2d554-dc54-4c80-84a8-58cb60fc2c68.png)
+
 
 
 ### Future Goals

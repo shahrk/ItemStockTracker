@@ -1,6 +1,6 @@
 class AmazonScraper:
     """
-    | This is the Scraper for Amazon. Takes in product url as input upon object creation. Method 'job' prints progress while method 'check_stock' obtains stock info.
+    | This is the Scraper for Amazon. Takes in product url as input upon object creation. Method 'job' prints progress while method 'check_stock' obtains stock info and a string indicating cost of the product.
 
     | Amazon pages can have stock info in different ways. Following are the possible cases, interpretations, and return values of each case.
 

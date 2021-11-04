@@ -35,7 +35,7 @@ Make sure you have installed and followed all of the following prerequisites on 
 * sphinx-rtd-theme-- [Download & Install setuptools for Python with sphinx-rtd-theme](https://pypi.org/project/sphinx-rtd-theme/)
 
 ### Documentation
-[Item Stock Tracker’s documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ItemStockTracker/blob/main/docs/build/html/index.html)
+[Item Stock Tracker’s documentation](https://itemstocktracker1.readthedocs.io/en/latest/)
 
 ### Installation
 
@@ -83,7 +83,7 @@ The executable will be found in the folder</br>
 
 ![image](https://user-images.githubusercontent.com/19464321/140402539-b528fbaa-b352-454d-96ae-a9af6b01f623.png)
 
-By default, the GUI will already contain some data, which is loaded from `data/tracker.txt`. To add your own items, click the plus button in the upper right. You will be prompted to enter a name for the item you are tracking, along with a URL for a specific product page. Currently, `amazon.com` and `bestbuy.com` product pages are supported.
+By default, the GUI will already contain some data, which is loaded from `data/tracker.txt`. To add your own items, click the plus button in the upper right. You will be prompted to enter a name for the item you are tracking, along with a URL for a specific product page. Currently, `amazon.com`, `bestbuy.com` and `walmart.com` product pages are supported.
   
 ![image](https://user-images.githubusercontent.com/30803969/134995508-7de37397-a552-4af9-82aa-94f13aca6830.png)
 

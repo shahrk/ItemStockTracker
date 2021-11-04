@@ -3,6 +3,7 @@
 3. Enhanced deployment by creating an executable file that can be installed on both Windows and MacOS
 4. In the prior implementation the availability notification was a pop-up which might be missed if the application is minimized. We have integrated the notifications to the system for both Windows and MacOS
 5. Implemented auto launch during system startup, limited to Windows OS.
+6. We have added a functionality to minimize the application to system tray.
 6. Added Black and github actions to automatically check for formatting errors and run test cases for each commit.
 7. Multithreaded scrapers to run parallely using thread pools to fetch stock availability and prices.
 8. Improved documentation in code, also providing clear instructions on setup and getting started.

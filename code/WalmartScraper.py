@@ -18,16 +18,13 @@ from bs4 import BeautifulSoup
 class WalmartScraper:
     """
     This is the Scraper for Walmart. Takes in product url as input upon object creation.
-    Method 'job' prints progress while method 'check_stock' obtains stock info.
+    Method 'job' prints progress while method 'check_stock' obtains stock info and a string indicating cost of the product.
 
     Walmart pages can have stock info in different ways. Following are the possible cases,
     interpretations, and return values of each case.
 
-        * "In Stock" - Product is in stock - return "In Stock"
-        * "Only x left Order soon" - Product is in stock - return "In Stock"
-        * "Currently unavailable" - product is out of Stock - return "Out of Stock"
-        * "In stock soon" - Product is out of stock - return "Out of Stock"
-        * No stock information on the page/Captcha page - No stock info - return "No Stock Info"
+        * "Add to Cart" - Product is in stock - return "In Stock"
+        * "Out of Stock" - product is out of Stock - return "Out of Stock"
 
     @author: gavinilakshmiswetha
     """
@@ -73,7 +70,6 @@ class WalmartScraper:
         try:
 
             scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
-
 
             cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]

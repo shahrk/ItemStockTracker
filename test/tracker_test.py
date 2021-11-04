@@ -47,7 +47,7 @@ def test_updateStatus():
     Tracker.read_state(full_path, s)
     s.updateStatus(powerSupply, url, "In Stock", "$200")
     assert (
-            s.getStatus(powerSupply, url).get("status") == "In Stock"
+        s.getStatus(powerSupply, url).get("status") == "In Stock"
     ), "Should be In Stock"
 
 

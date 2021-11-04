@@ -8,6 +8,9 @@ import getpass
 
 
 def become_persistent(filename):
+    """
+    For Windows users we can launch the app during startup to start tracking the availability and send desktop notifications when available.
+    """
     if platform.system() == "Windows":
         USER_NAME = getpass.getuser()
         path = (
@@ -27,6 +30,9 @@ def become_persistent(filename):
 
 
 def remove_startup():
+    """
+    Disables auto launch during startup.
+    """
     USER_NAME = getpass.getuser()
     path = (
         r"C:\Users\%s\AppData\Roaming\Microsoft\Windows\Start Menu\Programs\Startup"

@@ -16,11 +16,19 @@ amazon = AmazonScraper(InStock_URL)
 
 # Tests for object creation, and url variable initiation
 def test_init():
+    """
+    Tests if Amazon Scraper initializes properly.
+    """
     assert amazon is not None
     assert InStock_URL == amazon.url
 
 
 def test_check_stock():
+    """
+    Tests if the stock status value is received correctly for each
+    of the 5 stock status conditions (In Stock, Order Soon, Out of Stock,
+    In Stock Soon, Invalid URL) on www.amazon.com.
+    """
     # Testing In Stock case. Remove the 'or' condition when Git Issue #22 is fixed.
     amazon = AmazonScraper(InStock_URL)
     stock_info, cost = amazon.check_stock_price(InStock_URL)
@@ -48,6 +56,10 @@ def test_check_stock():
 
 
 def test_job():
+    """
+    Tests if the Amazon scraper delegation and the console print
+    messages are working fine for each of the 5 stock status conditions.
+    """
     # Testing In Stock case. Remove the 'or' condition when Git Issue #22 is fixed.
     amazon = AmazonScraper(InStock_URL)
     stock_info, cost = amazon.job()

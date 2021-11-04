@@ -587,7 +587,9 @@ def show_window(icon, item):
 
 def on_closing():
     """
-    Save the setting when closing
+    Minimize the application to system tray if the the setting is enabled
+    If the setting is not enabled the application will close
+    Save the state of the settings to the tracker.txt when closing
     """
     if not app.is_minimize_to_system_tray.get():
         app.save_setting()

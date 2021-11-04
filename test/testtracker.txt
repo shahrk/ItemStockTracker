@@ -7,3 +7,7 @@ Alert:
 Email,test@email.com
 Setting:
 5
+Minimize:
+False
+LaunchAtStartup:
+True

@@ -10,3 +10,5 @@ code
    Scraper
    SendEmail
    Tracker
+   WalmartScraper
+   utils

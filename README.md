@@ -99,6 +99,9 @@ Lastly, in the "Settings" tab you can adjust the refresh interval (how often the
 Edited the Settings tab with two new features, "Minimize to system tray" (tick/untick) and "Launch tracker at startup" (ticl/untick) along with Save button.
 
 ![image](https://user-images.githubusercontent.com/19464321/140394652-f033a3b3-21a7-41d0-976e-2b20531f277f.png)
+
+Added the Notifications when an item is 'In Stock'
+![image](https://user-images.githubusercontent.com/19464321/140395590-edabecef-bba1-4b5e-bc36-3233b5009ca1.jpeg)
 All the info about our application can be found out in newly added INFO tab.
   ![image](https://user-images.githubusercontent.com/19464321/139944383-42c2d554-dc54-4c80-84a8-58cb60fc2c68.png)
 

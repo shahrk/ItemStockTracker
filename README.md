@@ -80,13 +80,14 @@ The executable will be found in the folder</br>
 
 ### Usage
 
+
 ![image](https://user-images.githubusercontent.com/19464321/140402539-b528fbaa-b352-454d-96ae-a9af6b01f623.png)
 
 By default, the GUI will already contain some data, which is loaded from `data/tracker.txt`. To add your own items, click the plus button in the upper right. You will be prompted to enter a name for the item you are tracking, along with a URL for a specific product page. Currently, `amazon.com` and `bestbuy.com` product pages are supported.
   
 ![image](https://user-images.githubusercontent.com/30803969/134995508-7de37397-a552-4af9-82aa-94f13aca6830.png)
 
-You can also edit, add, or delete items by right-clicking on a selected item:
+You can also edit, add, or delete items by right-clicking on a selected item,
   
   ![image](https://user-images.githubusercontent.com/19464321/140404137-11669c4b-3b6c-4548-a85b-6a3c845138f3.png)
 
@@ -102,7 +103,7 @@ Edited the Settings tab with two new features, "Minimize to system tray" (tick/u
 
 ![image](https://user-images.githubusercontent.com/19464321/140394652-f033a3b3-21a7-41d0-976e-2b20531f277f.png)
 
-When the minimize to system tray option is selected, the below black colured plus sign gets added,
+When the minimize to system tray option is selected, the black coloured plus sign gets added as below,
 
 ![image](https://user-images.githubusercontent.com/19464321/140403479-a9b362f3-a8cf-431c-b099-5f3d8b74df3f.png)
 

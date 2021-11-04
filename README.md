@@ -22,7 +22,7 @@ https://user-images.githubusercontent.com/34405372/135356983-439e7808-8268-41aa-
 
 
 ## Prerequisites
-Make sure you have installed and followed all of the following prerequisites on your development machine:
+Make sure you have installed and followed all the following prerequisites on your development machine:
 
 * Python-- [Download & Install Python 3.9](https://www.python.org/downloads/release/python-390/)
 * Email-- Fill out the email address(gmail_user) and password(gmail_password) in SendEmail.py as the sender email
@@ -39,25 +39,11 @@ Make sure you have installed and followed all of the following prerequisites on 
 
 ### Installation
 
-1. Download the project from GitHub or clone the repository.
+1. Download the latest [release](https://github.com/ramyasaimullapudi/ItemStockTracker/releases/) from the repository based on your operating system.
 
-`git clone https://github.com/ramyasaimullapudi/ItemStockTracker.git`
+2. Extract the zip file downloaded.
 
-
-
-<img width="714" alt="Screen Shot 2021-10-06 at 3 30 28 AM" src="https://user-images.githubusercontent.com/34405372/136159116-5de09c46-95ac-4531-ada6-d14933d41478.png">
-
-2. Change the current directory to the project folder, install the required packages.
-
-`cd ItemStockTracker`
-
-`pip install -r requirements.txt`
-
-3. Change the current directory to `code`, then run the `GUI.py`.
-
-`cd code`
-
-`python3 GUI.py`
+3. Run ItemStockTracker.exe from the extracted folder to launch the application.
 
 ### Build executable 
 

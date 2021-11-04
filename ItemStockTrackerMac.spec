@@ -5,14 +5,14 @@ block_cipher = None
 
 
 a = Analysis(
-    ["code/GUI.py"],
+    ["code\\GUI.py"],
     pathex=["./code"],
     binaries=[],
     datas=[
         ("./code/data/plus.gif", "./data/"),
         ("./code/data/tracker.txt", "./data/"),
     ],
-    hiddenimports=["plyer.platforms.win.notification"],
+    hiddenimports=[],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],
@@ -29,7 +29,7 @@ exe = EXE(
     a.scripts,
     [],
     exclude_binaries=True,
-    name="ItemStockTracker",
+    name="ItemStockTrackerMac",
     debug=False,
     bootloader_ignore_signals=False,
     strip=False,
@@ -48,5 +48,5 @@ coll = COLLECT(
     strip=False,
     upx=True,
     upx_exclude=[],
-    name="ItemStockTracker",
+    name="ItemStockTrackerMac",
 )

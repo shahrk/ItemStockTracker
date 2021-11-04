@@ -71,7 +71,6 @@ class WalmartScraper:
 
             scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
 
-
             cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]
             print("cost", cost)

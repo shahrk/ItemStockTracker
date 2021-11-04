@@ -56,15 +56,24 @@ Make sure you have installed and followed all of the following prerequisites on 
 
 `python3 GUI.py`
 
-Build executable 
+### Build executable 
 
-For windows 
+To build the executable, you need to have pyinstaller installed which can be done using `pip install pyinstaller`. 
+Navigate to `ItemStockTracker` folder and run the below commands based on the operating system you are running.
 
-`pyinstaller  --name "ItemStockTracker"  --distpath ./build/dist --workpath ./build/build --clean -w -p ".\code" --add-data ".\code\data\plus.gif;.\data\"  --add-data ".\code\data\tracker.txt;.\data\" --hidden-import "plyer.platforms.win.notification" --noconfirm ./code/GUI.py`
+For Windows 
+
+`pyinstaller --distpath ./build/dist --workpath ./build/build --noconfirm ./ItemStockTracker.spec`
 
 For Mac
 
-`pyinstaller  --name "ItemStockTracker"  --distpath ./build/distMac --workpath ./build/buildMac --clean -w -p "./code" --add-data "./code/data/plus.gif:./data/"  --add-data "./code/data/tracker.txt:./data/"  --noconfirm ./code/GUI.py`
+`pyinstaller  --distpath ./build/dist --workpath ./build/build --noconfirm ./ItemStockTrackerMac.spec`
+
+The executable will be found in the folder</br>
+`ItemStockTracker/build/dist/ItemStockTracker/ItemStockTracker.exe` for windows</br>
+`ItemStockTracker/build/dist/ItemStockTrackerMac/ItemStockTrackerMac.exe` for windows
+
+
 
 ### Usage
 

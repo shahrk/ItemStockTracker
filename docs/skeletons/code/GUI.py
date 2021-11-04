@@ -158,10 +158,12 @@ def quit_window(icon, item):
     When clicked on quit from system tray closes the application
     """
 
+
 def show_window(icon, item):
     """
     Maximize the window from system tray
     """
+
 
 def on_closing():
     """

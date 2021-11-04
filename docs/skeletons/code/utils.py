@@ -3,10 +3,12 @@
 |
 """
 
+
 def become_persistent(filename):
     """
     For Windows users we can launch the app during startup to start tracking the availability and send desktop notifications when available.
     """
+
 
 def remove_startup():
     """

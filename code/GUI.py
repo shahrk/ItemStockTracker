@@ -581,6 +581,7 @@ def quit_window(icon, item):
     icon.stop()
     app.destroy()
 
+
 def show_window(icon, item):
     """
     Maximize the window from system tray

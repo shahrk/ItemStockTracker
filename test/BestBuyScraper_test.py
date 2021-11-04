@@ -42,6 +42,7 @@ def test_OutOfStock():
     stock_info, cost = bestBuyScraper.job()
     assert stock_info == "Out of Stock", "Should be Out of Stock"
 
+
 # if __name__ == "__main__":
 #     test_init()
 #     test_InStock()

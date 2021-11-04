@@ -1,13 +1,16 @@
 # Item Stock Tracker
 [![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
+[![codecov](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker/branch/main/graph/badge.svg?token=EHYPNZ5ACP)](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker)
 
-[![Coverage Status](https://coveralls.io/repos/github/qchen59/ItemStockTracker/badge.svg?branch=main)](https://coveralls.io/github/qchen59/ItemStockTracker?branch=main)
+![GitHub](https://img.shields.io/badge/language-python-blue.svg)
+<a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>
+![GitHub](https://img.shields.io/github/license/ramyasaimullapudi/ItemStockTracker)
+
 
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
 ![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/ramyasaimullapudi/ItemStockTracker)
 ![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
-<a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>
-[![codecov](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker/branch/main/graph/badge.svg?token=EHYPNZ5ACP)](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker)
 
 
 # "Item Stock Tracker" is a program designed to alert users when specific items from an online retailer are back in stock.
@@ -117,20 +120,15 @@ All the info about our application can be found out in newly added INFO tab.
 
 
 ### Questions?
-If you encountered any questions and seeking for helps, please contact the following emails.
-rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu
+If you encountered any questions and seeking for helps, please reach out to us at
+<br/>[SEGroup16.2021@gmail.com](mailto:SEGroup16.2021@gmail.com)
+<br/>Alternatively, you can contact any of the team members listed below.
 
 ### Team Members
 
-Arjun Madhusudan
-Ramya Sai Mullapudi
-Lakshmi Swetha Gavini
-Rohan Prabhune
-Saurabh Krishna
-
-Arjun Madhusudan </br>
-Ramya Sai Mullapudi </br>
-Lakshmi Swetha Gavini </br>
-Rohan Prabhune </br>
-Saurabh Krishna </br>
+[Arjun Madhusudan](mailto:amadhus2@ncsu.edu)</br>
+[Ramya Sai Mullapudi](mailto:rmullap@ncsu.edu)</br>
+[Lakshmi Swetha Gavini](mailto:lgavini@ncsu.edu)</br>
+[Rohan Prabhune](mailto:rjprabhu@ncsu.edu)</br>
+[Saurabh Krishna](mailto:kvankad@ncsu.edu)</br>
 

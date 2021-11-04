@@ -573,7 +573,6 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         self.ok_button.pack(pady=10)
 
 
-# Define a function for quit the window
 def quit_window(icon, item):
     """
     When clicked on quit from system tray closes the application

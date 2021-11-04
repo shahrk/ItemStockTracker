@@ -13,6 +13,10 @@ bestBuyScraper = BestBuyScraper(InStockUrl)
 
 
 def test_InStock_cost():
+    """
+    Tests if cost value is received correctly
+    when condition is In Stock on www.bestbuy.com.
+    """
     bestBuyScraper = BestBuyScraper(InStockUrl)
     stock_info, cost = bestBuyScraper.job()
     cost_check = bool(re.search("^\$\d{0,3}(,\d{3})*\.\d{0,2}", cost))
@@ -20,6 +24,10 @@ def test_InStock_cost():
 
 
 def test_OutOfStock_cost():
+    """
+    Tests if cost value is received correctly
+    when condition is Out of Stock on www.bestbuy.com.
+    """
     bestBuyScraper = BestBuyScraper(OutOfStockUrl)
     stock_info, cost = bestBuyScraper.job()
     assert cost == "NA"

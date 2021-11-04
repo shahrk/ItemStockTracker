@@ -14,17 +14,30 @@ bestBuyScraper = BestBuyScraper(InStockUrl)
 
 # Tests for object creation, and url variable initiation
 def test_init():
+    """
+    Tests if Bestbuy Scraper initializes properly.
+    """
     assert bestBuyScraper is not None
     assert InStockUrl == bestBuyScraper.url
 
 
 def test_InStock():
+    """
+    Tests if the stock status value is received correctly
+    for two stock status conditions (In Stock, Should be In Stock)
+    on www.bestbuy.com.
+    """
     bestBuyScraper = BestBuyScraper(InStockUrl)
     stock_info, cost = bestBuyScraper.job()
     assert stock_info == "In Stock", "Should be In Stock"
 
 
 def test_OutOfStock():
+    """
+    Tests if the stock status value is received correctly
+    for two stock status conditions (Out of Stock, Should be Out of Stock)
+    on www.bestbuy.com.
+    """
     bestBuyScraper = BestBuyScraper(OutOfStockUrl)
     stock_info, cost = bestBuyScraper.job()
     assert stock_info == "Out of Stock", "Should be Out of Stock"

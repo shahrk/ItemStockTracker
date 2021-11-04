@@ -13,17 +13,30 @@ walmartScraper = WalmartScraper(InStockUrl)
 
 
 def test_init():
+    """
+    Tests if Walmart Scraper initializes properly.
+    """
     assert walmartScraper is not None
     assert InStockUrl == walmartScraper.url
 
 
 def test_InStock():
+    """
+    Tests if the stock status value is received correctly
+    for two stock status conditions (In Stock, Error Occurred)
+    on www.walmart.com.
+    """
     walmartScraper = WalmartScraper(InStockUrl)
     stock_info, cost = walmartScraper.job()
     assert stock_info == "In Stock" or stock_info == "Error Occurred"
 
 
 def test_OutOfStock():
+    """
+    Tests if the stock status value is received correctly
+    for two stock status conditions (Out of Stock, Error Occurred)
+    on www.walmart.com.
+    """
     walmartScraper = WalmartScraper(OutStockUrl)
     stock_info, cost = walmartScraper.job()
     assert stock_info == "Out of Stock" or stock_info == "Error Occurred"

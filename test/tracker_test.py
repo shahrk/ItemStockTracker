@@ -33,6 +33,10 @@ full_path = os.path.abspath("testtracker.txt")
 
 
 def test_readState():
+    """
+    Tests if the reading of the tracker.txt file is correct
+    or not (to load preferences from previous run).
+    """
     Tracker.read_state(full_path, s)
     assert len(s.item) == 6, "Should be 4 items"
     assert s.email == "test@email.com", "Should be test@email.com"
@@ -44,6 +48,9 @@ def test_readState():
 
 
 def test_updateStatus():
+    """
+    Tests if the stock status change is updated properly.
+    """
     Tracker.read_state(full_path, s)
     s.updateStatus(powerSupply, url, "In Stock", "$200")
     assert (
@@ -52,6 +59,9 @@ def test_updateStatus():
 
 
 def test_deleteAlert():
+    """
+    Tests if alert gets removed properly.
+    """
     Tracker.read_state(full_path, s)
     initial_size = len(s.alert)
     s.deleteAlert("Email")

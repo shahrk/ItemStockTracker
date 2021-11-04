@@ -575,12 +575,16 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
 
 # Define a function for quit the window
 def quit_window(icon, item):
+    """
+    When clicked on quit from system tray closes the application
+    """
     icon.stop()
     app.destroy()
 
-
-# Define a function to show the window again
 def show_window(icon, item):
+    """
+    Maximize the window from system tray
+    """
     icon.stop()
     app.after(0, app.deiconify())
 

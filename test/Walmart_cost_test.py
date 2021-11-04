@@ -12,12 +12,11 @@ walmartScraper = WalmartScraper(InStockUrl)
 # Tests for object creation, and url variable initiation
 
 
-def test_init():
-    assert walmartScraper is not None
-    assert InStockUrl == walmartScraper.url
-
-
 def test_InStock_cost():
+    """
+    Tests if cost value is received correctly
+    when condition is In Stock on www.beswalmarttbuy.com.
+    """
     walmartScraper = WalmartScraper(InStockUrl)
     stock_info, cost = walmartScraper.job()
     cost_check = bool(re.search("^\$\d{0,3}(,\d{3})*\.\d{0,2}", cost))
@@ -25,6 +24,10 @@ def test_InStock_cost():
 
 
 def test_OutOfStock_cost():
+    """
+    Tests if cost value is received correctly
+    when condition is Out of Stock on www.walmart.com.
+    """
     walmartScraper = WalmartScraper(OutStockUrl)
     stock_info, cost = walmartScraper.job()
     assert cost == "NA"

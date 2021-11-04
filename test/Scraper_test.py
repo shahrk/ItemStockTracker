@@ -11,15 +11,22 @@ from code.Scraper import Scraper
 
 amazon_URL = "https://www.amazon.com/Lays-Classic-Potato-Chips-Ounce/dp/B072M1NC4M/ref=sr_1_4?crid=D95KX8ETF064&dchild=1&keywords=lays&qid=1632689409&sprefix=lays%2Caps%2C174&sr=8-4"
 bestBuy_URL = "https://www.bestbuy.com/site/corsair-rmx-series-rm850x-80-plus-gold-fully-modular-atx-power-supply-black/6459244.p?skuId=6459244"
+walmart_URL = "https://www.walmart.com/ip/KingSo-Bedside-Table-Nightstand-Tall-Wood-Accent-End-Tables-for-Bedroom-Living-Room-Brown/258766761"
 
 
 # Testing object creation
 def test_init():
+    """
+    Tests if Scraper initializes properly.
+    """
     scraper = Scraper()
     assert scraper is not None
 
 
 def test_ChooseScraper():
+    """
+    Tests the scraper for Amazon, Bestbuy, and Walmart URLs.
+    """
     # Testing Amazon case
     scraper = Scraper()
     stock_info, cost = scraper.ChooseScraper(amazon_URL)
@@ -28,6 +35,11 @@ def test_ChooseScraper():
     # Testing BestBuy case
     scraper = Scraper()
     stock_info, cost = scraper.ChooseScraper(bestBuy_URL)
+    assert stock_info == "In Stock"
+
+    # Testing Walmart case
+    scraper = Scraper()
+    stock_info, cost = scraper.ChooseScraper(walmart_URL)
     assert stock_info == "In Stock"
 
 

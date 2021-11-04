@@ -153,7 +153,19 @@ class ItemAlertDialogue:
         """
 
 
+def quit_window(icon, item):
+    """
+    When clicked on quit from system tray closes the application
+    """
+
+def show_window(icon, item):
+    """
+    Maximize the window from system tray
+    """
+
 def on_closing():
     """
-    Save the setting when closing
+    Minimize the application to system tray if the the setting is enabled
+    If the setting is not enabled the application will close
+    Save the state of the settings to the tracker.txt when closing
     """

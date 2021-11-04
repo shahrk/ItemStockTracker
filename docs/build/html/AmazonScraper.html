@@ -4,7 +4,7 @@
   <meta charset="utf-8" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>AmazonScraper module &mdash; Item Stock Tracker v1.0.0 documentation</title>
+  <title>AmazonScraper module &mdash; Item Stock Tracker v2.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -46,6 +46,8 @@
 <li class="toctree-l2"><a class="reference internal" href="Scraper.html">Scraper module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SendEmail.html">SendEmail module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Tracker.html">Tracker module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="WalmartScraper.html">WalmartScraper module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="utils.html">utils module</a></li>
 </ul>
 </li>
 </ul>
@@ -82,7 +84,7 @@
 <em class="property"><span class="pre">class</span> </em><span class="sig-prename descclassname"><span class="pre">AmazonScraper.</span></span><span class="sig-name descname"><span class="pre">AmazonScraper</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">url</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#AmazonScraper.AmazonScraper" title="Permalink to this definition"></a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <div class="line-block">
-<div class="line">This is the Scraper for Amazon. Takes in product url as input upon object creation. Method ‘job’ prints progress while method ‘check_stock’ obtains stock info.</div>
+<div class="line">This is the Scraper for Amazon. Takes in product url as input upon object creation. Method ‘job’ prints progress while method ‘check_stock’ obtains stock info and a string indicating cost of the product.</div>
 </div>
 <div class="line-block">
 <div class="line">Amazon pages can have stock info in different ways. Following are the possible cases, interpretations, and return values of each case.</div>
@@ -136,7 +138,7 @@
 <dd class="field-odd"><p><strong>url</strong> – URL of the product</p>
 </dd>
 <dt class="field-even">Returns</dt>
-<dd class="field-even"><p>a string indicating the stock information</p>
+<dd class="field-even"><p>a string indicating the stock information and a string indicating cost of the product</p>
 </dd>
 </dl>
 </dd></dl>
@@ -147,7 +149,7 @@
 <dd><p>Prints the progress, and delegates the task to ‘check_stock’.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns</dt>
-<dd class="field-odd"><p>a string indicating the stock information</p>
+<dd class="field-odd"><p>a string indicating the stock information and a string indicating cost of the product</p>
 </dd>
 </dl>
 </dd></dl>
@@ -167,7 +169,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Qiuyu Chen, Yasitha Rajapaksha, Jiacheng Yang, Hugh Wright.</p>
+    <p>&#169; Copyright 2021, Ramya Sai Mullapudi, Rohan Prabhune, Arjun Madhusudan, Lakshmi Swetha Gavini, Saurabh Krishna Vankad.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

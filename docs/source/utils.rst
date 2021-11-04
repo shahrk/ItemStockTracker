@@ -1,7 +1,7 @@
-Tracker module
-==============
+utils module
+============
 
-.. automodule:: Tracker
+.. automodule:: utils
    :members:
    :undoc-members:
    :show-inheritance:

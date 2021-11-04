@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Index &mdash; Item Stock Tracker v1.0.0 documentation</title>
+  <title>Index &mdash; Item Stock Tracker v2.1.0 documentation</title>
       <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
       <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <!--[if lt IE 9]>
@@ -81,6 +81,7 @@
  | <a href="#S"><strong>S</strong></a>
  | <a href="#T"><strong>T</strong></a>
  | <a href="#U"><strong>U</strong></a>
+ | <a href="#W"><strong>W</strong></a>
  
 </div>
 <h2 id="A">A</h2>
@@ -113,6 +114,8 @@
 <h2 id="B">B</h2>
 <table style="width: 100%" class="indextable genindextable"><tr>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="utils.html#utils.become_persistent">become_persistent() (in module utils)</a>
+</li>
       <li>
     BestBuyScraper
 
@@ -120,10 +123,10 @@
         <li><a href="BestBuyScraper.html#module-BestBuyScraper">module</a>
 </li>
       </ul></li>
-      <li><a href="BestBuyScraper.html#BestBuyScraper.BestBuyScraper">BestBuyScraper (class in BestBuyScraper)</a>
-</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="BestBuyScraper.html#BestBuyScraper.BestBuyScraper">BestBuyScraper (class in BestBuyScraper)</a>
+</li>
       <li><a href="GUI.html#GUI.GetItemURLDialogue.body">body() (GUI.GetItemURLDialogue method)</a>
 
       <ul>
@@ -146,6 +149,8 @@
       </ul></li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="WalmartScraper.html#WalmartScraper.WalmartScraper.check_stock_price">check_stock_price() (WalmartScraper.WalmartScraper method)</a>
+</li>
       <li><a href="Scraper.html#Scraper.Scraper.ChooseScraper">ChooseScraper() (Scraper.Scraper method)</a>
 </li>
   </ul></td>
@@ -216,6 +221,8 @@
       <ul>
         <li><a href="BestBuyScraper.html#BestBuyScraper.BestBuyScraper.job">(BestBuyScraper.BestBuyScraper method)</a>
 </li>
+        <li><a href="WalmartScraper.html#WalmartScraper.WalmartScraper.job">(WalmartScraper.WalmartScraper method)</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -241,6 +248,10 @@
 </li>
         <li><a href="Tracker.html#module-Tracker">Tracker</a>
 </li>
+        <li><a href="utils.html#module-utils">utils</a>
+</li>
+        <li><a href="WalmartScraper.html#module-WalmartScraper">WalmartScraper</a>
+</li>
       </ul></li>
   </ul></td>
 </tr></table>
@@ -258,9 +269,11 @@
   <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Tracker.html#Tracker.State.read_state">read_state() (Tracker.State method)</a>
 </li>
+      <li><a href="GUI.html#GUI.Application.reload_state">reload_state() (GUI.Application method)</a>
+</li>
   </ul></td>
   <td style="width: 33%; vertical-align: top;"><ul>
-      <li><a href="GUI.html#GUI.Application.reload_state">reload_state() (GUI.Application method)</a>
+      <li><a href="utils.html#utils.remove_startup">remove_startup() (in module utils)</a>
 </li>
       <li><a href="GUI.html#GUI.Application.run_timer">run_timer() (GUI.Application method)</a>
 </li>
@@ -327,13 +340,37 @@
 </li>
       <li><a href="Tracker.html#Tracker.State.updateEmail">updateEmail() (Tracker.State method)</a>
 </li>
-  </ul></td>
-  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Tracker.html#Tracker.State.updateItem">updateItem() (Tracker.State method)</a>
 </li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
       <li><a href="Tracker.html#Tracker.State.updateSetting">updateSetting() (Tracker.State method)</a>
 </li>
       <li><a href="Tracker.html#Tracker.State.updateStatus">updateStatus() (Tracker.State method)</a>
+</li>
+      <li>
+    utils
+
+      <ul>
+        <li><a href="utils.html#module-utils">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+</tr></table>
+
+<h2 id="W">W</h2>
+<table style="width: 100%" class="indextable genindextable"><tr>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li>
+    WalmartScraper
+
+      <ul>
+        <li><a href="WalmartScraper.html#module-WalmartScraper">module</a>
+</li>
+      </ul></li>
+  </ul></td>
+  <td style="width: 33%; vertical-align: top;"><ul>
+      <li><a href="WalmartScraper.html#WalmartScraper.WalmartScraper">WalmartScraper (class in WalmartScraper)</a>
 </li>
   </ul></td>
 </tr></table>
@@ -347,7 +384,7 @@
   <hr/>
 
   <div role="contentinfo">
-    <p>&#169; Copyright 2021, Qiuyu Chen, Yasitha Rajapaksha, Jiacheng Yang, Hugh Wright.</p>
+    <p>&#169; Copyright 2021, Ramya Sai Mullapudi, Rohan Prabhune, Arjun Madhusudan, Lakshmi Swetha Gavini, Saurabh Krishna Vankad.</p>
   </div>
 
   Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a

@@ -1,7 +1,7 @@
-BestBuyScraper module
+WalmartScraper module
 =====================
 
-.. automodule:: BestBuyScraper
+.. automodule:: WalmartScraper
    :members:
    :undoc-members:
    :show-inheritance:

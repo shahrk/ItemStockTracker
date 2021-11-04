@@ -21,7 +21,7 @@ https://user-images.githubusercontent.com/34405372/135356983-439e7808-8268-41aa-
 
 
 
-### Prerequisites
+## Prerequisites
 Make sure you have installed and followed all of the following prerequisites on your development machine:
 
 * Python-- [Download & Install Python 3.9](https://www.python.org/downloads/release/python-390/)
@@ -77,9 +77,8 @@ The executable will be found in the folder</br>
 `ItemStockTracker/build/dist/ItemStockTrackerMac/ItemStockTrackerMac.exe` for windows
 
 
-
-### USAGE
 ---
+## Usage
 
 
 ![image](https://user-images.githubusercontent.com/19464321/140402539-b528fbaa-b352-454d-96ae-a9af6b01f623.png)
@@ -96,36 +95,51 @@ When an item is restocked, a popup will appear. Aditionally, a system notificati
   
   ![image](https://user-images.githubusercontent.com/30803969/134995936-a4088c47-229a-43cf-b01d-a9ae6e787b7b.png) ![5](https://user-images.githubusercontent.com/51504486/140413777-9632cd0b-9a50-48f6-874b-6cf8fb40c0a4.PNG)
   
-Lastly, in the "Settings" tab you can adjust the refresh interval (how often the program will poll the website to check the stock status of your items), and configure your email alert settings.
+In the "Settings" tab you have the following functionalities:
 
-  ![image](https://user-images.githubusercontent.com/30803969/134995891-10801bc1-8d94-44be-8e01-1f4bd80fb68d.png)
-
-Edited the Settings tab with two new features, "Minimize to system tray" (tick/untick) and "Launch tracker at startup" (ticl/untick) along with Save button.
-
-![image](https://user-images.githubusercontent.com/19464321/140394652-f033a3b3-21a7-41d0-976e-2b20531f277f.png)
-
-When the minimize to system tray option is selected, the black coloured plus sign gets added as below,
-
-![image](https://user-images.githubusercontent.com/19464321/140403479-a9b362f3-a8cf-431c-b099-5f3d8b74df3f.png)
-
-All the info about our application can be found out in newly added INFO tab.
-  ![image](https://user-images.githubusercontent.com/19464321/139944383-42c2d554-dc54-4c80-84a8-58cb60fc2c68.png)
+![2](https://user-images.githubusercontent.com/51504486/140414731-4015eae0-f7ff-4509-af19-57823fd76c07.PNG)
 
 
+- Adjust the refresh interval - How often you want to poll the website to check the status of your items
+- Configure your email alert settings - Want an email alert ? Just tick the checkbox and enter your email address
+- Minimize to system tray - Don't want to see the window in the taskbar ? Just minimize it to system tray. You will see a plus sign:
 
-### Future Goals
+ ![4](https://user-images.githubusercontent.com/51504486/140416010-67519366-eed6-41a1-8b87-6cb9f51639b4.PNG)
+- Launch tracker at startup - If you want to start checking the stock status of your items automatically on system startup 
+
+
+Lastly, all the info about our application can be found out in newly added INFO tab.
+![3](https://user-images.githubusercontent.com/51504486/140417132-3c0963de-d507-465b-8721-f397e5645a71.PNG)
+
+
+---
+## Improvements over previous versions
+1. Extended functionality of the application by supporting new websites that can be tracked like walmart.
+2. Since cost is also a major factor for making the purchase decision we added a column to show the current price of the item without constantly checking the websites saving lot of time when comparing between different websites.
+3. Enhanced deployment by creating an executable file that can be installed on both Windows and MacOS
+4. In the prior implementation the availability notification was a pop-up which might be missed if the application is minimized. We have integrated the notifications to the system for both Windows and MacOS
+5. Implemented auto launch during system startup, limited to Windows OS.
+6. We have added a functionality to minimize the application to system tray.
+7. Added Black and github actions to automatically check for formatting errors and run test cases for each commit.
+8. Multithreaded scrapers to run parallely using thread pools to fetch stock availability and prices.
+9. Improved documentation in code, also providing clear instructions on setup and getting started.
+
+
+---
+## Future Goals
 - Collect the in-stock drop data and predict the next drop time.
 - More supported retailers.
 - [Other enhancements](https://github.com/ramyasaimullapudi/ItemStockTracker/issues)
 
 
-
-### Questions?
+---
+## Questions?
 If you encountered any questions and seeking for helps, please reach out to us at
 <br/>[SEGroup16.2021@gmail.com](mailto:SEGroup16.2021@gmail.com)
 <br/>Alternatively, you can contact any of the team members listed below.
 
-### Team Members
+---
+## Team Members
 
 [Arjun Madhusudan](mailto:amadhus2@ncsu.edu)</br>
 [Ramya Sai Mullapudi](mailto:rmullap@ncsu.edu)</br>

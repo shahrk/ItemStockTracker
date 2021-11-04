@@ -35,7 +35,7 @@ Make sure you have installed and followed all of the following prerequisites on 
 * sphinx-rtd-theme-- [Download & Install setuptools for Python with sphinx-rtd-theme](https://pypi.org/project/sphinx-rtd-theme/)
 
 ### Documentation
-[Item Stock Tracker’s documentation](https://htmlpreview.github.io/?https://github.com/qchen59/ItemStockTracker/blob/main/docs/build/html/index.html)
+[Item Stock Tracker’s documentation](https://itemstocktracker1.readthedocs.io/en/latest/)
 
 ### Installation
 

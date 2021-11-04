@@ -46,16 +46,16 @@ Bugs are tracked as GitHub issues. You need to create an issue and include all t
 
  
 ## Style Checker and Analyzer
-We are using flake8 as our style checker and code analyzer. While contrivuting to this project, make sure you conform to norms dictated by flake8
-### Flake8 
+We are using [Black](https://black.readthedocs.io/) as our style checker and code analyzer. While contributing to this project, builds and pull requests will not clear the Black check unless the code is formatted accordingly. Steps to format are given below.
+### Black 
 <b>Installation</b>
-- `python<version> -m pip install flake8`
+- `python<version> -m pip install black`
 
 If you want Flake8 to be installed for your default Python installation, you can instead use:
-- `python -m pip install flake8`
+- `python -m pip install black`
 
- <b>Using Flake8</b> 
- <br/>To start using Flake8, open an interactive shell and run one of the following,
-- `flake8 path/to/code/to/check.py`
-- `flake8 path/to/code/`
+ <b>Using Black</b> 
+ <br/>To format all the files in your project using Black:
+- `black *`
+ <br/>Use this from the root directory of your project, and do so at least once before committing your changes.
 

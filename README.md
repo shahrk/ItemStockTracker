@@ -61,7 +61,11 @@ For Mac
 
 The executable will be found in the folder</br>
 `ItemStockTracker/build/dist/ItemStockTracker/ItemStockTracker.exe` for windows</br>
-`ItemStockTracker/build/dist/ItemStockTrackerMac/ItemStockTrackerMac.exe` for windows
+`ItemStockTracker/build/dist/ItemStockTrackerMac/ItemStockTrackerMac` for MacOS
+
+To run the app on MacOS execute the following commands from the project's base directory:  
+`cd ItemStockTracker/build/dist/ItemStockTrackerMac`  
+`./ItemStockTrackerMac`
 
 
 ---

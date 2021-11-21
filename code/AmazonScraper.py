@@ -75,18 +75,15 @@ class AmazonScraper:
             sub_class_stock = soup.find("div", {"id": "availability"})
             # finding the div containing out of stock info
             sub_class_no_stock = soup.find("div", {"id": "outOfStock"})
-
-            cost = soup.find("span", {"id": "priceblock_ourprice"})
+            cost = soup.find_all('span', {'class' : 'a-price'})[0].contents[0].contents[0]
             # price = re.match("\$(\d*,)*\d*\.\d*", cost)
-            cost = cost.contents[0]
+            # cost = cost.contents[0]
             # print(cost)
 
             if sub_class_stock and not sub_class_no_stock:
-                if "order soon" in str(sub_class_stock):
+                if "success" in str(sub_class_stock) or "order soon" in str(sub_class_stock):
                     return "In Stock", cost
-                elif "In stock soon" in str(sub_class_stock):
-                    return "Out of Stock", "NA"
-                return "In Stock", cost
+                return "Out of Stock", "NA"
             elif sub_class_no_stock:
                 return "Out of Stock", "NA"
             # This handles the case of having no stock info on the page/captcha page

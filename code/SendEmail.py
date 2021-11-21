@@ -12,7 +12,7 @@ See the License for the specific language governing permissions and
 limitations under the License.
 """
 import smtplib
-
+import os
 
 def sendEmail(receiver, itemName, url):
     """
@@ -28,9 +28,9 @@ def sendEmail(receiver, itemName, url):
     """
 
     # The email address of sender
-    gmail_user = "*****"
+    gmail_user = os.environ['GMAIL_ID']
     # The password of sender's email
-    gmail_password = "*****"
+    gmail_password = os.environ['GMAIL_PASSWORD']
 
     # The subject of email content
     subject = "The item " + itemName + " is restocked!!!!!"

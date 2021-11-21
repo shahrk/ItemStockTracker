@@ -295,11 +295,11 @@ class Application(tk.Tk):
                 self.update_stock_info(
                     entry, item_name, item_url, item_stock, item_cost
                 )
-                # if item_stock == "In Stock" and item_pstock != "In Stock":
-                #     app.update()
-                #     self.items_list.alert(item_name, item_url)
-                #     self.interval_entry.focus_force()
-                #     self.email_addr_entry.focus_force()
+                if item_stock == "In Stock" and item_pstock != "In Stock":
+                    app.update()
+                    self.items_list.alert(item_name, item_url)
+                    self.interval_entry.focus_force()
+                    self.email_addr_entry.focus_force()
 
         self.after(1000, self.run_timer)
 
@@ -455,7 +455,10 @@ class TrackedItemsListbox(ttk.Treeview):
             "timeout": 10,
             "message": name + " is restocked! ",
         }
-        plyer.notification.notify(**kwargs)
+        try:
+            plyer.notification.notify(**kwargs)
+        except:
+            print("expected error while notifying")
 
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 

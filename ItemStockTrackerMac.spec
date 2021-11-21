@@ -12,7 +12,7 @@ a = Analysis(
         ("./code/data/plus.gif", "./data/"),
         ("./code/data/tracker.txt", "./data/"),
     ],
-    hiddenimports=[],
+    hiddenimports=['plyer.platforms.win.notification', 'plyer.platforms.macosx', 'plyer.platforms.macosx.notification'],
     hookspath=[],
     hooksconfig={},
     runtime_hooks=[],

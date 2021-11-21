@@ -26,7 +26,7 @@ https://user-images.githubusercontent.com/34405372/135356983-439e7808-8268-41aa-
 Make sure you have installed and followed all the following prerequisites on your development machine:
 
 * Python-- [Download & Install Python 3.9](https://www.python.org/downloads/release/python-390/)
-* Email-- Fill out the email address(gmail_user) and password(gmail_password) in SendEmail.py as the sender email
+* Email-- Fill out the email address(gmail_user) and password(gmail_password - you will have to use an [app password](https://support.google.com/accounts/answer/185833?p=InvalidSecondFactor&visit_id=637730753160884408-1245442993&rd=1)) in SendEmail.py as the sender email
 * pillow-- [Download & Install Pillow for python with version>=8.3.0](https://pillow.readthedocs.io/en/stable/)
 * requests-- [Download & Install Requests for python with version~=2.26.0](https://docs.python-requests.org/en/latest/)
 * beautifulsoup4-- [Download & Install Beautifulsoup4 for python with version~=4.10.0](https://pypi.org/project/beautifulsoup4/)

@@ -302,6 +302,13 @@ class Application(tk.Tk):
                     self.interval_entry.focus_force()
                     self.email_addr_entry.focus_force()
 
+                print(item_pcost.replace('$','').replace(',',''), item_cost.replace('$','').replace(',',''))
+                if(item_pcost!="" and item_pcost!="NA" and (float)(item_pcost.replace('$','').replace(',','')) >=(float)(item_cost.replace('$','').replace(',',''))):
+                    app.update()
+                    self.items_list.alert_price_drop(item_name, item_url, item_pcost, item_cost)
+                    self.interval_entry.focus_force()
+                    self.email_addr_entry.focus_force()
+
         self.after(1000, self.run_timer)
 
     def __verify_numeric(self, action, value):

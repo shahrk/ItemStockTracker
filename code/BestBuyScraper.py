@@ -49,7 +49,7 @@ class BestBuyScraper:
         try:
             page = requests.get(url, headers=headers, timeout=5)
             # parsing the content of the page
-            soup = BeautifulSoup(page.text, "lxml")
+            soup = BeautifulSoup(page.text, "html.parser")
         except:
             return "Error Occurred", "NA"
 
@@ -59,7 +59,7 @@ class BestBuyScraper:
         cost = str(cost.contents[0])
         # price = re.match("\$(\d*,)*\d*\.\d*", cost)
         price = "$" + cost.split("$")[1].split("<")[0]
-        print(price)
+        # print(price)
 
         try:
 

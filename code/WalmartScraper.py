@@ -59,21 +59,14 @@ class WalmartScraper:
         # Handles invalid URLs/timeouts
         except:
             return "Error Occurred", "NA"
-        try:
-            scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
-        except:
-            return "Error Occurred", "NA"
 
-        page = requests.get(url, headers=headers, timeout=5)
-        # parsing the content of the page
-        soup = BeautifulSoup(page.text, "lxml")
         try:
 
             scraped_data = soup.find("div", {"data-testid": "add-to-cart-section"})
 
             cost = soup.find("span", {"itemprop": "price"})
             cost = cost.contents[0]
-            print("cost", cost)
+            # print("cost", cost)
 
             if "Add to cart" in str(scraped_data):
                 return "In Stock", cost

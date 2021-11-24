@@ -458,7 +458,7 @@ class TrackedItemsListbox(ttk.Treeview):
         try:
             plyer.notification.notify(**kwargs)
         except:
-            print("expected error while notifying")
+            print("unexpected error while notifying")
 
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 

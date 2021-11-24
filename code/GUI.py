@@ -470,6 +470,31 @@ class TrackedItemsListbox(ttk.Treeview):
 
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 
+    def alert_price_drop(self, name, url, pcost, cost):
+        """
+        Alerts the user that a particular product is back in stock by launching a popup and, if the email setting is
+        active, sending an email.
+        :param name: name of the item to be added
+        :param url: URL of the product page
+        """
+        email = ""
+        if app.is_checked.get():
+            email = app.email_addr_entry.get()
+            # SendEmail.sendEmail(email, name, url)
+
+        kwargs = {
+            "title": "Item Stock Tracker",
+            "ticker": "~Item Stock Tracker~",
+            "app_name": "Item Stock Tracker",
+            "timeout": 1,
+            "message": name + " price dropped! ",
+        }
+        try:
+            plyer.notification.notify(**kwargs)
+        except:
+            print("unexpected error while notifying")
+
+        popup = ItemAlertDialogue(self, "Price Dropped!", name, url,pcost,cost)
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):
     """

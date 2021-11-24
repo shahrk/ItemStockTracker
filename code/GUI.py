@@ -23,8 +23,8 @@ import threading
 import plyer
 import os
 import Tracker
-import pystray
-from pystray import MenuItem as item, Menu as menu
+import pystray._win32
+from pystray._base import MenuItem as item, Menu as menu
 from PIL import Image
 import platform
 from utils import become_persistent, remove_startup
@@ -290,14 +290,15 @@ class Application(tk.Tk):
                 status = s.getStatus(item_name, item_url)
                 item_stock = status.get("status")
                 item_pstock = status.get("pstatus")
+                item_pcost = status.get("pcost")
                 item_cost = status.get("cost")
-
+                print(item_stock, item_pstock, item_pcost, item_name)
                 self.update_stock_info(
                     entry, item_name, item_url, item_stock, item_cost
                 )
                 if item_stock == "In Stock" and item_pstock != "In Stock":
                     app.update()
-                    self.items_list.alert(item_name, item_url)
+                    self.items_list.alert_restock(item_name, item_url)
                     self.interval_entry.focus_force()
                     self.email_addr_entry.focus_force()
 
@@ -346,7 +347,7 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_separator()
         self.selected_menu.add_command(
             label="Trigger Restock",
-            command=lambda: self.alert(
+            command=lambda: self.alert_restock(
                 self.set(self.selection()[0])["1"], self.set(self.selection()[0])["2"]
             ),
         )
@@ -389,7 +390,7 @@ class TrackedItemsListbox(ttk.Treeview):
         """
         self.insert("", "end", values=(name, url, ""))
         # Add the item - backend
-        s.updateItem({"item": name, "url": url, "status": "", "pstatus": ""})
+        s.updateItem({"item": name, "url": url, "status": "", "pstatus": "", "pcost":"", "cost":"",})
 
         self.selection_clear()
 
@@ -431,7 +432,7 @@ class TrackedItemsListbox(ttk.Treeview):
         if not popup.cancelled:
             self.add_item(popup.name, popup.url)
 
-    def alert(self, name, url):
+    def alert_restock(self, name, url):
         """
         Alerts the user that a particular product is back in stock by launching a popup and, if the email setting is
         active, sending an email.
@@ -441,7 +442,7 @@ class TrackedItemsListbox(ttk.Treeview):
         email = ""
         if app.is_checked.get():
             email = app.email_addr_entry.get()
-            SendEmail.sendEmail(email, name, url)
+            # SendEmail.sendEmail(email, name, url)
 
         # tempWin = tk.Tk() # Temporary, invisible window to use as a popup's root
         #                   # This way the root will always be in the same thread as the popup
@@ -452,7 +453,7 @@ class TrackedItemsListbox(ttk.Treeview):
             "title": "Item Stock Tracker",
             "ticker": "~Item Stock Tracker~",
             "app_name": "Item Stock Tracker",
-            "timeout": 10,
+            "timeout": 1,
             "message": name + " is restocked! ",
         }
         try:
@@ -527,9 +528,11 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
     :param url: the url of the item
     """
 
-    def __init__(self, parent, title, name, url):
+    def __init__(self, parent, title, name, url, pcost=0, cost=0):
         self.name = name
         self.url = url
+        self.pcost = pcost
+        self.cost = cost
         super().__init__(parent, title)
 
     def followlink(self, event):
@@ -548,8 +551,10 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         """
         frame.rowconfigure(0, weight=0, pad=10)
         frame.rowconfigure(1, weight=0)
-
-        popup_text = "Your item '" + self.name + "' is back in stock!"
+        if(self.pcost == 0):
+            popup_text = "Your item '" + self.name + "' is back in stock!"
+        else:
+            popup_text="Price Dropped for item " + self.name + "!\n From "+self.pcost+" to "+self.cost
         self.text = tk.Label(frame, text=popup_text, wraplength=300, justify=tk.LEFT)
         self.text.grid(row=0)
 

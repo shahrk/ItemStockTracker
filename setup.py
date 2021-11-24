@@ -4,7 +4,7 @@ setup(
     name="ItemStockTracker",
     version="2.1.0",
     description="Tracks stock info from retailer websites",
-    author="Ramya Sai Mullapudi, Rohan Prabhune, Arjun Madhusudan, Lakshmi Swetha Gavini, Saurabh Krishna Vankad",
+    author="Raj Shah, Nirav Patel, Parth Kanakiya, Mithil Dave, Bhargav Jethwa",
     author_email="rmullap@ncsu.edu, rjprabhu@ncsu.edu, amadhur2@ncsu.edu, lgavini@ncsu.edu, kvankad@ncsu.edu",
     url="https://github.com/ramyasaimullapudi/ItemStockTracker",
     packages=["code"],

@@ -23,8 +23,8 @@ import threading
 import plyer
 import os
 import Tracker
-import pystray._win32
-from pystray._base import MenuItem as item, Menu as menu
+import pystray
+from pystray import MenuItem as item, Menu as menu
 from PIL import Image
 import platform
 from utils import become_persistent, remove_startup

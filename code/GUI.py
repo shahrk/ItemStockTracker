@@ -609,10 +609,15 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         """
         This function is called automatically by the object. It controls what buttons should be contained in the popup.
         """
-        self.ok_button = tk.Button(
-            self, text="OK", width=5, command=lambda: self.destroy()
+        # self.ok_button = tk.Button(
+        #     self, text="OK", width=5, command=lambda: self.destroy()
+        # )
+        # self.ok_button.pack(pady=10)
+        self.follow_button = tk.Button(
+            self, text="Open in Web Browser", width=20, command=lambda : self.followlink(None)
         )
-        self.ok_button.pack(pady=10)
+        self.follow_button.pack(pady=10)
+
 
 def quit_window(icon, item):
     """

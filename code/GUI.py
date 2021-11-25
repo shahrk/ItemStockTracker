@@ -28,7 +28,10 @@ from pystray import MenuItem as item, Menu as menu
 from PIL import Image
 import platform
 from utils import become_persistent, remove_startup
+import pandas as pd
+from datetime import datetime
 
+DATAFILE = os.path.join("data", "working_live_data.csv")
 
 class Application(tk.Tk):
     """
@@ -293,6 +296,9 @@ class Application(tk.Tk):
                 item_pcost = status.get("pcost")
                 item_cost = status.get("cost")
                 print(item_stock, item_pstock, item_pcost, item_name)
+                if item_stock == "In Stock":
+                    with open(DATAFILE, 'w') as csvfile:
+                        fields = ['Name', 'Cost', 'Date', 'Time']
                 self.update_stock_info(
                     entry, item_name, item_url, item_stock, item_cost
                 )

@@ -52,7 +52,7 @@ class Application(tk.Tk):
         self.is_minimize_to_system_tray = tk.IntVar()
 
         self.is_launch_at_start_up = tk.IntVar()
-        welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
+        welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock or there is a price drop."
         self.welcome_text = tk.Label(
             text=welcome_message, wraplength=790, justify="left", pady=8
         )
@@ -592,16 +592,16 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         self.text = tk.Label(frame, text=popup_text, wraplength=300, justify=tk.LEFT)
         self.text.grid(row=0)
 
-        self.link = tk.Label(
-            frame,
-            text=self.url,
-            fg="blue",
-            cursor="hand2",
-            wraplength=300,
-            justify=tk.LEFT,
-        )
-        self.link.grid(row=1)
-        self.link.bind("<Button-1>", self.followlink)
+        # self.link = tk.Label(
+        #     frame,
+        #     text=self.url,
+        #     fg="blue",
+        #     cursor="hand2",
+        #     wraplength=300,
+        #     justify=tk.LEFT,
+        # )
+        # self.link.grid(row=1)
+        # self.link.bind("<Button-1>", self.followlink)
 
         return frame
 
@@ -613,7 +613,6 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
             self, text="OK", width=5, command=lambda: self.destroy()
         )
         self.ok_button.pack(pady=10)
-
 
 def quit_window(icon, item):
     """

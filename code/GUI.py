@@ -451,7 +451,7 @@ class TrackedItemsListbox(ttk.Treeview):
         email = ""
         if app.is_checked.get():
             email = app.email_addr_entry.get()
-            # SendEmail.sendEmail(email, name, url)
+            SendEmail.sendEmail(email, name, url)
 
         # tempWin = tk.Tk() # Temporary, invisible window to use as a popup's root
         #                   # This way the root will always be in the same thread as the popup
@@ -482,7 +482,7 @@ class TrackedItemsListbox(ttk.Treeview):
         email = ""
         if app.is_checked.get():
             email = app.email_addr_entry.get()
-            # SendEmail.sendEmail(email, name, url)
+            SendEmail.sendEmail(email, name, url)
 
         kwargs = {
             "title": "Item Stock Tracker",

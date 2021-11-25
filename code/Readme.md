@@ -3,7 +3,7 @@
 
 
 ### Scraper.py:
-Scraper.py chooses which scraper to run.  'ChooseScraper' chooses the scraper.
+Scraper.py chooses and decides which scraper to run.  'ChooseScraper' chooses the scraper.
 
 ChooseScraper(self, url):    
 Chooses the scraper based on product url

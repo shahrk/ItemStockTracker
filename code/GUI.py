@@ -299,6 +299,11 @@ class Application(tk.Tk):
                 if item_stock == "In Stock":
                     with open(DATAFILE, 'w') as csvfile:
                         fields = ['Name', 'Cost', 'Date', 'Time']
+                        current_time = now.strftime("%H:%M:%S")
+                        current_date = now.strftime("%d/%m/%Y")
+                        data = [[item_name, item_cost, current_date, current_time]]
+                        df = pd.DataFrame(data)
+                        df.to_csv(DATAFILE, mode = 'a', index=False)
                 self.update_stock_info(
                     entry, item_name, item_url, item_stock, item_cost
                 )

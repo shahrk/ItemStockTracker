@@ -55,7 +55,7 @@ class WalmartScraper:
         try:
             page = requests.get(url, headers=headers, timeout=5)
             # parsing the content of the page
-            soup = BeautifulSoup(page.text, "lxml")
+            soup = BeautifulSoup(page.text, "html.parser")
         # Handles invalid URLs/timeouts
         except:
             return "Error Occurred", "NA"
@@ -82,7 +82,7 @@ class WalmartScraper:
         :return: a string indicating the stock information and a string indicating cost of the product
         """
         print("Tracking....")
-        print("Processing: " + self.url)
+        # print("Processing: " + self.url)
         stock, cost = self.check_stock_price(self.url)
-        print(stock, cost)
+        # print(stock, cost)
         return stock, cost

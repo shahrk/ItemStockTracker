@@ -98,8 +98,8 @@ class AmazonScraper:
 
         :return: a string indicating the stock information and a string indicating cost of the product
         """
-        print("Tracking....")
-        print("Processing: " + self.url)
+        # print("Tracking....")
+        # print("Processing: " + self.url)
         stock, cost = self.check_stock_price(self.url)
-        print(stock, cost)
+        # print(stock, cost)
         return stock, cost

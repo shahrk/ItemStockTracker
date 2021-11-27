@@ -105,6 +105,7 @@ class State:
         for it in self.item:
             if it.get("item") == item and it.get("url") == url:
                 it["pstatus"] = it["status"]
+                it["pcost"] = it["cost"]
                 it["status"] = status
                 it["cost"] = cost
 
@@ -120,6 +121,7 @@ class State:
                 return {
                     "status": it.get("status"),
                     "pstatus": it.get("pstatus"),
+                    "pcost": it.get("pcost"),
                     "cost": it.get("cost"),
                 }
 
@@ -143,7 +145,7 @@ def read_state(filename, s):
         for i in range(iidx + 1, aidx):
             iturl = lines[i].split(",")
             s.updateItem(
-                {"item": iturl[0], "url": iturl[1], "status": "", "pstatus": ""}
+                {"item": iturl[0], "url": iturl[1], "status": "", "pstatus": "", "pcost": "", "cost":"",}
             )
         # proceed the alert
         for i in range(aidx + 1, sidx):

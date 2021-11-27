@@ -52,7 +52,7 @@ class Application(tk.Tk):
         self.is_minimize_to_system_tray = tk.IntVar()
 
         self.is_launch_at_start_up = tk.IntVar()
-        welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock."
+        welcome_message = "Welcome to Item Stock Tracker - A program designed to alert users when specific items from an online retailer are back in stock or there is a price drop."
         self.welcome_text = tk.Label(
             text=welcome_message, wraplength=790, justify="left", pady=8
         )
@@ -290,14 +290,24 @@ class Application(tk.Tk):
                 status = s.getStatus(item_name, item_url)
                 item_stock = status.get("status")
                 item_pstock = status.get("pstatus")
+                item_pcost = status.get("pcost")
                 item_cost = status.get("cost")
-
+                print(item_stock, item_pstock, item_pcost, item_name)
                 self.update_stock_info(
                     entry, item_name, item_url, item_stock, item_cost
                 )
                 if item_stock == "In Stock" and item_pstock != "In Stock":
                     app.update()
-                    self.items_list.alert(item_name, item_url)
+                    self.items_list.alert_restock(item_name, item_url)
+                    self.interval_entry.focus_force()
+                    self.email_addr_entry.focus_force()
+
+                print(item_pcost.replace('$','').replace(',',''), item_cost.replace('$','').replace(',',''))
+                # for Testing the working of trigger
+                # if(item_pcost!="" and item_pcost!="NA" and (float)(item_pcost.replace('$','').replace(',','')) >=(float)(item_cost.replace('$','').replace(',',''))):
+                if(item_pcost!="" and item_pcost!="NA" and (float)(item_pcost.replace('$','').replace(',','')) >(float)(item_cost.replace('$','').replace(',',''))):
+                    app.update()
+                    self.items_list.alert_price_drop(item_name, item_url, item_pcost, item_cost)
                     self.interval_entry.focus_force()
                     self.email_addr_entry.focus_force()
 
@@ -346,7 +356,7 @@ class TrackedItemsListbox(ttk.Treeview):
         self.selected_menu.add_separator()
         self.selected_menu.add_command(
             label="Trigger Restock",
-            command=lambda: self.alert(
+            command=lambda: self.alert_restock(
                 self.set(self.selection()[0])["1"], self.set(self.selection()[0])["2"]
             ),
         )
@@ -389,7 +399,7 @@ class TrackedItemsListbox(ttk.Treeview):
         """
         self.insert("", "end", values=(name, url, ""))
         # Add the item - backend
-        s.updateItem({"item": name, "url": url, "status": "", "pstatus": ""})
+        s.updateItem({"item": name, "url": url, "status": "", "pstatus": "", "pcost":"", "cost":"",})
 
         self.selection_clear()
 
@@ -431,7 +441,7 @@ class TrackedItemsListbox(ttk.Treeview):
         if not popup.cancelled:
             self.add_item(popup.name, popup.url)
 
-    def alert(self, name, url):
+    def alert_restock(self, name, url):
         """
         Alerts the user that a particular product is back in stock by launching a popup and, if the email setting is
         active, sending an email.
@@ -452,7 +462,7 @@ class TrackedItemsListbox(ttk.Treeview):
             "title": "Item Stock Tracker",
             "ticker": "~Item Stock Tracker~",
             "app_name": "Item Stock Tracker",
-            "timeout": 10,
+            "timeout": 1,
             "message": name + " is restocked! ",
         }
         try:
@@ -462,6 +472,31 @@ class TrackedItemsListbox(ttk.Treeview):
 
         popup = ItemAlertDialogue(self, "Item Restocked!", name, url)
 
+    def alert_price_drop(self, name, url, pcost, cost):
+        """
+        Alerts the user that a particular product is back in stock by launching a popup and, if the email setting is
+        active, sending an email.
+        :param name: name of the item to be added
+        :param url: URL of the product page
+        """
+        email = ""
+        if app.is_checked.get():
+            email = app.email_addr_entry.get()
+            SendEmail.sendEmail(email, name, url)
+
+        kwargs = {
+            "title": "Item Stock Tracker",
+            "ticker": "~Item Stock Tracker~",
+            "app_name": "Item Stock Tracker",
+            "timeout": 1,
+            "message": name + " price dropped! ",
+        }
+        try:
+            plyer.notification.notify(**kwargs)
+        except:
+            print("unexpected error while notifying")
+
+        popup = ItemAlertDialogue(self, "Price Dropped!", name, url,pcost,cost)
 
 class GetItemURLDialogue(tk.simpledialog.Dialog):
     """
@@ -527,9 +562,11 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
     :param url: the url of the item
     """
 
-    def __init__(self, parent, title, name, url):
+    def __init__(self, parent, title, name, url, pcost=0, cost=0):
         self.name = name
         self.url = url
+        self.pcost = pcost
+        self.cost = cost
         super().__init__(parent, title)
 
     def followlink(self, event):
@@ -548,21 +585,23 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         """
         frame.rowconfigure(0, weight=0, pad=10)
         frame.rowconfigure(1, weight=0)
-
-        popup_text = "Your item '" + self.name + "' is back in stock!"
+        if(self.pcost == 0):
+            popup_text = "Your item '" + self.name + "' is back in stock!"
+        else:
+            popup_text="Price Dropped for item " + self.name + "!\n From "+self.pcost+" to "+self.cost
         self.text = tk.Label(frame, text=popup_text, wraplength=300, justify=tk.LEFT)
         self.text.grid(row=0)
 
-        self.link = tk.Label(
-            frame,
-            text=self.url,
-            fg="blue",
-            cursor="hand2",
-            wraplength=300,
-            justify=tk.LEFT,
-        )
-        self.link.grid(row=1)
-        self.link.bind("<Button-1>", self.followlink)
+        # self.link = tk.Label(
+        #     frame,
+        #     text=self.url,
+        #     fg="blue",
+        #     cursor="hand2",
+        #     wraplength=300,
+        #     justify=tk.LEFT,
+        # )
+        # self.link.grid(row=1)
+        # self.link.bind("<Button-1>", self.followlink)
 
         return frame
 
@@ -570,10 +609,14 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         """
         This function is called automatically by the object. It controls what buttons should be contained in the popup.
         """
-        self.ok_button = tk.Button(
-            self, text="OK", width=5, command=lambda: self.destroy()
+        # self.ok_button = tk.Button(
+        #     self, text="OK", width=5, command=lambda: self.destroy()
+        # )
+        # self.ok_button.pack(pady=10)
+        self.follow_button = tk.Button(
+            self, text="Open in Web Browser", width=20, command=lambda : self.followlink(None)
         )
-        self.ok_button.pack(pady=10)
+        self.follow_button.pack(pady=10)
 
 
 def quit_window(icon, item):

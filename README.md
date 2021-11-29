@@ -126,15 +126,21 @@ Lastly, all the info about our application can be found out in newly added INFO 
 ---
 ## Questions?
 If you encountered any questions and seeking for helps, please reach out to us at
-<br/>[SEGroup16.2021@gmail.com](mailto:SEGroup16.2021@gmail.com)
+<br/>[SEGroup27.2021@gmail.com](mailto:featurehuntteam@gmail.com)
 <br/>Alternatively, you can contact any of the team members listed below.
 
 ---
 ## Team Members
 
-[Arjun Madhusudan](mailto:amadhus2@ncsu.edu)</br>
-[Ramya Sai Mullapudi](mailto:rmullap@ncsu.edu)</br>
-[Lakshmi Swetha Gavini](mailto:lgavini@ncsu.edu)</br>
-[Rohan Prabhune](mailto:rjprabhu@ncsu.edu)</br>
-[Saurabh Krishna](mailto:kvankad@ncsu.edu)</br>
+
+
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/shahrk/"><img src="https://avatars.githubusercontent.com/u/11090612?v=4" width="100px;" alt=""/><br /><sub><b>Raj Shah</b></sub></a></td>
+    <td align="center"><a href="https://github.com/Nirav1929/"><img src="https://avatars.githubusercontent.com/u/11133468?v=4" width="100px;" alt=""/><br /><sub><b>Nirav Patel</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/Parth59/"><img src="https://avatars.githubusercontent.com/u/22288099?v=4" width="100px;" alt=""/><br /><sub><b>Parth Kanakiya</b></sub></a><br /></td>
+    <td align="center"><a href="https://github.com/mithildave/"><img src="https://avatars.githubusercontent.com/u/26930183?v=4" width="100px;" alt=""/><br /><sub><b>Mithil Dave</b></sub></a><br /></td>
+    <td align="center"><a href="https://www.github.com/BhargavJethwa"><img src="https://avatars.githubusercontent.com/u/70560970?v=4" width="100px;" alt=""/><br /><sub><b>Bhargav Jethwa</b></sub></a><br /></td>
+  </tr>
+</table>
 

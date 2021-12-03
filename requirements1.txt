@@ -1,0 +1,51 @@
+alabaster==0.7.12
+appnope @ file:///Users/ktietz/demo/mc3/conda-bld/appnope_1629146036738/work
+Babel==2.9.1
+backcall @ file:///home/ktietz/src/ci/backcall_1611930011877/work
+beautifulsoup4==4.10.0
+certifi==2021.5.30
+charset-normalizer==2.0.9
+decorator @ file:///tmp/build/80754af9/decorator_1632776554403/work
+docutils==0.17.1
+future==0.18.2
+idna==3.3
+imagesize==1.3.0
+ipython @ file:///Users/builder/miniconda3/envs/prefect/conda-bld/ipython_1635944760326/work
+jedi @ file:///Users/ktietz/demo/mc3/conda-bld/jedi_1629299203481/work
+Jinja2==3.0.3
+lxml==4.6.4
+MarkupSafe==2.0.1
+matplotlib-inline @ file:///tmp/build/80754af9/matplotlib-inline_1628242447089/work
+numpy==1.21.4
+packaging==21.3
+pandas==1.3.4
+parso @ file:///tmp/build/80754af9/parso_1617223946239/work
+pexpect @ file:///tmp/build/80754af9/pexpect_1605563209008/work
+pickleshare @ file:///tmp/build/80754af9/pickleshare_1606932040724/work
+Pillow==8.4.0
+plyer==2.0.0
+prompt-toolkit @ file:///tmp/build/80754af9/prompt-toolkit_1633440160888/work
+ptyprocess @ file:///tmp/build/80754af9/ptyprocess_1609355006118/work/dist/ptyprocess-0.7.0-py2.py3-none-any.whl
+Pygments @ file:///tmp/build/80754af9/pygments_1629234116488/work
+pyobjc-core==8.1
+pyobjc-framework-Cocoa==8.1
+pyobjc-framework-Quartz==8.1
+pyparsing==3.0.6
+pystray==0.18.0
+python-dateutil==2.8.2
+pytz==2021.3
+requests==2.26.0
+six==1.16.0
+snowballstemmer==2.2.0
+soupsieve==2.3.1
+Sphinx==4.3.1
+sphinx-rtd-theme==1.0.0
+sphinxcontrib-applehelp==1.0.2
+sphinxcontrib-devhelp==1.0.2
+sphinxcontrib-htmlhelp==2.0.0
+sphinxcontrib-jsmath==1.0.1
+sphinxcontrib-qthelp==1.0.3
+sphinxcontrib-serializinghtml==1.1.5
+traitlets @ file:///tmp/build/80754af9/traitlets_1636710298902/work
+urllib3==1.26.7
+wcwidth @ file:///Users/ktietz/demo/mc3/conda-bld/wcwidth_1629357192024/work

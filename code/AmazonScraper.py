@@ -75,10 +75,11 @@ class AmazonScraper:
             sub_class_stock = soup.find("div", {"id": "availability"})
             # finding the div containing out of stock info
             sub_class_no_stock = soup.find("div", {"id": "outOfStock"})
-            cost = soup.find_all('span', {'class' : 'a-price'})[0].contents[0].contents[0]
+            # cost = soup.find_all('span', {'class' : 'a-price'})[0].contents[0].contents[0]
             # price = re.match("\$(\d*,)*\d*\.\d*", cost)
             # cost = cost.contents[0]
             # print(cost)
+            cost = soup.find_all('span', {'class' : 'a-price'})[1].contents[0].contents[0]
 
             if sub_class_stock and not sub_class_no_stock:
                 if "success" in str(sub_class_stock) or "order soon" in str(sub_class_stock):

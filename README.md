@@ -5,11 +5,11 @@
 
 ![GitHub](https://img.shields.io/badge/language-python-blue.svg)
 <a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>
-![GitHub](https://img.shields.io/github/license/ramyasaimullapudi/ItemStockTracker)
+![GitHub](https://img.shields.io/github/license/shahrk/ItemStockTracker)
 ![lines of code](https://tokei.rs/b1/github/shahrk/ItemStockTracker?color=ff69b4&label=Lines%20of%20Code&style=flat-square)
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
-![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/ramyasaimullapudi/ItemStockTracker)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/shahrk/ItemStockTracker)
+![GitHub open issues](https://img.shields.io/github/issues/shahrk/ItemStockTracker)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/shahrk/ItemStockTracker)
 ![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
 
 

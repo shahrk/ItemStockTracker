@@ -575,6 +575,7 @@ class ItemAlertDialogue(tk.simpledialog.Dialog):
         :param event: The popup event
         """
         webbrowser.open(self.url)
+        self.destroy()
 
     def body(self, frame):
         """

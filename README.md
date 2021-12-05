@@ -1,7 +1,7 @@
 # Item Stock Tracker
 [![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
 [![Codestyle: Black](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Black%20Format%20Checker/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
-[![codecov](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker/branch/main/graph/badge.svg?token=EHYPNZ5ACP)](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker)
+[![codecov](https://codecov.io/gh/ramyasaimullapudi/ItemStockTracker/branch/main/graph/badge.svg?token=EHYPNZ5ACP)](https://codecov.io/github/Parth59/ItemStockTracker/commit/7c91ae6bd9dfba8430c97d63a7723bc8b60050a9)
 
 ![GitHub](https://img.shields.io/badge/language-python-blue.svg)
 <a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>

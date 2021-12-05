@@ -1,4 +1,8 @@
+Video Link:-
+https://drive.google.com/drive/folders/1ehC7rZj32X0GlrYXrAqSm4Y_G1O1129m?usp=sharing
+
 # Item Stock Tracker
+
 
 ![image](https://user-images.githubusercontent.com/22288099/144730702-6a1d64e9-fd33-47ae-8f92-f0e1efc65480.png)
 

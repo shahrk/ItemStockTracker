@@ -22,11 +22,11 @@ print(sys.path)
 # -- Project information -----------------------------------------------------
 
 project = "Item Stock Tracker"
-copyright = "2021, Ramya Sai Mullapudi, Rohan Prabhune, Arjun Madhusudan, Lakshmi Swetha Gavini, Saurabh Krishna Vankad"
-author = "Ramya Sai Mullapudi, Rohan Prabhune, Arjun Madhusudan, Lakshmi Swetha Gavini, Saurabh Krishna Vankad"
+copyright = "2021, Mithil Dave, Raj Shah, Nirav Patel, Parth Kanakiya"
+author = "Mithil Dave, Raj Shah, Nirav Patel, Parth Kanakiya"
 
 # The full version, including alpha/beta/rc tags
-release = "v2.1.0"
+release = "v3.1"
 
 
 # -- General configuration ---------------------------------------------------

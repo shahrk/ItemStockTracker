@@ -19,7 +19,7 @@
 |.5|Docs: short video, animated, hosted on your repo. That convinces people why they want to work on your code. | In Readme|
 |.5|test cases exist  | https://github.com/shahrk/ItemStockTracker/tree/main/test|
 |.5|Use of code coverage  |https://codecov.io/gh/Parth59/ItemStockTracker/tree/7c91ae6bd9dfba8430c97d63a7723bc8b60050a9 |
-|.5|other automated analysis tools  | In Readme: BuildPass, check for code lines, and code coverage|
+|.5|other automated analysis tools  | In Readme: BuildPass, check for code lines, and code coverage https://app.snyk.io/org/parth59/project/76737139-177b-41b5-9bc0-c06108568aad|
 |.5|test cases:.a large proportion of the issues related to handling failing cases. | https://github.com/shahrk/ItemStockTracker/issues?q=is%3Aissue+is%3Aclosed+label%3Abug|
 |.5|test cases are routinely executed | https://github.com/shahrk/ItemStockTracker/blob/main/.github/workflows/unit_test.yml|
 |1|Documentation describing how this version improves on the older version|https://github.com/shahrk/ItemStockTracker/blob/main/docs/Proj3Enhancement.pdf| 

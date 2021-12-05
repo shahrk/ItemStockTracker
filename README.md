@@ -131,10 +131,11 @@ The fix is been provided in this commit:
 
 ---
 ## Future Goals
-- We can show comparisons of prices for a product on different retailers. Users will be shown the prices of the same product on the various paltforms. The User can then select the best website to purchase that item. 
-- We can havbe more supported retailers. For example, Nike.com, GAP.com, eabay.com etc. 
-- Item dashboard: This item dashboard will show the basic information of the products including the size/color etc. User can choose to track speciifc product based on size and color. 
-- Add Machine Learning: We can analyze and predict the prices in future using machine learning so that user can choose to wait until they gets their expected prices.   
+- We can show comparison between the prices of a product on different retailer's websites. Users will be shown the prices of the same product on the various paltforms. The User can then select the best website to purchase that item. 
+- We can include more supported retailers in this app. For example, Nike.com, GAP.com, eabay.com etc. 
+- Item dashboard: The item dashboard will show the basic information of the products including the size/color etc. User can choose to track specific product based on size and color. 
+- Add Machine Learning: We can analyze and predict the prices in future using machine learning so that user can choose to wait until they get their expected prices.   
+- Cashback Coupons: We can show various cashback coupons available on retailer's website on our dashboard. This will give users a complete insight of the total cost of the selected item. 
 
 
 ---

@@ -1,7 +1,6 @@
 # Item Stock Tracker
 
-![image](https://user-images.githubusercontent.com/22288099/144730632-4741a924-d8ed-4396-8045-b4f34f225ca8.png)
-
+![image](https://user-images.githubusercontent.com/22288099/144730702-6a1d64e9-fd33-47ae-8f92-f0e1efc65480.png)
 
 [![Build Status](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Build%20Status/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)
 [![Codestyle: Black](https://github.com/ramyasaimullapudi/ItemStockTracker/workflows/Black%20Format%20Checker/badge.svg)](https://github.com/ramyasaimullapudi/ItemStockTracker/actions)

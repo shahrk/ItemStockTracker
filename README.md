@@ -5,12 +5,14 @@
 
 ![GitHub](https://img.shields.io/badge/language-python-blue.svg)
 <a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>
-![GitHub](https://img.shields.io/github/license/ramyasaimullapudi/ItemStockTracker)
 
+![GitHub](https://github.com/shahrk/ItemStockTracker/blob/main/docs/pylint.svg)
+![GitHub](https://img.shields.io/github/license/shahrk/ItemStockTracker)
+![lines of code](https://tokei.rs/b1/github/shahrk/ItemStockTracker?color=ff69b4&label=Lines%20of%20Code&style=flat-square)
+![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/shahrk/ItemStockTracker)
+![GitHub open issues](https://img.shields.io/github/issues/shahrk/ItemStockTracker)
+![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/shahrk/ItemStockTracker)
 
-![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)
-![GitHub open issues](https://img.shields.io/github/issues/ramyasaimullapudi/ItemStockTracker)
-![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/ramyasaimullapudi/ItemStockTracker)
 ![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
 
 
@@ -104,7 +106,7 @@ Lastly, all the info about our application can be found out in newly added INFO 
 
 
 ---
-## Improvements over previous versions
+## Improvements over previous versions Project2:
 1. Extended functionality of the application by supporting new websites that can be tracked like walmart.
 2. Since cost is also a major factor for making the purchase decision we added a column to show the current price of the item without constantly checking the websites saving lot of time when comparing between different websites.
 3. Enhanced deployment by creating an executable file that can be installed on both Windows and MacOS
@@ -115,12 +117,28 @@ Lastly, all the info about our application can be found out in newly added INFO 
 8. Multithreaded scrapers to run parallely using thread pools to fetch stock availability and prices.
 9. Improved documentation in code, also providing clear instructions on setup and getting started.
 
+---
+## Improvements over previous versions Project3: 
+
+Please find the detailed report on Enhancement work done by our team here : https://github.com/shahrk/ItemStockTracker/blob/main/docs/Proj3Enhancement.pdf
+1. Price Drop Alert : If a user wants to purchase certain products but wants to wait until the price is lowered, they can make use of our brand new “Price Drop Alert” feature.  
+2. Item Restock Alert: For out of stock items, users no longer have to check the webpages again and again. Our new feature will give users an item stock alert which will save their time.
+3.Show Discounted Price : Earlier the scraper was fetching the real price of the product rather than the discounted price. Now if the e-commerce website adds new discounted prices, it will be shown on our dashboard. Earlier it was throwing a null value error.
+4. Amazon Scraper: We added a new scrapper for Amazon. Earlier we had scrapers for BestBuy and Walmart. The new Scrapper will help the users to track items from Amazon webpage. 
+5. UI Enhancement: We created a new Web based app for our project. The desktop version was tedious to install and maintain. It is much better for users to have a web-based version. We created a simple UI where users can log in and add items to track. They will be notified via email if/when the stock/price of the products they add changes.
+6. Bug Fix 1(App not working when notification is triggered): When we downloaded the project initially, we found that there was a major error in the functioning of the triggers. The GUI stops refreshing whenever the notification is triggered. The error message was shown in the console whenever notifications are pushed via trigger. 
+7. Bug Fix 2(The support for MAC OS): The app was not deployable on  mac os. There were several complications arising due to the Application initially developed using Windows. We also added the automatic homebrew installation script in the fix. 
+The fix is been provided in this commit: 
+8. Bug Fix 3(Fixed SendEmail.py): Earlier, the code was using hardcoded email id/password to send price alerts. This now is fixed and now it sends the alerts using environmental IDs. 
+9. Added new tools: We added new code coverage, line counter, code style checker and code formatter tools. We used pylint for performing code style checks. We used Black Formatter for checking code format. 
 
 ---
 ## Future Goals
-- Collect the in-stock drop data and predict the next drop time.
-- More supported retailers.
-- [Other enhancements](https://github.com/ramyasaimullapudi/ItemStockTracker/issues)
+- We can show comparison between the prices of a product on different retailer's websites. Users will be shown the prices of the same product on the various paltforms. The User can then select the best website to purchase that item. 
+- We can include more supported retailers in this app. For example, Nike.com, GAP.com, eabay.com etc. 
+- Item dashboard: The item dashboard will show the basic information of the products including the size/color etc. User can choose to track specific product based on size and color. 
+- Add Machine Learning: We can analyze and predict the prices in future using machine learning so that user can choose to wait until they get their expected prices.   
+- Cashback Coupons: We can show various cashback coupons available on retailer's website on our dashboard. This will give users a complete insight of the total cost of the selected item. 
 
 
 ---

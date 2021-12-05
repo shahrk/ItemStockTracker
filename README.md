@@ -131,7 +131,7 @@ The fix is been provided in this commit:
 
 ---
 ## Future Goals
-- We can suggest price compare for different products to the users where they will be shown the prices of the same product on the various paltforms. The User can then select the best website to purchase that item. 
+- We can show comparisons of prices for a product on different retailers. Users will be shown the prices of the same product on the various paltforms. The User can then select the best website to purchase that item. 
 - We can havbe more supported retailers. For example, Nike.com, GAP.com, eabay.com etc. 
 - Item dashboard: This item dashboard will show the basic information of the products including the size/color etc. User can choose to track speciifc product based on size and color. 
 - Add Machine Learning: We can analyze and predict the prices in future using machine learning so that user can choose to wait until they gets their expected prices.   

@@ -6,6 +6,7 @@
 ![GitHub](https://img.shields.io/badge/language-python-blue.svg)
 <a href="https://zenodo.org/badge/latestdoi/416888118"><img src="https://zenodo.org/badge/416888118.svg" alt="DOI"></a>
 ![GitHub](https://img.shields.io/github/license/ramyasaimullapudi/ItemStockTracker)
+![GitHub](https://github.com/shahrk/ItemStockTracker/blob/main/docs/pylint.svg)
 
 
 ![GitHub closed issues](https://img.shields.io/github/issues-closed-raw/ramyasaimullapudi/ItemStockTracker)

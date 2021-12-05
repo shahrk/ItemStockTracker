@@ -13,6 +13,9 @@
 ![GitHub open issues](https://img.shields.io/github/issues/shahrk/ItemStockTracker)
 ![GitHub closed pull requests](https://img.shields.io/github/issues-pr-closed/shahrk/ItemStockTracker)
 
+[![Known Vulnerabilities](https://img.shields.io/badge/vulnerabilities-0-brightgreen)](https://app.snyk.io/org/parth59/project/76737139-177b-41b5-9bc0-c06108568aad)
+
+
 ![GitHub all downloads](https://img.shields.io/github/downloads/ramyasaimullapudi/ItemStockTracker/total)
 
 
